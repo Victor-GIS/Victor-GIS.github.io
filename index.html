@@ -13,177 +13,169 @@
         />
     </head>
     <body class="dark-mode">
-        <div class="global-controls">
-            <div id="language-toggle" class="language-toggle">
-                <span id="lang-en" class="active">EN</span>
-                <span id="lang-es">ES</span>
-            </div>
-            <button id="theme-toggle" class="theme-toggle">
-                <span class="sun-icon">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line
-                            x1="18.36"
-                            y1="18.36"
-                            x2="19.78"
-                            y2="19.78"
-                        ></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </span>
-                <span class="moon-icon">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <path
-                            d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-                        ></path>
-                    </svg>
-                </span>
-            </button>
-        </div>
-
-        <div class="portfolio-grid">
-            <div class="bio-cell">
-                <div class="photo-container">
-                    <img src="images/Perfil.jpg" alt="Victor Luna" />
+        <header class="bio-header">
+            <div class="global-controls">
+                <div id="language-toggle" class="language-toggle">
+                    <span id="lang-en" class="active">EN</span>
+                    <span id="lang-es">ES</span>
                 </div>
-                <h1 data-es="Víctor Luna L.">Victor Luna L.</h1>
-                <h2 data-es="Analista GIS / Urbanista / Diseñador">
-                    GIS Analyst / Urbanist / Designer
-                </h2>
-                <p
-                    class="summary"
-                    data-es="Analista GIS con experiencia en análisis de datos espaciales y visualización para proyectos de desarrollo urbano y socioambientales."
-                >
-                    GIS Analyst with proven experience in spatial data analysis
-                    and visualization for urban development and
-                    socio-environmental projects.
-                </p>
-                <div class="contact-info">
-                    <div class="social-links">
-                        <a
-                            href="https://www.linkedin.com/in/victorgis/"
-                            target="_blank"
-                            >LinkedIn</a
+                <button id="theme-toggle" class="theme-toggle">
+                    <span class="sun-icon">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
                         >
-                        <a href="mailto:victorlunaspatialanalysis@outlook.com"
-                            >Hire Me</a
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line
+                                x1="4.22"
+                                y1="4.22"
+                                x2="5.64"
+                                y2="5.64"
+                            ></line>
+                            <line
+                                x1="18.36"
+                                y1="18.36"
+                                x2="19.78"
+                                y2="19.78"
+                            ></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line
+                                x1="4.22"
+                                y1="19.78"
+                                x2="5.64"
+                                y2="18.36"
+                            ></line>
+                            <line
+                                x1="18.36"
+                                y1="5.64"
+                                x2="19.78"
+                                y2="4.22"
+                            ></line>
+                        </svg>
+                    </span>
+                    <span class="moon-icon">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
                         >
-                    </div>
-                </div>
+                            <path
+                                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                            ></path>
+                        </svg>
+                    </span>
+                </button>
             </div>
 
+            <div class="logo-icon">
+                <img src="images/perfil.jpg" alt="Logo" />
+            </div>
+            <h1 data-es="Víctor Luna L.">Victor Luna L.</h1>
+            <h2 data-es="Analista GIS / Urbanista / Diseñador">
+                GIS Analyst / Urbanist / Designer
+            </h2>
+            <p
+                class="summary"
+                data-es="Analista GIS con experiencia en análisis de datos espaciales y visualización para proyectos de desarrollo urbano y socioambientales."
+            >
+                GIS Analyst with proven experience in spatial data analysis and
+                visualization for urban development and socio-environmental
+                projects.
+            </p>
+            <div class="contact-info">
+                <div class="social-links">
+                    <a
+                        href="https://www.linkedin.com/in/victorgis/"
+                        target="_blank"
+                        >LinkedIn</a
+                    >
+                    <a href="mailto:victorlunaspatialanalysis@outlook.com"
+                        >Hire Me</a
+                    >
+                </div>
+            </div>
+        </header>
+
+        <main class="project-grid">
             <div
-                class="project-cell"
+                class="project-cell size-large-horizontal"
                 data-title="Risk Analysis in the Mexican Megalopolis"
-                data-image="images/1 Risk Megalopolis lowres.jpg"
+                data-image="images/risk.jpg"
                 data-description="A geostatistical model identifying areas of hydric stress and environmental inequity within the Mexican Megalopolis."
             >
-                <img
-                    src="images/1 Risk Megalopolis lowres.jpg"
-                    alt="Risk Megalopolis"
-                />
+                <img src="images/risk.jpg" alt="Risk Megalopolis" />
                 <div class="project-overlay">
-                    <h3 data-es="Riesgo en la Megalópolis">
-                        Risk in the Megalopolis
-                    </h3>
+                    <h3>Risk in the Megalopolis</h3>
                 </div>
             </div>
             <div
-                class="project-cell"
+                class="project-cell size-vertical"
                 data-title="Trans-Isthmus Corridor Strategies"
-                data-image="images/2 Corredor Trans-Ítsmico.jpg"
+                data-image="images/corredor.jpg"
                 data-description="Strategic planning for the Trans-Isthmus Corridor, defining development and conservation zones."
             >
-                <img
-                    src="images/2 Corredor Trans-Ítsmico.jpg"
-                    alt="Corredor Transístmico"
-                />
+                <img src="images/corredor.jpg" alt="Corredor Transístmico" />
                 <div class="project-overlay">
-                    <h3 data-es="Corredor Transístmico">
-                        Trans-Isthmus Corridor
-                    </h3>
+                    <h3>Trans-Isthmus Corridor</h3>
                 </div>
             </div>
             <div
-                class="project-cell"
+                class="project-cell size-small"
                 data-title="SWOT Analysis of the Xochimilco-Chalco Wetland"
-                data-image="images/3 Humedal Xochimilco-Chalco.jpg"
+                data-image="images/humedal.jpg"
                 data-description="SWOT analysis of the Xochimilco-Chalco wetland, identifying threats like informal growth and opportunities in tourism."
             >
-                <img
-                    src="images/3 Humedal Xochimilco-Chalco.jpg"
-                    alt="Humedal Xochimilco"
-                />
+                <img src="images/humedal.jpg" alt="Humedal Xochimilco" />
                 <div class="project-overlay">
-                    <h3 data-es="Humedal Xochimilco-Chalco">
-                        Xochimilco-Chalco Wetland
-                    </h3>
+                    <h3>Xochimilco-Chalco Wetland</h3>
                 </div>
             </div>
             <div
-                class="project-cell"
-                data-title="Economic Activities in the SAC Alameda-Reforma"
-                data-image="images/6 SAC Alameda.jpg"
-                data-description="Mapping of economic activities by sector in the historic center of Mexico City."
+                class="project-cell size-small"
+                data-title="Voronoi Watersheds of Mexico"
+                data-image="images/voronoi.jpg"
+                data-description="A creative cartographic representation of Mexico's watersheds using Voronoi diagrams."
             >
-                <img src="images/6 SAC Alameda.jpg" alt="SAC Alameda" />
-                <div class="project-overlay">
-                    <h3 data-es="Actividades Económicas: SAC Alameda">
-                        Economic Activities: SAC Alameda
-                    </h3>
-                </div>
+                <img src="images/voronoi.jpg" alt="Voronoi Watersheds" />
+                <div class="project-overlay"><h3>Voronoi Watersheds</h3></div>
             </div>
             <div
-                class="project-cell"
-                data-title="Road Infrastructure and Mobility Analysis"
-                data-image="images/vial.jpg"
-                data-description="Analysis and proposal for road infrastructure, studying mobility flows at a key intersection."
-            >
-                <img src="images/vial.jpg" alt="Infraestructura Vial" />
-                <div class="project-overlay">
-                    <h3 data-es="Infraestructura Vial y Movilidad">
-                        Road Infrastructure & Mobility
-                    </h3>
-                </div>
-            </div>
-            <div
-                class="project-cell"
+                class="project-cell size-vertical"
                 data-title="Office Building Architectural Design"
                 data-image="images/edificio.jpg"
                 data-description="Architectural design and rendering for an office building, focusing on natural light and circulation."
             >
                 <img src="images/edificio.jpg" alt="Edificio de Oficinas" />
+                <div class="project-overlay"><h3>Office Building</h3></div>
+            </div>
+            <div
+                class="project-cell size-large-horizontal"
+                data-title="Economic Activities in the SAC Alameda-Reforma"
+                data-image="images/sac_alameda.jpg"
+                data-description="Mapping of economic activities by sector in the historic center of Mexico City."
+            >
+                <img src="images/sac_alameda.jpg" alt="SAC Alameda" />
                 <div class="project-overlay">
-                    <h3 data-es="Edificio de Oficinas">Office Building</h3>
+                    <h3>Economic Activities: SAC Alameda</h3>
                 </div>
             </div>
-        </div>
+        </main>
 
         <div id="modal-overlay" class="modal-overlay">
             <div id="modal-content" class="modal-content">
