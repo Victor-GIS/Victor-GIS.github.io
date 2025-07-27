@@ -228,7 +228,7 @@ body.dark-mode .moon-icon {
 
 .project-thumbnail {
     width: 180px;
-    height: 150px; /* ¡ESTA ES LA REGLA CLAVE! */
+    height: 150px;
     object-fit: cover;
     border-radius: 10px;
     margin-right: 1.5rem;
@@ -290,7 +290,7 @@ body.dark-mode .moon-icon {
 #modal-description {
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--text-secondary);
+    color: var(--text-primary);
 }
 .language-suggestion {
     position: fixed;
