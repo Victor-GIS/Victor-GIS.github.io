@@ -211,34 +211,45 @@ body.dark-mode .moon-icon {
     gap: 1.5rem;
 }
 .project-item {
-    display: flex;
-    align-items: center;
-    background-color: var(--card-background);
-    padding: 1rem;
-    border: 1px solid transparent;
+    position: relative;
     border-radius: 16px;
     cursor: pointer;
+    overflow: hidden;
+    min-height: 170px;
+    display: flex;
+    align-items: flex-end;
     transition: all 0.3s ease;
-    min-height: 150px;
 }
 .project-item:hover {
     transform: scale(1.03);
-    border-color: var(--accent-color);
 }
-
-.project-thumbnail {
-    width: 180px;
-    height: 150px;
+.project-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 10px;
-    margin-right: 1.5rem;
-    flex-shrink: 0;
+    z-index: 1;
+    transition: transform 0.4s ease;
+}
+.project-item:hover .project-background {
+    transform: scale(1.1);
+}
+.project-title {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 }
 .project-title h3 {
     margin: 0;
-    color: var(--text-primary);
     font-size: 1.2rem;
     font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* --- Modal y Responsivo --- */
@@ -290,7 +301,7 @@ body.dark-mode .moon-icon {
 #modal-description {
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--text-primary);
+    color: var(--text-secondary);
 }
 .language-suggestion {
     position: fixed;
@@ -344,15 +355,5 @@ body.dark-mode .moon-icon {
     .top-controls {
         position: static;
         margin-bottom: 2rem;
-    }
-    .project-item {
-        flex-direction: column;
-        text-align: center;
-        min-height: auto;
-    }
-    .project-thumbnail {
-        margin: 0 0 1rem 0;
-        width: 100%;
-        height: 200px;
     }
 }
