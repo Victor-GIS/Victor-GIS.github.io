@@ -1,17 +1,17 @@
-/* Paleta de Colores Personalizada (Versión 3.0) */
+/* Paleta de Colores - Light Mode */
 :root {
-    --dark-background: #0d1117;
-    --card-background: #161b22;
-    --border-color: #30363d;
-    --text-primary: #c9d1d9;
-    --text-secondary: #8b949e;
-    --accent-color: #f92375;
+    --background: #f8f9fa;
+    --text-primary: #212529; /* Un negro suave */
+    --text-secondary: #6c757d; /* Un gris para texto secundario */
+    --card-background: #ffffff;
+    --border-color: #dee2e6;
+    --accent-color: #e60073; /* Mantenemos tu magenta, que contrasta bien */
 }
 
 /* Estilos Generales */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--dark-background);
+    background-color: var(--background);
     color: var(--text-secondary);
     margin: 0;
 }
@@ -23,10 +23,10 @@ body {
     min-height: 100vh;
 }
 
-/* --- Panel Izquierdo Fijo --- */
+/* --- Panel Izquierdo Fijo con Estilo Minimalista --- */
 .left-panel {
-    width: 40%;
-    max-width: 500px;
+    width: 45%;
+    max-width: 600px;
     padding: 3rem 4rem;
     position: sticky;
     top: 0;
@@ -34,25 +34,28 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-sizing: border-box; /* Importante para que el padding no afecte el ancho */
+    box-sizing: border-box;
 }
 
 .bio-content h1 {
-    font-size: 3rem;
-    font-weight: 900;
+    font-size: 5rem; /* Tamaño grande para alto impacto */
+    font-weight: 900; /* Máximo grosor */
     color: var(--text-primary);
     margin: 0;
+    line-height: 1.1; /* Interlineado ajustado */
 }
 
 .bio-content h2 {
     font-size: 1.5rem;
-    color: var(--accent-color);
-    margin: 0.5rem 0 1.5rem 0;
+    color: var(--text-primary);
+    margin: 1rem 0 1.5rem 0;
+    font-weight: 400; /* Peso normal para contrastar con el título */
 }
 
 .bio-content .summary {
     font-size: 1rem;
     line-height: 1.6;
+    max-width: 450px; /* Evita que el texto se alargue demasiado */
 }
 
 .social-links {
@@ -71,12 +74,15 @@ body {
     color: var(--accent-color);
 }
 
-
-/* --- Panel Derecho con Proyectos --- */
+/* --- Panel Derecho con Proyectos Centrados --- */
 .right-panel {
-    width: 60%;
+    width: 55%;
     padding: 3rem 4rem;
     box-sizing: border-box;
+    /* Flexbox para centrar los proyectos verticalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .project-item {
@@ -88,11 +94,13 @@ body {
     border: 1px solid var(--border-color);
     margin-bottom: 1.5rem;
     cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-item:hover {
-    background-color: #1f252d;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     border-color: var(--accent-color);
 }
 
@@ -102,7 +110,7 @@ body {
     object-fit: cover;
     border-radius: 5px;
     margin-right: 1.5rem;
-    flex-shrink: 0; /* Evita que la imagen se encoja */
+    flex-shrink: 0;
 }
 
 .project-item .project-title h3 {
@@ -116,15 +124,9 @@ body {
     color: var(--text-secondary);
 }
 
-
-/* --- Estilos del Pop-up (Modal) - Sin cambios, funcionan igual --- */
-.modal-overlay, .modal-content, .close-button, #modal-image, #modal-title, #modal-description {
-    /* Todos los estilos del modal de la versión anterior se mantienen aquí */
-    /* ... (puedes copiar y pegar toda la sección del modal del CSS anterior) */
-}
-/* Pegando los estilos del modal para que esté completo: */
-.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(13,17,23,0.85);justify-content:center;align-items:center;z-index:1000}
-.modal-content{position:relative;padding:2.5rem;border-radius:15px;width:80%;max-width:800px;max-height:80vh;overflow-y:auto;background-color:rgba(22,27,34,0.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(249,35,117,0.3);box-shadow:0 0 50px rgba(0,0,0,0.6)}
+/* --- Estilos del Pop-up (Modal) para Light Mode --- */
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);justify-content:center;align-items:center;z-index:1000}
+.modal-content{position:relative;padding:2.5rem;border-radius:15px;width:80%;max-width:800px;max-height:80vh;overflow-y:auto;background-color:rgba(255,255,255,0.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid #f0f0f0;box-shadow:0 10px 50px rgba(0,0,0,0.1)}
 .close-button{position:absolute;top:15px;right:25px;font-size:2.5rem;font-weight:bold;color:var(--text-secondary);cursor:pointer;transition:color .3s ease}
 .close-button:hover{color:var(--accent-color)}
 #modal-image{width:100%;border-radius:8px;margin-bottom:1.5rem;border:1px solid var(--border-color)}
