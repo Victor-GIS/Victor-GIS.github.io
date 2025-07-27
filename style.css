@@ -7,12 +7,10 @@
     --border-color: #d2d2d7;
     --accent-color: #0071e3;
     --card-background: #ffffff;
-    --card-hover: #f5f5f7;
+    --card-hover: #ffffff;
     --modal-bg: rgba(255, 255, 255, 0.75);
-    --social-bg: transparent;
-    --social-border: var(--border-color);
-    --social-hover-bg: transparent;
-    --social-hover-border: var(--accent-color);
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --accent-border: var(--accent-color);
 }
 
 body.dark-mode {
@@ -25,13 +23,11 @@ body.dark-mode {
     --card-background: #1a1a1a;
     --card-hover: #2c2c2e;
     --modal-bg: rgba(40, 40, 40, 0.75);
-    --social-bg: transparent;
-    --social-border: var(--border-color);
-    --social-hover-bg: transparent;
-    --social-hover-border: var(--accent-color);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --accent-border: var(--accent-color);
 }
 
-/* --- Estilos Generales --- */
+/* --- Estilos Generales (sin cambios) --- */
 body {
     font-family: "Inter", sans-serif;
     background-color: var(--background);
@@ -48,7 +44,7 @@ body {
     min-height: 100vh;
 }
 
-/* --- Panel Izquierdo --- */
+/* --- Panel Izquierdo y Controles (sin cambios) --- */
 .left-panel {
     width: 40%;
     max-width: 500px;
@@ -61,7 +57,6 @@ body {
     justify-content: center;
     box-sizing: border-box;
 }
-
 .top-controls {
     position: absolute;
     top: 2rem;
@@ -70,7 +65,6 @@ body {
     align-items: center;
     gap: 1rem;
 }
-
 .language-toggle {
     font-weight: 700;
     color: var(--text-secondary);
@@ -85,8 +79,6 @@ body {
 .language-toggle span:not(.active):hover {
     color: var(--text-primary);
 }
-
-/* Estilos del Toggle de Tema */
 .theme-toggle {
     background: transparent;
     border: 1px solid var(--border-color);
@@ -119,8 +111,6 @@ body.dark-mode .light-icon {
     opacity: 0;
     transform: translateX(-20px);
 }
-
-/* Contenido Bio */
 .logo {
     width: 50px;
     height: 50px;
@@ -137,7 +127,7 @@ body.dark-mode .light-icon {
 }
 .bio-content h1 {
     font-size: 2.5rem;
-    font-weight: 400; /* Peso normal */
+    font-weight: 400;
     color: var(--text-primary);
     margin: 0;
 }
@@ -145,7 +135,7 @@ body.dark-mode .light-icon {
     font-size: 1rem;
     color: var(--text-primary);
     margin: 1rem 0;
-    font-weight: 700; /* Negritas */
+    font-weight: 700;
 }
 .bio-content .summary {
     font-size: 0.9rem;
@@ -162,18 +152,18 @@ body.dark-mode .light-icon {
     text-decoration: none;
     margin-right: 1rem;
     font-weight: 600;
-    border: 1px solid var(--social-border);
-    background-color: var(--social-bg);
+    border: 1px solid var(--border-color);
+    background-color: transparent;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     transition: all 0.3s ease;
 }
 .social-links a:hover {
     color: var(--accent-color);
-    border-color: var(--social-hover-border);
+    border-color: var(--accent-border);
 }
 
-/* --- Panel Derecho (Píldoras de Proyectos) --- */
+/* --- Panel Derecho (Píldoras de Proyectos con Imagen) --- */
 .right-panel {
     width: 60%;
     padding: 3rem;
@@ -181,23 +171,38 @@ body.dark-mode .light-icon {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.25rem; /* Espacio entre píldoras */
 }
 
 .project-item {
+    display: flex;
+    align-items: center;
     background-color: var(--card-background);
-    padding: 1.5rem 2rem;
+    padding: 1rem;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
+    box-shadow: 0 4px 15px var(--shadow-color);
     transition:
-        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
         border-color 0.3s ease;
 }
 
 .project-item:hover {
-    background-color: var(--card-hover);
-    border-color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow-color);
+    border-color: var(--accent-border);
+}
+
+.project-thumbnail {
+    width: 100px; /* Ancho de la miniatura */
+    height: 75px; /* Alto de la miniatura */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
+    border-radius: 8px;
+    margin-right: 1.5rem;
+    flex-shrink: 0; /* Evita que la imagen se encoja */
+    border: 1px solid var(--border-color);
 }
 
 .project-item .project-title h3 {
@@ -207,7 +212,7 @@ body.dark-mode .light-icon {
     font-weight: 600;
 }
 
-/* --- Modal y Pop-up de Idioma --- */
+/* --- Modal y Pop-up de Idioma (sin cambios) --- */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -284,7 +289,7 @@ body.dark-mode .light-icon {
     margin-left: 1rem;
 }
 
-/* --- Diseño Responsivo --- */
+/* --- Diseño Responsivo (sin cambios) --- */
 @media (max-width: 900px) {
     .main-container {
         flex-direction: column;
@@ -305,9 +310,19 @@ body.dark-mode .light-icon {
     .social-links,
     .top-controls {
         justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
     }
     .top-controls {
         position: static;
         margin-bottom: 2rem;
+        flex-direction: row;
+    }
+    .project-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    .project-thumbnail {
+        margin: 0 0 1rem 0;
     }
 }
