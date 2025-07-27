@@ -21,13 +21,76 @@
                         <span id="lang-es">ES</span>
                     </div>
                     <button id="theme-toggle" class="theme-toggle">
-                        <span class="light-text">Luminoso</span>
-                        <span class="dark-text">Obscuro</span>
+                        <span class="sun-icon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line
+                                    x1="4.22"
+                                    y1="4.22"
+                                    x2="5.64"
+                                    y2="5.64"
+                                ></line>
+                                <line
+                                    x1="18.36"
+                                    y1="18.36"
+                                    x2="19.78"
+                                    y2="19.78"
+                                ></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line
+                                    x1="4.22"
+                                    y1="19.78"
+                                    x2="5.64"
+                                    y2="18.36"
+                                ></line>
+                                <line
+                                    x1="18.36"
+                                    y1="5.64"
+                                    x2="19.78"
+                                    y2="4.22"
+                                ></line>
+                            </svg>
+                        </span>
+                        <span class="moon-icon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                                ></path>
+                            </svg>
+                        </span>
                     </button>
                 </div>
 
                 <div class="bio-content">
-                    <div class="photo-container"></div>
+                    <div class="photo-container">
+                        <img
+                            src="images/Foto de Perfil.jpg"
+                            alt="Victor Luna"
+                        />
+                    </div>
                     <h1 data-es="Víctor Luna L.">Victor Luna L.</h1>
                     <h2 data-es="Analista GIS / Urbanista / Diseñador">
                         GIS Analyst / Urbanist / Designer
@@ -63,28 +126,30 @@
             <main class="right-panel">
                 <div
                     class="project-item"
-                    data-title="Geostatistical Model of Hydric Stress"
-                    data-image="Risk Megalopolis lowres.jpg"
-                    data-description="A geostatistical model identifying areas of hydric stress and environmental inequity within the Mexican Megalopolis, using spatial data analysis to inform public policy."
+                    data-title="Risk Analysis in the Mexican Megalopolis"
+                    data-image="images/1 Risk Megalopolis lowres.jpg"
+                    data-description="A geostatistical model identifying areas of hydric stress and environmental inequity within the Mexican Megalopolis."
                 >
                     <img
-                        src="Risk Megalopolis lowres.jpg"
-                        alt="Hydric Stress Thumbnail"
+                        src="images/1 Risk Megalopolis lowres.jpg"
+                        alt="Risk Megalopolis"
                         class="project-thumbnail"
                     />
                     <div class="project-title">
-                        <h3 data-es="Estrés Hídrico">Hydric Stress</h3>
+                        <h3 data-es="Riesgo en la Megalópolis">
+                            Risk in the Megalopolis
+                        </h3>
                     </div>
                 </div>
                 <div
                     class="project-item"
                     data-title="Trans-Isthmus Corridor Strategies"
-                    data-image="Lámina ESTRATEGIAS.jpg"
-                    data-description="Strategic planning for the Trans-Isthmus Corridor, defining development zones, protecting natural areas, and proposing infrastructure to boost regional interconnectivity."
+                    data-image="images/2 Corredor Trans-Ítsmico.jpg"
+                    data-description="Strategic planning for the Trans-Isthmus Corridor, defining development and conservation zones."
                 >
                     <img
-                        src="Lámina ESTRATEGIAS.jpg"
-                        alt="Trans-Isthmus Corridor Thumbnail"
+                        src="images/2 Corredor Trans-Ítsmico.jpg"
+                        alt="Corredor Transístmico"
                         class="project-thumbnail"
                     />
                     <div class="project-title">
@@ -95,43 +160,81 @@
                 </div>
                 <div
                     class="project-item"
-                    data-title="Territorial Analysis of Chemax"
-                    data-image="IMG_1043.jpg"
-                    data-description="Detailed territorial analysis of Chemax, Yucatán, mapping land use, localities, and infrastructure to understand regional dynamics."
+                    data-title="SWOT Analysis of the Xochimilco-Chalco Wetland"
+                    data-image="images/3 Humedal Xochimilco-Chalco.jpg"
+                    data-description="SWOT analysis of the Xochimilco-Chalco wetland, identifying threats like informal growth and opportunities in tourism."
                 >
                     <img
-                        src="IMG_1043.jpg"
-                        alt="Chemax Map Thumbnail"
+                        src="images/3 Humedal Xochimilco-Chalco.jpg"
+                        alt="Humedal Xochimilco"
                         class="project-thumbnail"
                     />
                     <div class="project-title">
-                        <h3 data-es="Mapa de Chemax">Chemax Map</h3>
+                        <h3 data-es="Humedal Xochimilco-Chalco">
+                            Xochimilco-Chalco Wetland
+                        </h3>
                     </div>
                 </div>
                 <div
                     class="project-item"
-                    data-title="Economic Activities: Alameda-Reforma"
-                    data-image="IMG_8348.jpg"
-                    data-description="Analysis of economic activities by sector in the SAC Alameda-Reforma area of Mexico City, identifying commercial, service, and industrial hubs."
+                    data-title="Territorial Analysis of Chemax, Yucatán"
+                    data-image="images/4 Chemax.jpg"
+                    data-description="Detailed territorial analysis of Chemax, Yucatán, mapping land use and infrastructure."
                 >
                     <img
-                        src="IMG_8348.jpg"
-                        alt="Bellas Artes Area Thumbnail"
+                        src="images/4 Chemax.jpg"
+                        alt="Chemax, Yucatán"
                         class="project-thumbnail"
                     />
                     <div class="project-title">
-                        <h3 data-es="Zona Bellas Artes">Bellas Artes Area</h3>
+                        <h3 data-es="Análisis Territorial de Chemax">
+                            Territorial Analysis of Chemax
+                        </h3>
+                    </div>
+                </div>
+                <div
+                    class="project-item"
+                    data-title="Road Infrastructure and Mobility Analysis"
+                    data-image="images/5 Infraestructura Vial.heif"
+                    data-description="Analysis and proposal for road infrastructure, studying mobility flows at a key intersection."
+                >
+                    <img
+                        src="images/5 Infraestructura Vial.heif"
+                        alt="Infraestructura Vial"
+                        class="project-thumbnail"
+                    />
+                    <div class="project-title">
+                        <h3 data-es="Infraestructura Vial y Movilidad">
+                            Road Infrastructure & Mobility
+                        </h3>
+                    </div>
+                </div>
+                <div
+                    class="project-item"
+                    data-title="Economic Activities in the SAC Alameda-Reforma"
+                    data-image="images/6 SAC Alameda.jpg"
+                    data-description="Mapping of economic activities by sector in the historic center of Mexico City."
+                >
+                    <img
+                        src="images/6 SAC Alameda.jpg"
+                        alt="SAC Alameda"
+                        class="project-thumbnail"
+                    />
+                    <div class="project-title">
+                        <h3 data-es="Actividades Económicas: SAC Alameda">
+                            Economic Activities: SAC Alameda
+                        </h3>
                     </div>
                 </div>
                 <div
                     class="project-item"
                     data-title="Mixed-Use Urban Complex"
-                    data-image="IMG_8874.jpg"
-                    data-description="Volumetric proposal for a mixed-use urban complex, integrating residential, commercial, and public spaces within an existing urban fabric."
+                    data-image="images/7 Complejo Urbano Arquitectónico.jpg"
+                    data-description="Volumetric proposal for a mixed-use urban complex in a dense urban environment."
                 >
                     <img
-                        src="IMG_8874.jpg"
-                        alt="Urban Complex Thumbnail"
+                        src="images/7 Complejo Urbano Arquitectónico.jpg"
+                        alt="Complejo Urbano"
                         class="project-thumbnail"
                     />
                     <div class="project-title">
@@ -142,19 +245,17 @@
                 </div>
                 <div
                     class="project-item"
-                    data-title="Road Infrastructure Analysis"
-                    data-image="Propuesta.heif"
-                    data-description="Analysis and proposal for road infrastructure, studying vehicular, pedestrian, and public transport flows to improve mobility at a key intersection."
+                    data-title="Office Building Architectural Design"
+                    data-image="images/8 Edificio de Oficinas.heif"
+                    data-description="Architectural design and rendering for an office building, focusing on natural light and circulation."
                 >
                     <img
-                        src="Propuesta.heif"
-                        alt="Road Infrastructure Thumbnail"
+                        src="images/8 Edificio de Oficinas.heif"
+                        alt="Edificio de Oficinas"
                         class="project-thumbnail"
                     />
                     <div class="project-title">
-                        <h3 data-es="Infraestructura Vial">
-                            Road Infrastructure
-                        </h3>
+                        <h3 data-es="Edificio de Oficinas">Office Building</h3>
                     </div>
                 </div>
             </main>

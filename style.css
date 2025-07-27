@@ -44,7 +44,7 @@ body {
     min-height: 100vh;
 }
 
-/* --- Panel Izquierdo Rediseñado --- */
+/* --- Panel Izquierdo --- */
 .left-panel {
     width: 45%;
     max-width: 500px;
@@ -56,10 +56,9 @@ body {
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
-    /* Línea divisoria vertical */
     border-right: 1px solid var(--border-color);
     transition: border-color 0.3s ease;
-    text-align: right; /* Alineación del texto */
+    text-align: right;
 }
 
 .top-controls {
@@ -72,7 +71,7 @@ body {
     align-items: center;
 }
 
-/* Toggle de Idioma con Serif */
+/* Toggle de Idioma */
 .language-toggle {
     font-family: var(--font-serif);
     font-weight: 400;
@@ -93,47 +92,49 @@ body {
     color: var(--text-primary);
 }
 
-/* Toggle de Tema con Texto */
+/* Toggle de Tema con Iconos SVG */
 .theme-toggle {
     background: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
+    border: none;
     cursor: pointer;
-    padding: 0.5rem 1rem;
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-align: center;
+    padding: 0.5rem;
+    color: var(--text-primary);
 }
-.theme-toggle .dark-text,
-body.dark-mode .light-text {
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--text-primary);
+}
+.moon-icon {
     display: none;
 }
-body.dark-mode .dark-text {
-    display: inline;
+body.dark-mode .sun-icon {
+    display: none;
+}
+body.dark-mode .moon-icon {
+    display: inline-block;
 }
 
 /* --- Contenido Bio --- */
 .bio-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Alinear items a la derecha */
+    align-items: flex-end;
 }
 .photo-container {
     width: 100px;
     height: 140px;
     background-color: var(--card-background);
     border: 1px solid var(--border-color);
-    border-radius: 50px; /* Píldora vertical */
+    border-radius: 50px;
     margin-bottom: 2rem;
-    overflow: hidden; /* Para que la img respete el borde */
+    overflow: hidden;
 }
 .photo-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
 .bio-content h1 {
     font-size: 2.5rem;
     font-weight: 400;
@@ -153,8 +154,6 @@ body.dark-mode .dark-text {
     border-top: 1px solid var(--border-color);
     padding: 1rem 0;
 }
-
-/* Contacto */
 .contact-info {
     margin-top: 2rem;
 }
@@ -193,22 +192,21 @@ body.dark-mode .dark-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.5rem; /* Espacio entre píldoras */
+    gap: 1.5rem;
 }
 .project-item {
     display: flex;
     align-items: center;
     background-color: var(--card-background);
     padding: 1rem;
-    border: 1px solid transparent; /* Borde invisible por defecto */
+    border: 1px solid transparent;
     border-radius: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-height: 150px; /* Píldoras el doble de altas */
+    min-height: 150px;
 }
 .project-item:hover {
     transform: scale(1.03);
-    background-color: var(--card-background);
     border-color: var(--accent-color);
 }
 .project-thumbnail {
@@ -226,7 +224,7 @@ body.dark-mode .dark-text {
     font-weight: 600;
 }
 
-/* --- Modal y Pop-up de Idioma (sin cambios) --- */
+/* --- Modal y Responsivo (sin cambios) --- */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -302,8 +300,6 @@ body.dark-mode .dark-text {
     cursor: pointer;
     margin-left: 1rem;
 }
-
-/* --- Diseño Responsivo --- */
 @media (max-width: 900px) {
     .main-container {
         flex-direction: column;
