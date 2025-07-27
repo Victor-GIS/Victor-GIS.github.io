@@ -24,7 +24,7 @@ body {
     min-height: 100vh;
 }
 
-/* --- Panel Izquierdo Fijo --- */
+/* --- Panel Izquierdo Fijo (sin cambios) --- */
 .left-panel {
     width: 40%;
     max-width: 500px;
@@ -36,10 +36,8 @@ body {
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
-    align-items: flex-start; /* Alineado a la izquierda del panel */
+    align-items: flex-start;
 }
-
-/* Estilo para el logo del boceto */
 .logo {
     width: 50px;
     height: 50px;
@@ -53,37 +51,31 @@ body {
     color: var(--text-primary);
     margin-bottom: 2rem;
 }
-
-/* --- Título y Subtítulo con pesos invertidos --- */
 .bio-content h1 {
     font-size: 2.5rem;
-    font-weight: 400; /* Peso normal, como pediste */
+    font-weight: 400;
     color: var(--text-primary);
     margin: 0;
 }
-
 .bio-content h2 {
     font-size: 1rem;
     color: var(--text-primary);
     margin: 1rem 0;
-    font-weight: 700; /* Negritas, como pediste */
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-
 .bio-content .summary {
     font-size: 0.9rem;
     line-height: 1.6;
-    max-width: 400px; /* Limita el ancho del texto */
+    max-width: 400px;
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
     padding: 1rem 0;
 }
-
 .social-links {
     margin-top: 2rem;
 }
-
 .social-links a {
     color: var(--text-secondary);
     text-decoration: none;
@@ -94,7 +86,6 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 5px;
 }
-
 .social-links a:hover {
     color: var(--text-primary);
     border-color: var(--text-primary);
@@ -103,38 +94,72 @@ body {
 /* --- Panel Derecho (Proyectos) --- */
 .right-panel {
     width: 60%;
-    padding: 3rem;
+    padding: 2rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    gap: 2rem; /* Espacio entre tarjetas de proyecto */
     justify-content: center;
 }
 
-/* Estilo de proyecto como caja con borde */
+/* --- NUEVO Estilo de Tarjeta de Proyecto Visual --- */
 .project-item {
-    padding: 2rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    position: relative; /* Clave para superponer el título */
+    border-radius: 12px;
+    overflow: hidden; /* Mantiene la imagen dentro de los bordes redondeados */
     cursor: pointer;
-    transition:
-        background-color 0.3s ease,
-        border-color 0.3s ease;
+    border: 1px solid var(--border-color);
+    transition: border-color 0.4s ease;
 }
 
 .project-item:hover {
-    background-color: var(--card-background-hover);
     border-color: var(--text-primary);
 }
 
-.project-item .project-title h3 {
-    margin: 0;
-    color: var(--text-primary);
-    font-size: 1.2rem;
-    font-weight: 400;
+.project-item .project-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.4s ease-in-out;
 }
 
-/* --- Modal y Pop-up de Idioma --- */
+.project-item:hover .project-image {
+    transform: scale(1.05); /* Efecto de zoom sutil */
+}
+
+.project-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 1.5rem 1.5rem; /* Espacio para el texto */
+    color: var(--text-primary);
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8),
+        transparent
+    ); /* Gradiente para legibilidad */
+
+    /* Animación de entrada */
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+.project-item:hover .project-title-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-title-overlay h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* --- Modal y Pop-up de Idioma (sin cambios) --- */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -147,7 +172,6 @@ body {
     align-items: center;
     z-index: 1000;
 }
-
 .modal-content {
     position: relative;
     padding: 2.5rem;
@@ -162,7 +186,6 @@ body {
     border: 1px solid var(--border-color);
     color: var(--text-primary);
 }
-
 .close-button {
     position: absolute;
     top: 15px;
@@ -173,30 +196,25 @@ body {
     cursor: pointer;
     transition: color 0.3s ease;
 }
-
 .close-button:hover {
     color: var(--text-primary);
 }
-
 #modal-image {
     width: 100%;
     border-radius: 8px;
     margin-bottom: 1.5rem;
     border: 1px solid var(--border-color);
 }
-
 #modal-title {
     margin-top: 0;
     font-size: 2rem;
     color: var(--text-primary);
 }
-
 #modal-description {
     font-size: 1rem;
     line-height: 1.6;
     color: var(--text-secondary);
 }
-
 .language-toggle {
     position: absolute;
     top: 2rem;
@@ -204,20 +222,16 @@ body {
     font-weight: 700;
     color: var(--text-secondary);
 }
-
 .language-toggle span {
     cursor: pointer;
     transition: color 0.3s ease;
 }
-
 .language-toggle span.active {
     color: var(--text-primary);
 }
-
 .language-toggle span:not(.active):hover {
     color: var(--text-primary);
 }
-
 .language-suggestion {
     position: fixed;
     bottom: -100px;
@@ -230,11 +244,9 @@ body {
     transition: bottom 0.5s ease-in-out;
     z-index: 2000;
 }
-
 .language-suggestion.show {
     bottom: 2rem;
 }
-
 .language-suggestion button {
     background-color: var(--background);
     color: var(--text-primary);
@@ -245,7 +257,7 @@ body {
     margin-left: 1rem;
 }
 
-/* --- Diseño Responsivo --- */
+/* --- Diseño Responsivo (sin cambios) --- */
 @media (max-width: 900px) {
     .main-container {
         flex-direction: column;
@@ -257,7 +269,7 @@ body {
         position: static;
         height: auto;
         padding: 2rem;
-        align-items: center; /* Centra el contenido en móvil */
+        align-items: center;
         text-align: center;
     }
     .left-panel {
