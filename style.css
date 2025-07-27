@@ -1,144 +1,132 @@
-/* Paleta de Colores Personalizada - Inspirada en tus mapas */
+/* Paleta de Colores Personalizada (Versión 3.0) */
 :root {
-    --dark-background: #0d1117; /* Un negro ligeramente azulado, muy oscuro */
+    --dark-background: #0d1117;
     --card-background: #161b22;
     --border-color: #30363d;
-    --text-primary: #c9d1d9; /* Texto principal, un gris claro */
-    --text-secondary: #8b949e; /* Texto secundario, un gris más suave */
-    
-    /* El cambio más importante: tu color de acento personal */
-    --accent-color: #f92375; /* El rosado/magenta vibrante de tu mapa de Riesgos */
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --accent-color: #f92375;
 }
 
 /* Estilos Generales */
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--dark-background);
-    /* Fondo con más profundidad, como tus mapas */
-    background-image: radial-gradient(circle at top right, rgba(249, 35, 117, 0.08), transparent 40%);
     color: var(--text-secondary);
     margin: 0;
-    padding: 2.5rem;
 }
 
-.main-header {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.main-header h1 {
-    font-size: 2.8rem;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-}
-
-.main-header p {
-    font-size: 1.2rem;
-    color: var(--accent-color);
-    font-weight: 700;
-}
-
-/* Galería de Proyectos */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.project-card {
-    background-color: var(--card-background);
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--border-color);
-}
-
-.project-card:hover {
-    transform: translateY(-7px);
-    /* Efecto de brillo con tu color de acento */
-    box-shadow: 0 0 25px -5px rgba(249, 35, 117, 0.4);
-}
-
-.project-card img {
+/* --- Estructura Principal de 2 Columnas --- */
+.main-container {
+    display: flex;
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
+    min-height: 100vh;
 }
 
-.project-card:hover img {
-    opacity: 1;
-}
-
-.project-card h3 {
-    padding: 1.25rem;
-    margin: 0;
-    font-size: 1.2rem;
-    color: var(--text-primary);
-}
-
-/* Estilos del Pop-up (Modal) con tu Identidad Visual */
-.modal-overlay {
-    display: none;
-    position: fixed;
+/* --- Panel Izquierdo Fijo --- */
+.left-panel {
+    width: 40%;
+    max-width: 500px;
+    padding: 3rem 4rem;
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(13, 17, 23, 0.85);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    box-sizing: border-box; /* Importante para que el padding no afecte el ancho */
 }
 
-.modal-content {
-    position: relative;
-    padding: 2.5rem;
-    border-radius: 15px;
-    width: 80%;
-    max-width: 800px;
-    max-height: 80vh;
-    overflow-y: auto;
-    
-    background-color: rgba(22, 27, 34, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(249, 35, 117, 0.3); /* Borde con tu color de acento */
-    box-shadow: 0 0 50px rgba(0,0,0,0.6);
+.bio-content h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin: 0;
 }
 
-.close-button {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 2.5rem;
-    font-weight: bold;
+.bio-content h2 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin: 0.5rem 0 1.5rem 0;
+}
+
+.bio-content .summary {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.social-links {
+    margin-top: 2rem;
+}
+
+.social-links a {
     color: var(--text-secondary);
-    cursor: pointer;
+    text-decoration: none;
+    margin-right: 1.5rem;
+    font-weight: 700;
     transition: color 0.3s ease;
 }
 
-.close-button:hover {
+.social-links a:hover {
     color: var(--accent-color);
 }
 
-#modal-image {
-    width: 100%;
+
+/* --- Panel Derecho con Proyectos --- */
+.right-panel {
+    width: 60%;
+    padding: 3rem 4rem;
+    box-sizing: border-box;
+}
+
+.project-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-background);
+    padding: 1.5rem;
     border-radius: 8px;
-    margin-bottom: 1.5rem;
     border: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-#modal-title {
-    margin-top: 0;
-    font-size: 2.2rem;
-    color: var(--accent-color); /* Título del pop-up con tu color */
+.project-item:hover {
+    background-color: #1f252d;
+    border-color: var(--accent-color);
 }
 
-#modal-description {
-    font-size: 1rem;
-    line-height: 1.6;
+.project-item .thumbnail {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 1.5rem;
+    flex-shrink: 0; /* Evita que la imagen se encoja */
+}
+
+.project-item .project-title h3 {
+    margin: 0 0 0.25rem 0;
     color: var(--text-primary);
+    font-size: 1.2rem;
 }
+
+.project-item .project-title span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+
+/* --- Estilos del Pop-up (Modal) - Sin cambios, funcionan igual --- */
+.modal-overlay, .modal-content, .close-button, #modal-image, #modal-title, #modal-description {
+    /* Todos los estilos del modal de la versión anterior se mantienen aquí */
+    /* ... (puedes copiar y pegar toda la sección del modal del CSS anterior) */
+}
+/* Pegando los estilos del modal para que esté completo: */
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(13,17,23,0.85);justify-content:center;align-items:center;z-index:1000}
+.modal-content{position:relative;padding:2.5rem;border-radius:15px;width:80%;max-width:800px;max-height:80vh;overflow-y:auto;background-color:rgba(22,27,34,0.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(249,35,117,0.3);box-shadow:0 0 50px rgba(0,0,0,0.6)}
+.close-button{position:absolute;top:15px;right:25px;font-size:2.5rem;font-weight:bold;color:var(--text-secondary);cursor:pointer;transition:color .3s ease}
+.close-button:hover{color:var(--accent-color)}
+#modal-image{width:100%;border-radius:8px;margin-bottom:1.5rem;border:1px solid var(--border-color)}
+#modal-title{margin-top:0;font-size:2.2rem;color:var(--accent-color)}
+#modal-description{font-size:1rem;line-height:1.6;color:var(--text-primary)}
