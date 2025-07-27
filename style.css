@@ -1,35 +1,36 @@
 /* --- Variables de Color --- */
 :root {
+    --font-sans: "Inter", sans-serif;
+    --font-serif: "Lora", serif;
+
     /* Tema Claro (Default) */
-    --background: #f0f0f0;
+    --background: #ffffff;
     --text-primary: #1d1d1f;
     --text-secondary: #515154;
     --border-color: #d2d2d7;
     --accent-color: #0071e3;
-    --card-background: #ffffff;
-    --card-hover: #ffffff;
-    --modal-bg: rgba(255, 255, 255, 0.75);
+    --card-background: #f5f5f7;
     --shadow-color: rgba(0, 0, 0, 0.05);
-    --accent-border: var(--accent-color);
+    --modal-bg: rgba(255, 255, 255, 0.8);
+    --toggle-active-bg: #e0e0e0;
 }
 
 body.dark-mode {
     /* Tema Oscuro */
-    --background: #000000;
+    --background: #111111;
     --text-primary: #ffffff;
     --text-secondary: #a0a0a0;
     --border-color: #444444;
     --accent-color: #ffffff;
-    --card-background: #1a1a1a;
-    --card-hover: #2c2c2e;
-    --modal-bg: rgba(40, 40, 40, 0.75);
+    --card-background: #1c1c1e;
     --shadow-color: rgba(0, 0, 0, 0.2);
-    --accent-border: var(--accent-color);
+    --modal-bg: rgba(28, 28, 30, 0.8);
+    --toggle-active-bg: #333333;
 }
 
-/* --- Estilos Generales (sin cambios) --- */
+/* --- Estilos Generales --- */
 body {
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-sans);
     background-color: var(--background);
     color: var(--text-secondary);
     margin: 0;
@@ -37,16 +38,15 @@ body {
         background-color 0.3s ease,
         color 0.3s ease;
 }
-
 .main-container {
     display: flex;
     width: 100%;
     min-height: 100vh;
 }
 
-/* --- Panel Izquierdo y Controles (sin cambios) --- */
+/* --- Panel Izquierdo Rediseñado --- */
 .left-panel {
-    width: 40%;
+    width: 45%;
     max-width: 500px;
     padding: 3rem 4rem;
     position: sticky;
@@ -56,75 +56,84 @@ body {
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
+    /* Línea divisoria vertical */
+    border-right: 1px solid var(--border-color);
+    transition: border-color 0.3s ease;
+    text-align: right; /* Alineación del texto */
 }
+
 .top-controls {
     position: absolute;
-    top: 2rem;
-    right: 3rem;
+    top: 2.5rem;
+    left: 4rem;
+    right: 4rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
 }
+
+/* Toggle de Idioma con Serif */
 .language-toggle {
-    font-weight: 700;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 0.9rem;
     color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2px;
 }
 .language-toggle span {
     cursor: pointer;
-    transition: color 0.3s ease;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 .language-toggle span.active {
+    background-color: var(--toggle-active-bg);
     color: var(--text-primary);
 }
-.language-toggle span:not(.active):hover {
-    color: var(--text-primary);
-}
+
+/* Toggle de Tema con Texto */
 .theme-toggle {
     background: transparent;
     border: 1px solid var(--border-color);
     border-radius: 20px;
     cursor: pointer;
-    padding: 4px;
-    width: 48px;
-    height: 28px;
-    position: relative;
+    padding: 0.5rem 1rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
 }
-.theme-toggle span {
-    position: absolute;
-    transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
+.theme-toggle .dark-text,
+body.dark-mode .light-text {
+    display: none;
 }
-.dark-icon {
-    opacity: 0;
-    transform: translateX(20px);
+body.dark-mode .dark-text {
+    display: inline;
 }
-.light-icon {
-    opacity: 1;
-    transform: translateX(0);
-}
-body.dark-mode .dark-icon {
-    opacity: 1;
-    transform: translateX(0);
-}
-body.dark-mode .light-icon {
-    opacity: 0;
-    transform: translateX(-20px);
-}
-.logo {
-    width: 50px;
-    height: 50px;
-    border: 2px solid var(--text-primary);
-    background-color: var(--card-background);
-    border-radius: 8px;
+
+/* --- Contenido Bio --- */
+.bio-content {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--text-primary);
-    margin-bottom: 2rem;
+    flex-direction: column;
+    align-items: flex-end; /* Alinear items a la derecha */
 }
+.photo-container {
+    width: 100px;
+    height: 140px;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 50px; /* Píldora vertical */
+    margin-bottom: 2rem;
+    overflow: hidden; /* Para que la img respete el borde */
+}
+.photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .bio-content h1 {
     font-size: 2.5rem;
     font-weight: 400;
@@ -144,71 +153,76 @@ body.dark-mode .light-icon {
     border-top: 1px solid var(--border-color);
     padding: 1rem 0;
 }
-.social-links {
+
+/* Contacto */
+.contact-info {
     margin-top: 2rem;
 }
+.social-links {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
 .social-links a {
-    color: var(--text-secondary);
+    color: var(--text-primary);
+    background-color: var(--card-background);
     text-decoration: none;
-    margin-right: 1rem;
     font-weight: 600;
+    font-size: 0.9rem;
     border: 1px solid var(--border-color);
-    background-color: transparent;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
     transition: all 0.3s ease;
 }
 .social-links a:hover {
+    border-color: var(--accent-color);
     color: var(--accent-color);
-    border-color: var(--accent-border);
+}
+.contact-info .details {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
 }
 
-/* --- Panel Derecho (Píldoras de Proyectos con Imagen) --- */
+/* --- Panel Derecho y Píldoras --- */
 .right-panel {
-    width: 60%;
-    padding: 3rem;
+    width: 55%;
+    padding: 3rem 4rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.25rem; /* Espacio entre píldoras */
+    gap: 1.5rem; /* Espacio entre píldoras */
 }
-
 .project-item {
     display: flex;
     align-items: center;
     background-color: var(--card-background);
     padding: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border: 1px solid transparent; /* Borde invisible por defecto */
+    border-radius: 16px;
     cursor: pointer;
-    box-shadow: 0 4px 15px var(--shadow-color);
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        border-color 0.3s ease;
+    transition: all 0.3s ease;
+    min-height: 150px; /* Píldoras el doble de altas */
 }
-
 .project-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px var(--shadow-color);
-    border-color: var(--accent-border);
+    transform: scale(1.03);
+    background-color: var(--card-background);
+    border-color: var(--accent-color);
 }
-
 .project-thumbnail {
-    width: 100px; /* Ancho de la miniatura */
-    height: 75px; /* Alto de la miniatura */
-    object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
-    border-radius: 8px;
+    width: 180px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
     margin-right: 1.5rem;
-    flex-shrink: 0; /* Evita que la imagen se encoja */
-    border: 1px solid var(--border-color);
+    flex-shrink: 0;
 }
-
-.project-item .project-title h3 {
+.project-title h3 {
     margin: 0;
     color: var(--text-primary);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
 }
 
@@ -274,7 +288,7 @@ body.dark-mode .light-icon {
     border: 1px solid var(--border-color);
     transition: bottom 0.5s ease-in-out;
     z-index: 2000;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px var(--shadow-color);
 }
 .language-suggestion.show {
     bottom: 2rem;
@@ -289,7 +303,7 @@ body.dark-mode .light-icon {
     margin-left: 1rem;
 }
 
-/* --- Diseño Responsivo (sin cambios) --- */
+/* --- Diseño Responsivo --- */
 @media (max-width: 900px) {
     .main-container {
         flex-direction: column;
@@ -304,25 +318,28 @@ body.dark-mode .light-icon {
         text-align: center;
     }
     .left-panel {
+        border-right: none;
         align-items: center;
     }
-    .bio-content,
-    .social-links,
-    .top-controls {
+    .bio-content {
+        align-items: center;
+    }
+    .contact-info,
+    .social-links {
         justify-content: center;
-        flex-direction: column;
-        gap: 1rem;
     }
     .top-controls {
         position: static;
         margin-bottom: 2rem;
-        flex-direction: row;
     }
     .project-item {
         flex-direction: column;
         text-align: center;
+        min-height: auto;
     }
     .project-thumbnail {
         margin: 0 0 1rem 0;
+        width: 100%;
+        height: 200px;
     }
 }
