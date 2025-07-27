@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="en"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Víctor Luna L. | Portafolio GIS</title>
+    <title>Victor Luna L. | GIS Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,53 +12,57 @@
 
     <div class="main-container">
         <aside class="left-panel">
+            <div class="language-toggle">
+                <span id="lang-en" class="active">EN</span> / <span id="lang-es">ES</span>
+            </div>
             <div class="bio-content">
-                <h1>Víctor Luna L.</h1>
-                <h2>GIS Analyst / Urbanist / Designer</h2>
-                <p class="summary">
-                    Analista GIS con experiencia en análisis de datos espaciales y visualización para proyectos de desarrollo urbano y socioambientales.
+                <h1 data-es="Víctor Luna L.">Victor Luna L.</h1>
+                <h2 data-es="Analista GIS / Urbanista / Diseñador">GIS Analyst / Urbanist / Designer</h2>
+                <p class="summary" data-es="Analista GIS con experiencia en análisis de datos espaciales y visualización para proyectos de desarrollo urbano y socioambientales.">
+                    GIS Analyst with proven experience in spatial data analysis and visualization for urban development and socio-environmental projects.
                 </p>
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/victorgis/" target="_blank">LinkedIn</a>
                     <a href="mailto:victorlunaspatialanalysis@outlook.com">Email</a>
-                    </div>
+                </div>
             </div>
         </aside>
 
         <main class="right-panel">
-            
             <div class="project-item"
-                 data-title="Modelo Geoestadístico de Estrés Hídrico" 
+                 data-title="Geostatistical Model of Hydric Stress" 
                  data-image="images/proyecto-estres-hidrico.png"
-                 data-description="Objetivo: Desarrollar un modelo para visualizar la inequidad ambiental y el estrés hídrico. Acciones: Integré y normalicé bases de datos a nivel AGEB, realicé un análisis de clústeres espaciales (LISA) en QGIS. Resultado: Produje un atlas cartográfico que revela patrones de inequidad, proveyendo una herramienta visual para la toma de decisiones en políticas públicas.">
-                <img class="thumbnail" src="images/thumbnail-estres-hidrico.png" alt="Miniatura del proyecto de Estrés Hídrico">
+                 data-description="Objective: To develop a model to visualize environmental inequity and hydric stress. Actions: I integrated and normalized census-level databases, performing a spatial cluster analysis (LISA) in QGIS. Outcome: Produced a high-resolution cartographic atlas that reveals patterns of inequity, providing a visual tool for data-driven public policy decisions.">
+                <img class="thumbnail" src="images/thumbnail-estres-hidrico.png" alt="Thumbnail of the Hydric Stress project">
                 <div class="project-title">
-                    <h3>Modelo Geoestadístico de Estrés Hídrico</h3>
-                    <span>Análisis de Datos | QGIS | Socioambiental</span>
+                    <h3 data-es="Modelo Geoestadístico de Estrés Hídrico">Geostatistical Model of Hydric Stress</h3>
+                    <span data-es="Análisis de Datos | QGIS | Socioambiental">Data Analysis | QGIS | Socio-environmental</span>
                 </div>
             </div>
-
             <div class="project-item"
-                 data-title="Análisis Geoespacial del Corredor Transístmico" 
+                 data-title="Geospatial Analysis of the Trans-Isthmus Corridor" 
                  data-image="images/proyecto-corredor.png"
-                 data-description="Objetivo: Analizar dinámicas socioeconómicas y ambientales para definir estrategias de desarrollo. Acciones: Procesé y analicé más de 30 capas de datos geoespaciales usando QGIS (infraestructura, hidrología, etc.) y apliqué modelos gravitacionales. Resultado: Generé mapas estratégicos que sirvieron como diagnóstico clave para proponer Proyectos Urbanos y Corredores Comunitarios.">
-                <img class="thumbnail" src="images/thumbnail-corredor.png" alt="Miniatura del proyecto del Corredor Transístmico">
+                 data-description="Objective: To analyze socioeconomic and environmental dynamics to define development strategies. Actions: I processed and analyzed over 30 geospatial data layers using QGIS (infrastructure, hydrology, etc.) and applied gravity models. Outcome: Generated strategic maps that served as a key diagnostic for proposing Urban Projects and Community Corridors.">
+                <img class="thumbnail" src="images/thumbnail-corredor.png" alt="Thumbnail of the Trans-Isthmus Corridor project">
                 <div class="project-title">
-                    <h3>Análisis Geoespacial del Corredor Transístmico</h3>
-                    <span>Planificación Regional | Modelado Gravitacional</span>
+                    <h3 data-es="Análisis Geoespacial del Corredor Transístmico">Geospatial Analysis of the Trans-Isthmus Corridor</h3>
+                    <span data-es="Planificación Regional | Modelado Gravitacional">Regional Planning | Gravity Modeling</span>
                 </div>
             </div>
-
-            </main>
+        </main>
     </div>
 
     <div id="modal-overlay" class="modal-overlay">
         <div id="modal-content" class="modal-content">
             <span id="close-button" class="close-button">&times;</span>
-            <img id="modal-image" src="" alt="Imagen del proyecto ampliada">
+            <img id="modal-image" src="" alt="Expanded project image">
             <h2 id="modal-title"></h2>
             <p id="modal-description"></p>
         </div>
+    </div>
+    
+    <div id="language-suggestion" class="language-suggestion">
+        <p>¿Prefieres ver este sitio en español? <button id="switch-to-es">Cambiar a Español</button></p>
     </div>
 
     <script src="script.js"></script>
