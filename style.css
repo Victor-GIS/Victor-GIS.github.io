@@ -1,360 +1,95 @@
-/* --- Variables de Color --- */
-:root {
-    --font-sans: "Inter", sans-serif;
-    --font-serif: "Lora", serif;
-    /* Tema Claro (Default) */
-    --background: #ffffff;
-    --text-primary: #1d1d1f;
-    --text-secondary: #515154;
-    --border-color: #d2d2d7;
-    --accent-color: #0071e3;
-    --card-background: #f5f5f7;
-    --shadow-color: rgba(0, 0, 0, 0.05);
-    --modal-bg: rgba(255, 255, 255, 0.8);
-    --toggle-active-bg: #e0e0e0;
-}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Victor Luna L. | GIS Portfolio</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="main-container">
+            <aside class="left-panel">
+                <div class="top-controls">
+                    <div id="language-toggle" class="language-toggle">
+                        <span id="lang-en" class="active">EN</span>
+                        <span id="lang-es">ES</span>
+                    </div>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <span class="sun-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        </span>
+                        <span class="moon-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </span>
+                    </button>
+                </div>
 
-body.dark-mode {
-    /* Tema Oscuro */
-    --background: #111111;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --border-color: #444444;
-    --accent-color: #ffffff;
-    --card-background: #1c1c1e;
-    --shadow-color: rgba(0, 0, 0, 0.2);
-    --modal-bg: rgba(28, 28, 30, 0.8);
-    --toggle-active-bg: #333333;
-}
+                <div class="bio-content">
+                    <div class="photo-container">
+                        <img src="images/Perfil.jpg" alt="Victor Luna">
+                    </div>
+                    <h1 data-es="Víctor Luna L.">Victor Luna L.</h1>
+                    <h2 data-es="Analista GIS / Urbanista / Diseñador">
+                        GIS Analyst / Urbanist / Designer
+                    </h2>
+                    <p class="summary" data-es="Analista GIS con experiencia en análisis de datos espaciales y visualización para proyectos de desarrollo urbano y socioambientales.">
+                        GIS Analyst with proven experience in spatial data analysis and visualization for urban development and socio-environmental projects.
+                    </p>
+                    <div class="contact-info">
+                         <div class="social-links">
+                            <a href="https://www.linkedin.com/in/victorgis/" target="_blank">LinkedIn</a>
+                            <a href="mailto:victorlunaspatialanalysis@outlook.com">Hire Me</a>
+                        </div>
+                        <p class="details">
+                            victorlunaspatialanalysis@outlook.com<br>
+                            +52 55 1234 5678
+                        </p>
+                    </div>
+                </div>
+            </aside>
 
-/* --- Estilos Generales --- */
-body {
-    font-family: var(--font-sans);
-    background-color: var(--background);
-    color: var(--text-secondary);
-    margin: 0;
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
-}
-.main-container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-}
+            <main class="right-panel">
+                <div class="project-item" data-title="Risk Analysis in the Mexican Megalopolis" data-image="images/Risk Megalopolis lowres.jpg" data-description="A geostatistical model identifying areas of hydric stress and environmental inequity within the Mexican Megalopolis.">
+                    <img src="images/Risk Megalopolis lowres.jpg" alt="Risk Megalopolis" class="project-thumbnail">
+                    <div class="project-title"><h3 data-es="Riesgo en la Megalópolis">Risk in the Megalopolis</h3></div>
+                </div>
+                <div class="project-item" data-title="Trans-Isthmus Corridor Strategies" data-image="images/Corredor.jpg" data-description="Strategic planning for the Trans-Isthmus Corridor, defining development and conservation zones.">
+                    <img src="images/Corredor.jpg" alt="Corredor Transístmico" class="project-thumbnail">
+                    <div class="project-title"><h3 data-es="Corredor Transístmico">Trans-Isthmus Corridor</h3></div>
+                </div>
+                <div class="project-item" data-title="SWOT Analysis of the Xochimilco-Chalco Wetland" data-image="images/Humedal.jpg" data-description="SWOT analysis of the Xochimilco-Chalco wetland, identifying threats like informal growth and opportunities in tourism.">
+                    <img src="images/Humedal.jpg" alt="Humedal Xochimilco" class="project-thumbnail">
+                    <div class="project-title"><h3 data-es="Humedal Xochimilco-Chalco">Xochimilco-Chalco Wetland</h3></div>
+                </div>
+                <div class="project-item" data-title="Territorial Analysis of Chemax, Yucatán" data-image="images/Chemax.jpg" data-description="Detailed territorial analysis of Chemax, Yucatán, mapping land use and infrastructure.">
+                    <img src="images/Chemax.jpg" alt="Chemax, Yucatán" class="project-thumbnail">
+                    <div class="project-title"><h3 data-es="Análisis Territorial de Chemax">Territorial Analysis of Chemax</h3></div>
+                </div>
+                <div class="project-item" data-title="Road Infrastructure and Mobility Analysis" data-image="images/Vial.heif" data-description="Analysis and proposal for road infrastructure, studying mobility flows at a key intersection.">
+                    <img src="images/Vial.heif" alt="Infraestructura Vial" class="project-thumbnail">
+                    <div class="project-title"><h3 data-es="Infraestructura Vial y Movilidad">Road Infrastructure & Mobility</h3></div>
+                </div>
+                 <div class="project-item" data-title="Economic Activities in the SAC Alameda-Reforma" data-image="images/SAC Alameda.jpg" data-description="Mapping of economic activities by sector in the historic center of Mexico City.">
+                    <img src="images/SAC Alameda.jpg" alt="SAC Alameda" class="project-thumbnail">
+                    <div class="project-title"><h3 data-es="Actividades Económicas: SAC Alameda">Economic Activities: SAC Alameda</h3></div>
+                </div>
+                 <div class="project-item" data-title="Office Building Architectural Design" data-image="images/Edificio.heif" data-description="Architectural design and rendering for an office building, focusing on natural light and circulation.">
+                    <img src="images/Edificio.heif" alt="Edificio de Oficinas" class="project-thumbnail">
+                    <div class="project-title"><h3 data-es="Edificio de Oficinas">Office Building</h3></div>
+                </div>
+                 <div class="project-item" data-title="Voronoi Watersheds of Mexico" data-image="images/voronoi cuencas mx.jpg" data-description="A creative cartographic representation of Mexico's watersheds using Voronoi diagrams.">
+                    <img src="images/voronoi cuencas mx.jpg" alt="Voronoi Watersheds" class="project-thumbnail">
+                    <div class="project-title"><h3 data-es="Cuencas Voronoi de México">Voronoi Watersheds of Mexico</h3></div>
+                </div>
+            </main>
+        </div>
 
-/* --- Panel Izquierdo con Fondo --- */
-.left-panel {
-    width: 45%;
-    max-width: 500px;
-    padding: 3rem 4rem;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-    border-right: 1px solid var(--border-color);
-    text-align: right;
-    isolation: isolate; /* Permite que z-index funcione correctamente */
-}
-/* Pseudoelemento para el fondo con transparencia */
-.left-panel::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("images/curvas.jpg");
-    background-size: cover;
-    background-position: center;
-    opacity: 0.05; /* Transparencia para modo claro */
-    z-index: -1; /* Lo pone detrás del contenido */
-    transition:
-        opacity 0.3s ease,
-        filter 0.3s ease;
-}
-body.dark-mode .left-panel::before {
-    opacity: 0.1; /* Un poco más visible en modo oscuro */
-    filter: invert(
-        1
-    ); /* Invierte los colores de la imagen para que las líneas sean blancas */
-}
+        <div id="modal-overlay" class="modal-overlay"> <div id="modal-content" class="modal-content"> <span id="close-button" class="close-button">&times;</span> <img id="modal-image" src="" alt="Expanded project image" /> <h2 id="modal-title"></h2> <p id="modal-description"></p> </div> </div>
+        <div id="language-suggestion" class="language-suggestion"> <p> ¿Prefieres ver este sitio en español? <button id="switch-to-es">Cambiar a Español</button> </p> </div>
 
-/* --- Controles Superiores --- */
-.top-controls {
-    position: absolute;
-    top: 2.5rem;
-    left: 4rem;
-    right: 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.language-toggle {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 2px;
-}
-.language-toggle span {
-    cursor: pointer;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
-.language-toggle span.active {
-    background-color: var(--toggle-active-bg);
-    color: var(--text-primary);
-}
-.theme-toggle {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    color: var(--text-primary);
-}
-.theme-toggle svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--text-primary);
-}
-.moon-icon {
-    display: none;
-}
-body.dark-mode .sun-icon {
-    display: none;
-}
-body.dark-mode .moon-icon {
-    display: inline-block;
-}
-
-/* --- Contenido Bio --- */
-.bio-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-.photo-container {
-    width: 100px;
-    height: 140px;
-    background-color: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: 50px;
-    margin-bottom: 2rem;
-    overflow: hidden;
-}
-.photo-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.bio-content h1 {
-    font-size: 2.5rem;
-    font-weight: 400;
-    color: var(--text-primary);
-    margin: 0;
-}
-.bio-content h2 {
-    font-size: 1rem;
-    color: var(--text-primary);
-    margin: 1rem 0;
-    font-weight: 700;
-}
-.bio-content .summary {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    max-width: 400px;
-    border-top: 1px solid var(--border-color);
-    padding: 1rem 0;
-}
-.contact-info {
-    margin-top: 2rem;
-}
-.social-links {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: flex-end;
-}
-.social-links a {
-    color: var(--text-primary);
-    background-color: var(--card-background);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border: 1px solid var(--border-color);
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-.social-links a:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-}
-.contact-info .details {
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    color: var(--text-secondary);
-}
-
-/* --- Panel Derecho y Píldoras --- */
-.right-panel {
-    width: 55%;
-    padding: 3rem 4rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
-}
-.project-item {
-    display: flex;
-    align-items: center;
-    background-color: var(--card-background);
-    padding: 1rem;
-    border: 1px solid transparent;
-    border-radius: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-height: 150px;
-}
-.project-item:hover {
-    transform: scale(1.03);
-    border-color: var(--accent-color);
-}
-.project-thumbnail {
-    width: 180px;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-right: 1.5rem;
-    flex-shrink: 0;
-}
-.project-title h3 {
-    margin: 0;
-    color: var(--text-primary);
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-/* --- Modal y Responsivo (sin cambios) --- */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-.modal-content {
-    position: relative;
-    padding: 2.5rem;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
-    overflow-y: auto;
-    background-color: var(--modal-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-}
-.close-button {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 2.5rem;
-    color: var(--text-secondary);
-    cursor: pointer;
-}
-#modal-image {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    border: 1px solid var(--border-color);
-}
-#modal-title {
-    margin-top: 0;
-    font-size: 2rem;
-    color: var(--text-primary);
-}
-#modal-description {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-}
-.language-suggestion {
-    position: fixed;
-    bottom: -100px;
-    right: 2rem;
-    background-color: var(--card-background);
-    color: var(--text-primary);
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    transition: bottom 0.5s ease-in-out;
-    z-index: 2000;
-    box-shadow: 0 5px 20px var(--shadow-color);
-}
-.language-suggestion.show {
-    bottom: 2rem;
-}
-.language-suggestion button {
-    background-color: var(--accent-color);
-    color: var(--background);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 1rem;
-}
-@media (max-width: 900px) {
-    .main-container {
-        flex-direction: column;
-    }
-    .left-panel,
-    .right-panel {
-        width: 100%;
-        max-width: 100%;
-        position: static;
-        height: auto;
-        padding: 2rem;
-        text-align: center;
-    }
-    .left-panel {
-        border-right: none;
-        align-items: center;
-    }
-    .bio-content {
-        align-items: center;
-    }
-    .contact-info,
-    .social-links {
-        justify-content: center;
-    }
-    .top-controls {
-        position: static;
-        margin-bottom: 2rem;
-    }
-    .project-item {
-        flex-direction: column;
-        text-align: center;
-        min-height: auto;
-    }
-    .project-thumbnail {
-        margin: 0 0 1rem 0;
-        width: 100%;
-        height: 200px;
-    }
-}
+        <script src="script.js"></script>
+    </body>
+</html>
