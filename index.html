@@ -15,10 +15,17 @@
     <body>
         <div class="main-container">
             <aside class="left-panel">
-                <div class="language-toggle">
-                    <span id="lang-en" class="active">EN</span> /
-                    <span id="lang-es">ES</span>
+                <div class="top-controls">
+                    <div class="language-toggle">
+                        <span id="lang-en" class="active">EN</span> /
+                        <span id="lang-es">ES</span>
+                    </div>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <span class="light-icon">☀️</span>
+                        <span class="dark-icon">🌙</span>
+                    </button>
                 </div>
+
                 <div class="bio-content">
                     <div class="logo">V</div>
                     <h1 data-es="Víctor Luna L.">Victor Luna L.</h1>
@@ -53,30 +60,19 @@
                     data-image="1FDD7933-20BC-45FA-BA52-1C96899C49EB_1_105_c.jpg"
                     data-description="Objective: To develop a model to visualize environmental inequity and hydric stress. Actions: I integrated and normalized census-level databases, performing a spatial cluster analysis (LISA) in QGIS. Outcome: Produced a high-resolution cartographic atlas that reveals patterns of inequity, providing a visual tool for data-driven public policy decisions."
                 >
-                    <img
-                        src="1FDD7933-20BC-45FA-BA52-1C96899C49EB_1_105_c.jpg"
-                        alt="Geostatistical Model of Hydric Stress"
-                        class="project-image"
-                    />
-                    <div class="project-title-overlay">
+                    <div class="project-title">
                         <h3 data-es="Modelo Geoestadístico de Estrés Hídrico">
                             Geostatistical Model of Hydric Stress
                         </h3>
                     </div>
                 </div>
-
                 <div
                     class="project-item"
                     data-title="Geospatial Analysis of the Trans-Isthmus Corridor"
                     data-image="9A9DFA9A-F92A-4486-8D31-53D85FF3D25C_1_105_c.jpeg"
                     data-description="Objective: To analyze socioeconomic and environmental dynamics to define development strategies. Actions: I processed and analyzed over 30 geospatial data layers using QGIS (infrastructure, hydrology, etc.) and applied gravity models. Outcome: Generated strategic maps that served as a key diagnostic for proposing Urban Projects and Community Corridors."
                 >
-                    <img
-                        src="9A9DFA9A-F92A-4486-8D31-53D85FF3D25C_1_105_c.jpeg"
-                        alt="Geospatial Analysis of the Trans-Isthmus Corridor"
-                        class="project-image"
-                    />
-                    <div class="project-title-overlay">
+                    <div class="project-title">
                         <h3
                             data-es="Análisis Geoespacial del Corredor Transístmico"
                         >
@@ -95,7 +91,6 @@
                 <p id="modal-description"></p>
             </div>
         </div>
-
         <div id="language-suggestion" class="language-suggestion">
             <p>
                 ¿Prefieres ver este sitio en español?

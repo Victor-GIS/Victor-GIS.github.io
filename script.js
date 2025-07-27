@@ -28,24 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.target === modalOverlay) closeModal();
   });
 
-  // --- NUEVA LÓGICA: Sistema de Idiomas ---
+  // --- Lógica de Idiomas (sin cambios) ---
   const langENToggle = document.getElementById("lang-en");
   const langESToggle = document.getElementById("lang-es");
   const translatableElements = document.querySelectorAll("[data-es]");
-  const suggestionPopup = document.getElementById("language-suggestion");
-  const switchToESButton = document.getElementById("switch-to-es");
-
-  // Guarda el texto original en inglés para poder volver a él
   translatableElements.forEach((el) => {
     el.setAttribute("data-en", el.textContent.trim());
   });
-
   const setLanguage = (lang) => {
     translatableElements.forEach((el) => {
       el.textContent = el.getAttribute(`data-${lang}`);
     });
-
-    // Actualiza la clase 'active' en el toggle
     if (lang === "es") {
       langESToggle.classList.add("active");
       langENToggle.classList.remove("active");
@@ -54,24 +47,40 @@ document.addEventListener("DOMContentLoaded", () => {
       langESToggle.classList.remove("active");
     }
   };
-
-  // Event Listeners para el toggle
   langENToggle.addEventListener("click", () => setLanguage("en"));
   langESToggle.addEventListener("click", () => setLanguage("es"));
-  switchToESButton.addEventListener("click", () => {
-    setLanguage("es");
-    suggestionPopup.classList.remove("show");
+
+  // --- NUEVA LÓGICA: Interruptor de Tema (Light/Dark Mode) ---
+  const themeToggleButton = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  // Función para aplicar el tema
+  const applyTheme = (theme) => {
+    if (theme === "dark") {
+      body.classList.add("dark-mode");
+    } else {
+      body.classList.remove("dark-mode");
+    }
+  };
+
+  // Event listener para el botón
+  themeToggleButton.addEventListener("click", () => {
+    const currentTheme = body.classList.contains("dark-mode")
+      ? "light"
+      : "dark";
+    localStorage.setItem("theme", currentTheme);
+    applyTheme(currentTheme);
   });
 
-  // Lógica para el pop-up de sugerencia
-  const browserLang = navigator.language || navigator.userLanguage;
-  if (browserLang.startsWith("es")) {
-    setTimeout(() => {
-      suggestionPopup.classList.add("show");
-    }, 1500); // Muestra el pop-up después de 1.5 segundos
+  // Cargar el tema al iniciar la página
+  const savedTheme = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-    setTimeout(() => {
-      suggestionPopup.classList.remove("show");
-    }, 8000); // Lo oculta automáticamente después de 8 segundos
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else if (prefersDark) {
+    applyTheme("dark");
+  } else {
+    applyTheme("light"); // Default
   }
 });
