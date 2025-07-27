@@ -2,26 +2,26 @@
 :root {
     --font-sans: "Inter", sans-serif;
     --font-serif: "Lora", serif;
-    /* Tema Claro (Default) */
-    --background: #ffffff;
+    /* Tema Claro */
+    --background: #f5f5f7;
     --text-primary: #1d1d1f;
     --text-secondary: #515154;
     --border-color: #d2d2d7;
     --accent-color: #0071e3;
-    --card-background: #f5f5f7;
-    --shadow-color: rgba(0, 0, 0, 0.05);
+    --card-background: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
     --modal-bg: rgba(255, 255, 255, 0.8);
     --toggle-active-bg: #e0e0e0;
 }
 
 body.dark-mode {
-    /* Tema Oscuro */
-    --background: #111111;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
+    /* Tema Oscuro (Default) */
+    --background: #000000;
+    --text-primary: #f5f5f7;
+    --text-secondary: #86868b;
     --border-color: #444444;
     --accent-color: #ffffff;
-    --card-background: #1c1c1e;
+    --card-background: #1d1d1f;
     --shadow-color: rgba(0, 0, 0, 0.2);
     --modal-bg: rgba(28, 28, 30, 0.8);
     --toggle-active-bg: #333333;
@@ -33,68 +33,28 @@ body {
     background-color: var(--background);
     color: var(--text-secondary);
     margin: 0;
+    padding: 3rem;
     transition:
         background-color 0.3s ease,
         color 0.3s ease;
 }
-.main-container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-}
 
-/* --- Panel Izquierdo con Fondo --- */
-.left-panel {
-    width: 45%;
-    max-width: 500px;
-    padding: 3rem 4rem;
-    position: sticky;
-    top: 0;
-    height: 100vh;
+/* --- Controles Globales --- */
+.global-controls {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-    border-right: 1px solid var(--border-color);
-    text-align: right;
-    isolation: isolate;
-}
-.left-panel::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("images/curvas.jpg");
-    background-size: cover;
-    background-position: center;
-    opacity: 0.05;
-    z-index: -1;
-    transition:
-        opacity 0.3s ease,
-        filter 0.3s ease;
-}
-body.dark-mode .left-panel::before {
-    opacity: 0.1;
-    filter: invert(1);
-}
-
-/* --- Controles Superiores --- */
-.top-controls {
-    position: absolute;
-    top: 2.5rem;
-    left: 4rem;
-    right: 4rem;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    z-index: 100;
 }
 .language-toggle {
     font-family: var(--font-serif);
     font-weight: 400;
     font-size: 0.9rem;
     color: var(--text-secondary);
+    background-color: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 2px;
@@ -110,11 +70,15 @@ body.dark-mode .left-panel::before {
     color: var(--text-primary);
 }
 .theme-toggle {
-    background: transparent;
-    border: none;
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-    padding: 0.5rem;
-    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .theme-toggle svg {
     width: 20px;
@@ -131,18 +95,38 @@ body.dark-mode .moon-icon {
     display: inline-block;
 }
 
-/* --- Contenido Bio --- */
-.bio-content {
+/* --- NUEVO Diseño de Rejilla (Grid) --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* Celda de Biografía (Central) */
+.bio-cell {
+    grid-column: 1 / -1; /* Ocupa todo el ancho en pantallas pequeñas */
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
+    text-align: center;
 }
+
+@media (min-width: 1024px) {
+    .bio-cell {
+        grid-column: 2 / span 2; /* Ocupa 2 columnas en el centro */
+        grid-row: 1 / span 2; /* Ocupa 2 filas */
+    }
+}
+
 .photo-container {
-    width: 100px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
     background-color: var(--card-background);
     border: 1px solid var(--border-color);
-    border-radius: 50px;
+    border-radius: 50%; /* Círculo */
     margin-bottom: 2rem;
     overflow: hidden;
 }
@@ -151,108 +135,88 @@ body.dark-mode .moon-icon {
     height: 100%;
     object-fit: cover;
 }
-.bio-content h1 {
-    font-size: 2.5rem;
-    font-weight: 400;
+.bio-cell h1 {
+    font-size: 3rem;
+    font-weight: 700;
     color: var(--text-primary);
     margin: 0;
 }
-.bio-content h2 {
-    font-size: 1rem;
+.bio-cell h2 {
+    font-size: 1.2rem;
     color: var(--text-primary);
     margin: 1rem 0;
-    font-weight: 700;
+    font-weight: 400;
 }
-.bio-content .summary {
-    font-size: 0.9rem;
+.bio-cell .summary {
+    font-size: 1rem;
     line-height: 1.6;
-    max-width: 400px;
-    border-top: 1px solid var(--border-color);
-    padding: 1rem 0;
+    max-width: 450px;
 }
 .contact-info {
     margin-top: 2rem;
 }
 .social-links {
     display: flex;
-    gap: 0.5rem;
-    justify-content: flex-end;
+    gap: 1rem;
+    justify-content: center;
 }
 .social-links a {
     color: var(--text-primary);
     background-color: var(--card-background);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
     border: 1px solid var(--border-color);
-    padding: 0.6rem 1.2rem;
+    padding: 0.8rem 1.5rem;
     border-radius: 8px;
     transition: all 0.3s ease;
 }
 .social-links a:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-}
-.contact-info .details {
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    color: var(--text-secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px var(--shadow-color);
 }
 
-/* --- Panel Derecho y Píldoras --- */
-.right-panel {
-    width: 55%;
-    padding: 3rem 4rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
-}
-.project-item {
-    position: relative;
-    border-radius: 16px;
+/* Celda de Proyecto */
+.project-cell {
+    background-color: var(--card-background);
+    border-radius: 24px; /* Esquinas más redondeadas */
     cursor: pointer;
     overflow: hidden;
-    min-height: 170px;
-    display: flex;
-    align-items: flex-end;
+    position: relative;
     transition: all 0.3s ease;
+    min-height: 300px;
 }
-.project-item:hover {
+.project-cell:hover {
     transform: scale(1.03);
+    box-shadow: 0 10px 30px var(--shadow-color);
 }
-.project-background {
-    position: absolute;
-    top: 0;
-    left: 0;
+.project-cell img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 1;
-    transition: transform 0.4s ease;
 }
-.project-item:hover .project-background {
-    transform: scale(1.1);
-}
-.project-title {
-    position: relative;
-    z-index: 2;
+.project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1.5rem 1.5rem;
     color: white;
-    padding: 1rem 1.5rem;
-    width: 100%;
-    box-sizing: border-box;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
 }
-.project-title h3 {
+.project-cell:hover .project-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+.project-overlay h3 {
     margin: 0;
     font-size: 1.2rem;
-    font-weight: 600;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* --- Modal y Responsivo --- */
+/* --- Modal y Pop-up de Idioma --- */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -301,7 +265,7 @@ body.dark-mode .moon-icon {
 #modal-description {
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--text-secondary);
+    color: var(--text-primary);
 }
 .language-suggestion {
     position: fixed;
@@ -327,33 +291,4 @@ body.dark-mode .moon-icon {
     border-radius: 5px;
     cursor: pointer;
     margin-left: 1rem;
-}
-@media (max-width: 900px) {
-    .main-container {
-        flex-direction: column;
-    }
-    .left-panel,
-    .right-panel {
-        width: 100%;
-        max-width: 100%;
-        position: static;
-        height: auto;
-        padding: 2rem;
-        text-align: center;
-    }
-    .left-panel {
-        border-right: none;
-        align-items: center;
-    }
-    .bio-content {
-        align-items: center;
-    }
-    .contact-info,
-    .social-links {
-        justify-content: center;
-    }
-    .top-controls {
-        position: static;
-        margin-bottom: 2rem;
-    }
 }
