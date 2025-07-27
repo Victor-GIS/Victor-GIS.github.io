@@ -2,7 +2,6 @@
 :root {
     --font-sans: "Inter", sans-serif;
     --font-serif: "Lora", serif;
-
     /* Tema Claro (Default) */
     --background: #ffffff;
     --text-primary: #1d1d1f;
@@ -58,9 +57,8 @@ body {
     box-sizing: border-box;
     border-right: 1px solid var(--border-color);
     text-align: right;
-    isolation: isolate; /* Permite que z-index funcione correctamente */
+    isolation: isolate;
 }
-/* Pseudoelemento para el fondo con transparencia */
 .left-panel::before {
     content: "";
     position: absolute;
@@ -71,17 +69,15 @@ body {
     background-image: url("images/curvas.jpg");
     background-size: cover;
     background-position: center;
-    opacity: 0.05; /* Transparencia para modo claro */
-    z-index: -1; /* Lo pone detrás del contenido */
+    opacity: 0.05;
+    z-index: -1;
     transition:
         opacity 0.3s ease,
         filter 0.3s ease;
 }
 body.dark-mode .left-panel::before {
-    opacity: 0.1; /* Un poco más visible en modo oscuro */
-    filter: invert(
-        1
-    ); /* Invierte los colores de la imagen para que las líneas sean blancas */
+    opacity: 0.1;
+    filter: invert(1);
 }
 
 /* --- Controles Superiores --- */
@@ -230,11 +226,10 @@ body.dark-mode .moon-icon {
     border-color: var(--accent-color);
 }
 
-/* Regla corregida para tamaño uniforme */
 .project-thumbnail {
     width: 180px;
-    height: 150px; /* Igual a min-height del contenedor */
-    object-fit: cover; /* Mantiene la proporción y rellena el espacio */
+    height: 150px; /* ¡ESTA ES LA REGLA CLAVE! */
+    object-fit: cover;
     border-radius: 10px;
     margin-right: 1.5rem;
     flex-shrink: 0;
@@ -246,7 +241,7 @@ body.dark-mode .moon-icon {
     font-weight: 600;
 }
 
-/* --- Modal y Responsivo (sin cambios) --- */
+/* --- Modal y Responsivo --- */
 .modal-overlay {
     display: none;
     position: fixed;
