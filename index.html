@@ -7,35 +7,51 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="main-header">
-        <h1>Víctor Luna L.</h1>
-        <p>Analista GIS | Visualización de Datos Geoespaciales</p>
-    </header>
+    <div class="main-container">
+        <aside class="left-panel">
+            <div class="bio-content">
+                <h1>Víctor Luna L.</h1>
+                <h2>GIS Analyst / Urbanist / Designer</h2>
+                <p class="summary">
+                    Analista GIS con experiencia en análisis de datos espaciales y visualización para proyectos de desarrollo urbano y socioambientales.
+                </p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/victorgis/" target="_blank">LinkedIn</a>
+                    <a href="mailto:victorlunaspatialanalysis@outlook.com">Email</a>
+                    </div>
+            </div>
+        </aside>
 
-    <main>
-        <section class="portfolio-grid">
-            <div class="project-card" 
+        <main class="right-panel">
+            
+            <div class="project-item"
                  data-title="Modelo Geoestadístico de Estrés Hídrico" 
                  data-image="images/proyecto-estres-hidrico.png"
                  data-description="Objetivo: Desarrollar un modelo para visualizar la inequidad ambiental y el estrés hídrico. Acciones: Integré y normalicé bases de datos a nivel AGEB, realicé un análisis de clústeres espaciales (LISA) en QGIS. Resultado: Produje un atlas cartográfico que revela patrones de inequidad, proveyendo una herramienta visual para la toma de decisiones en políticas públicas.">
-                <img src="images/thumbnail-estres-hidrico.png" alt="Miniatura del proyecto de Estrés Hídrico">
-                <h3>Modelo Geoestadístico de Estrés Hídrico</h3>
+                <img class="thumbnail" src="images/thumbnail-estres-hidrico.png" alt="Miniatura del proyecto de Estrés Hídrico">
+                <div class="project-title">
+                    <h3>Modelo Geoestadístico de Estrés Hídrico</h3>
+                    <span>Análisis de Datos | QGIS | Socioambiental</span>
+                </div>
             </div>
 
-            <div class="project-card" 
+            <div class="project-item"
                  data-title="Análisis Geoespacial del Corredor Transístmico" 
                  data-image="images/proyecto-corredor.png"
                  data-description="Objetivo: Analizar dinámicas socioeconómicas y ambientales para definir estrategias de desarrollo. Acciones: Procesé y analicé más de 30 capas de datos geoespaciales usando QGIS (infraestructura, hidrología, etc.) y apliqué modelos gravitacionales. Resultado: Generé mapas estratégicos que sirvieron como diagnóstico clave para proponer Proyectos Urbanos y Corredores Comunitarios.">
-                <img src="images/thumbnail-corredor.png" alt="Miniatura del proyecto del Corredor Transístmico">
-                <h3>Análisis Geoespacial del Corredor Transístmico</h3>
+                <img class="thumbnail" src="images/thumbnail-corredor.png" alt="Miniatura del proyecto del Corredor Transístmico">
+                <div class="project-title">
+                    <h3>Análisis Geoespacial del Corredor Transístmico</h3>
+                    <span>Planificación Regional | Modelado Gravitacional</span>
+                </div>
             </div>
 
-        </section>
-    </main>
+            </main>
+    </div>
 
     <div id="modal-overlay" class="modal-overlay">
         <div id="modal-content" class="modal-content">
