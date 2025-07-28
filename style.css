@@ -2,14 +2,14 @@
 :root {
     --font-sans: "Inter", sans-serif;
     --font-serif: "Lora", serif;
-    /* Tema Claro (Default) */
-    --background: #ffffff;
+    /* Tema Claro */
+    --background: #f5f5f7;
     --text-primary: #1d1d1f;
     --text-secondary: #515154;
     --border-color: #d2d2d7;
     --accent-color: #0071e3;
-    --card-background: #f5f5f7;
-    --shadow-color: rgba(0, 0, 0, 0.05);
+    --card-background: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
     --modal-bg: rgba(255, 255, 255, 0.8);
     --toggle-active-bg: #e0e0e0;
 }
@@ -17,9 +17,9 @@
 body.dark-mode {
     /* Tema Oscuro */
     --background: #111111;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --border-color: #444444;
+    --text-primary: #f5f5f7;
+    --text-secondary: #86868b;
+    --border-color: #333333;
     --accent-color: #ffffff;
     --card-background: #1c1c1e;
     --shadow-color: rgba(0, 0, 0, 0.2);
@@ -59,6 +59,7 @@ body {
     text-align: right;
     isolation: isolate;
 }
+/* 2. Fondo de curvas mejorado */
 .left-panel::before {
     content: "";
     position: absolute;
@@ -67,13 +68,24 @@ body {
     width: 100%;
     height: 100%;
     background-image: url("images/curvas.jpg");
-    background-size: cover;
+    background-size: 250%; /* Mucho más grande */
     background-position: center;
     opacity: 0.05;
     z-index: -1;
     transition:
         opacity 0.3s ease,
         filter 0.3s ease;
+    /* Efecto de difuminado en los bordes */
+    -webkit-mask-image: radial-gradient(
+        ellipse 80% 80% at 50% 50%,
+        black 40%,
+        transparent 100%
+    );
+    mask-image: radial-gradient(
+        ellipse 80% 80% at 50% 50%,
+        black 40%,
+        transparent 100%
+    );
 }
 body.dark-mode .left-panel::before {
     opacity: 0.1;
@@ -92,9 +104,9 @@ body.dark-mode .left-panel::before {
 }
 .language-toggle {
     font-family: var(--font-serif);
-    font-weight: 400;
     font-size: 0.9rem;
     color: var(--text-secondary);
+    background-color: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 2px;
@@ -110,11 +122,15 @@ body.dark-mode .left-panel::before {
     color: var(--text-primary);
 }
 .theme-toggle {
-    background: transparent;
-    border: none;
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-    padding: 0.5rem;
-    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .theme-toggle svg {
     width: 20px;
@@ -137,67 +153,80 @@ body.dark-mode .moon-icon {
     flex-direction: column;
     align-items: flex-end;
 }
-.photo-container {
+.photo-pill-container {
     width: 100px;
     height: 140px;
-    background-color: var(--card-background);
-    border: 1px solid var(--border-color);
     border-radius: 50px;
-    margin-bottom: 2rem;
     overflow: hidden;
+    margin-bottom: 1.5rem;
+    border: 2px solid var(--border-color);
 }
-.photo-container img {
+.photo-pill-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 .bio-content h1 {
-    font-size: 2.5rem;
-    font-weight: 400;
+    font-size: 3rem;
+    font-weight: 700;
     color: var(--text-primary);
     margin: 0;
 }
 .bio-content h2 {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: var(--text-primary);
-    margin: 1rem 0;
-    font-weight: 700;
+    margin: 0.5rem 0 1.5rem;
+    font-weight: 400;
 }
 .bio-content .summary {
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.6;
-    max-width: 400px;
+    max-width: 550px;
+    margin-bottom: 2rem;
     border-top: 1px solid var(--border-color);
-    padding: 1rem 0;
+    padding-top: 2rem;
 }
 .contact-info {
-    margin-top: 2rem;
-}
-.social-links {
     display: flex;
-    gap: 0.5rem;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5rem;
 }
-.social-links a {
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+.action-btn {
+    font-family: var(--font-sans);
     color: var(--text-primary);
     background-color: var(--card-background);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
     border: 1px solid var(--border-color);
-    padding: 0.6rem 1.2rem;
+    padding: 0.8rem 1.5rem;
     border-radius: 8px;
     transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1rem;
 }
-.social-links a:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px var(--shadow-color);
 }
-.contact-info .details {
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    line-height: 1.5;
+.icon-links {
+    display: flex;
+    gap: 1.5rem;
+}
+.icon-links a {
     color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+.icon-links a:hover {
+    color: var(--text-primary);
+}
+.icon-links svg {
+    width: 24px;
+    height: 24px;
 }
 
 /* --- Panel Derecho y Píldoras --- */
@@ -225,7 +254,6 @@ body.dark-mode .moon-icon {
     transform: scale(1.03);
     border-color: var(--accent-color);
 }
-
 .project-thumbnail {
     width: 180px;
     height: 150px;
@@ -241,7 +269,7 @@ body.dark-mode .moon-icon {
     font-weight: 600;
 }
 
-/* --- Modal y Responsivo --- */
+/* --- Modal --- */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -253,12 +281,14 @@ body.dark-mode .moon-icon {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 .modal-content {
     position: relative;
     padding: 2.5rem;
     border-radius: 15px;
-    width: 90%;
+    width: 100%;
     max-width: 800px;
     max-height: 90vh;
     overflow-y: auto;
@@ -276,10 +306,16 @@ body.dark-mode .moon-icon {
     color: var(--text-secondary);
     cursor: pointer;
 }
+
+/* 4. Estilos para imagen del modal */
 #modal-image {
     width: 100%;
+    max-width: 100%; /* Asegura que no se desborde */
+    height: auto;
+    max-height: 70vh; /* Límite de altura para no ocupar toda la pantalla */
+    object-fit: contain; /* Muestra la imagen completa sin estirar */
     border-radius: 8px;
-    margin-bottom: 1.5rem;
+    margin-top: 1.5rem; /* Espacio entre el texto y la imagen */
     border: 1px solid var(--border-color);
 }
 #modal-title {
@@ -290,33 +326,13 @@ body.dark-mode .moon-icon {
 #modal-description {
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--text-primary);
+    color: var(--text-secondary);
 }
 .language-suggestion {
-    position: fixed;
-    bottom: -100px;
-    right: 2rem;
-    background-color: var(--card-background);
-    color: var(--text-primary);
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    transition: bottom 0.5s ease-in-out;
-    z-index: 2000;
-    box-shadow: 0 5px 20px var(--shadow-color);
+    display: none;
 }
-.language-suggestion.show {
-    bottom: 2rem;
-}
-.language-suggestion button {
-    background-color: var(--accent-color);
-    color: var(--background);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 1rem;
-}
+
+/* --- Diseño Responsivo --- */
 @media (max-width: 900px) {
     .main-container {
         flex-direction: column;
@@ -337,13 +353,18 @@ body.dark-mode .moon-icon {
     .bio-content {
         align-items: center;
     }
-    .contact-info,
-    .social-links {
+    .contact-info {
+        align-items: center;
+    }
+    .icon-links,
+    .action-buttons {
         justify-content: center;
     }
     .top-controls {
         position: static;
         margin-bottom: 2rem;
+        width: 100%;
+        justify-content: center;
     }
     .project-item {
         flex-direction: column;
