@@ -1,44 +1,51 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Lógica General de Modals ---
-  const modalTriggers = document.querySelectorAll(".modal-trigger");
-  const projectModal = document.getElementById("project-modal");
-  const servicesModal = document.getElementById("services-modal");
+  // --- Lógica del Modal de Proyectos ---
+  const projectItems = document.querySelectorAll(".project-cell");
+  const projectModalOverlay = document.getElementById("project-modal-overlay");
+  const modalImage = document.getElementById("modal-image");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDescription = document.getElementById("modal-description");
+  const projectCloseButton = document.getElementById("project-close-button");
 
-  modalTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      const modalId = trigger.getAttribute("data-modal-id");
-      const modal = document.getElementById(modalId);
+  projectItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const title = item.getAttribute("data-title");
+      const image = item.getAttribute("data-image");
+      const description = item.getAttribute("data-description");
 
-      if (modalId === "project-modal") {
-        // Llenar datos del proyecto
-        const modalImage = projectModal.querySelector("#modal-image");
-        const modalTitle = projectModal.querySelector("#modal-title");
-        const modalDescription =
-          projectModal.querySelector("#modal-description");
-
-        modalImage.src = trigger.getAttribute("data-image");
-        modalTitle.textContent = trigger.getAttribute("data-title");
-        modalDescription.textContent = trigger.getAttribute("data-description");
-      }
-
-      modal.style.display = "flex";
+      modalTitle.textContent = title;
+      modalImage.src = image;
+      modalDescription.textContent = description;
+      projectModalOverlay.style.display = "flex";
     });
   });
 
-  const closeButtons = document.querySelectorAll(".close-button");
-  closeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      button.closest(".modal-overlay").style.display = "none";
-    });
+  const closeProjectModal = () => {
+    projectModalOverlay.style.display = "none";
+  };
+  projectCloseButton.addEventListener("click", closeProjectModal);
+  projectModalOverlay.addEventListener("click", (event) => {
+    if (event.target === projectModalOverlay) closeProjectModal();
   });
 
-  const modalOverlays = document.querySelectorAll(".modal-overlay");
-  modalOverlays.forEach((overlay) => {
-    overlay.addEventListener("click", (event) => {
-      if (event.target === overlay) {
-        overlay.style.display = "none";
-      }
-    });
+  // --- NUEVA Lógica del Modal de Servicios ---
+  const servicesButton = document.getElementById("services-button");
+  const servicesModalOverlay = document.getElementById(
+    "services-modal-overlay",
+  );
+  const servicesCloseButton = document.getElementById("services-close-button");
+
+  const openServicesModal = () => {
+    servicesModalOverlay.style.display = "flex";
+  };
+  const closeServicesModal = () => {
+    servicesModalOverlay.style.display = "none";
+  };
+
+  servicesButton.addEventListener("click", openServicesModal);
+  servicesCloseButton.addEventListener("click", closeServicesModal);
+  servicesModalOverlay.addEventListener("click", (event) => {
+    if (event.target === servicesModalOverlay) closeServicesModal();
   });
 
   // --- Lógica de Idiomas (sin cambios) ---
@@ -46,11 +53,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const langESToggle = document.getElementById("lang-es");
   const translatableElements = document.querySelectorAll("[data-es]");
   translatableElements.forEach((el) => {
-    el.setAttribute("data-en", el.textContent.trim());
+    el.setAttribute(
+      "data-en",
+      el.getAttribute("data-es") ? el.textContent.trim() : "",
+    );
   });
   const setLanguage = (lang) => {
     translatableElements.forEach((el) => {
-      el.textContent = el.getAttribute(`data-${lang}`);
+      const text = el.getAttribute(`data-${lang}`);
+      if (text) el.textContent = text;
     });
     if (lang === "es") {
       langESToggle.classList.add("active");
@@ -63,10 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
   langENToggle.addEventListener("click", () => setLanguage("en"));
   langESToggle.addEventListener("click", () => setLanguage("es"));
 
-  // --- Lógica de Tema (sin cambios) ---
+  // --- Lógica del Interruptor de Tema (sin cambios) ---
   const themeToggleButton = document.getElementById("theme-toggle");
   const body = document.body;
-
   const applyTheme = (theme) => {
     if (theme === "dark") {
       body.classList.add("dark-mode");
@@ -82,29 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     applyTheme(currentTheme);
   });
   const savedTheme = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   if (savedTheme) {
     applyTheme(savedTheme);
-  } else if (prefersDark) {
-    applyTheme("dark");
-  } else {
-    applyTheme("light");
-  }
-
-  // --- Lógica de Pop-up de Sugerencia de Idioma (sin cambios) ---
-  const suggestionPopup = document.getElementById("language-suggestion");
-  const switchToESButton = document.getElementById("switch-to-es");
-  switchToESButton.addEventListener("click", () => {
-    setLanguage("es");
-    suggestionPopup.classList.remove("show");
-  });
-  const browserLang = navigator.language || navigator.userLanguage;
-  if (browserLang.startsWith("es")) {
-    setTimeout(() => {
-      if (suggestionPopup) suggestionPopup.classList.add("show");
-    }, 1500);
-    setTimeout(() => {
-      if (suggestionPopup) suggestionPopup.classList.remove("show");
-    }, 8000);
-  }
+  } // Se mantiene el default de dark-mode del body si no hay nada guardado
 });

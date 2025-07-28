@@ -33,40 +33,25 @@ body {
     background-color: var(--background);
     color: var(--text-secondary);
     margin: 0;
-    padding: 2rem;
     transition:
         background-color 0.3s ease,
         color 0.3s ease;
 }
 
-/* --- Rejilla Principal --- */
-.main-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    align-items: center;
-}
-
-/* --- Celda de Biografía (Central) --- */
-.bio-cell {
-    grid-column: 1 / -1; /* Ocupa todo el ancho en móvil */
-    padding: 2rem;
+/* --- Encabezado de Biografía --- */
+.bio-header {
+    padding: 6rem 2rem 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     position: relative;
+    z-index: 10;
 }
-@media (min-width: 1024px) {
-    .bio-cell {
-        grid-column: 2 / span 1;
-    }
-}
-
 .global-controls {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 2rem;
+    right: 2rem;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -116,39 +101,50 @@ body.dark-mode .moon-icon {
     display: inline-block;
 }
 
-.photo-container {
+.photo-pill-container {
     width: 100px;
-    height: 140px; /* Píldora alta */
+    height: 140px;
     border-radius: 50px;
     overflow: hidden;
     margin-bottom: 1.5rem;
     border: 2px solid var(--border-color);
 }
-.photo-container img {
+.photo-pill-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.bio-cell h1 {
-    font-size: 2.5rem;
+.bio-header h1 {
+    font-size: 3rem;
     font-weight: 700;
     color: var(--text-primary);
     margin: 0;
 }
-.bio-cell h2 {
-    font-size: 1.1rem;
+.bio-header h2 {
+    font-size: 1.2rem;
     color: var(--text-primary);
     margin: 0.5rem 0 1.5rem;
     font-weight: 400;
 }
+.bio-header .summary {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 550px;
+    margin-bottom: 2rem;
+}
 
 .contact-info {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
 }
-.services-button,
-.hire-button {
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+.action-btn {
+    font-family: var(--font-sans);
     color: var(--text-primary);
     background-color: var(--card-background);
     text-decoration: none;
@@ -158,28 +154,38 @@ body.dark-mode .moon-icon {
     border-radius: 8px;
     transition: all 0.3s ease;
     cursor: pointer;
-    font-family: var(--font-sans);
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
-.services-button:hover,
-.hire-button:hover {
+.action-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 10px var(--shadow-color);
 }
-
-.social-icons {
+.icon-links {
     display: flex;
     gap: 1.5rem;
 }
-.social-icons a {
+.icon-links a {
     color: var(--text-secondary);
     transition: color 0.3s ease;
 }
-.social-icons a:hover {
+.icon-links a:hover {
     color: var(--text-primary);
 }
+.icon-links svg {
+    width: 24px;
+    height: 24px;
+}
 
-/* --- Celda de Proyecto --- */
+/* --- NUEVA Rejilla de Proyectos Asimétrica --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(200px, auto);
+    gap: 2rem;
+    padding: 0 2rem 4rem;
+    max-width: 1600px;
+    margin: -12rem auto 0; /* Sube la rejilla para envolver el header */
+}
 .project-cell {
     background-color: var(--card-background);
     border-radius: 24px;
@@ -187,11 +193,11 @@ body.dark-mode .moon-icon {
     overflow: hidden;
     position: relative;
     transition: all 0.3s ease;
-    min-height: 350px;
 }
 .project-cell:hover {
-    transform: scale(1.03);
+    transform: scale(1.02);
     box-shadow: 0 10px 30px var(--shadow-color);
+    z-index: 5;
 }
 .project-cell img {
     width: 100%;
@@ -224,7 +230,33 @@ body.dark-mode .moon-icon {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* --- Modals --- */
+/* Posicionamiento específico de las celdas */
+.pos-1 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+}
+.pos-2 {
+    grid-column: 2 / 4;
+    grid-row: 2 / 4;
+}
+.pos-3 {
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+}
+.pos-4 {
+    grid-column: 4 / 5;
+    grid-row: 2 / 3;
+}
+.pos-5 {
+    grid-column: 1 / 2;
+    grid-row: 3 / 5;
+}
+.pos-6 {
+    grid-column: 2 / 4;
+    grid-row: 4 / 5;
+}
+
+/* --- Modal (Proyectos y Servicios) --- */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -236,7 +268,6 @@ body.dark-mode .moon-icon {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    backdrop-filter: blur(10px);
 }
 .modal-content {
     position: relative;
@@ -246,9 +277,21 @@ body.dark-mode .moon-icon {
     max-width: 800px;
     max-height: 90vh;
     overflow-y: auto;
-    background-color: var(--card-background);
+    background-color: var(--modal-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
+}
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 2rem;
+}
+.modal-content ul {
+    list-style-type: "— ";
+    padding-left: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
 }
 .close-button {
     position: absolute;
@@ -257,10 +300,6 @@ body.dark-mode .moon-icon {
     font-size: 2.5rem;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: color 0.3s ease;
-}
-.close-button:hover {
-    color: var(--text-primary);
 }
 #modal-image {
     width: 100%;
@@ -268,49 +307,6 @@ body.dark-mode .moon-icon {
     margin-bottom: 1.5rem;
     border: 1px solid var(--border-color);
 }
-#modal-title {
-    margin-top: 0;
-    font-size: 2rem;
-    color: var(--text-primary);
-}
-#modal-description {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-}
-
-/* Lista de Servicios */
-.services-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 1.5rem;
-}
-.services-list li {
-    font-size: 1.1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--text-primary);
-}
-.services-list li:last-child {
-    border-bottom: none;
-}
 .language-suggestion {
     display: none;
-}
-
-/* --- Diseño Responsivo --- */
-@media (max-width: 768px) {
-    body {
-        padding: 1rem;
-    }
-    .main-grid {
-        display: flex;
-        flex-direction: column;
-    }
-    .global-controls {
-        position: static;
-        width: 100%;
-        margin-bottom: 2rem;
-        justify-content: space-between;
-    }
 }
