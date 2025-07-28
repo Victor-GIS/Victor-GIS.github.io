@@ -2,26 +2,26 @@
 :root {
     --font-sans: "Inter", sans-serif;
     --font-serif: "Lora", serif;
-    /* Tema Claro */
-    --background: #f5f5f7;
+    /* Tema Claro (Default) */
+    --background: #ffffff;
     --text-primary: #1d1d1f;
     --text-secondary: #515154;
     --border-color: #d2d2d7;
     --accent-color: #0071e3;
-    --card-background: #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    --card-background: #f5f5f7;
+    --shadow-color: rgba(0, 0, 0, 0.05);
     --modal-bg: rgba(255, 255, 255, 0.8);
     --toggle-active-bg: #e0e0e0;
 }
 
 body.dark-mode {
-    /* Tema Oscuro (Default) */
-    --background: #000000;
-    --text-primary: #f5f5f7;
-    --text-secondary: #86868b;
-    --border-color: #333333;
+    /* Tema Oscuro */
+    --background: #111111;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --border-color: #444444;
     --accent-color: #ffffff;
-    --card-background: #1d1d1f;
+    --card-background: #1c1c1e;
     --shadow-color: rgba(0, 0, 0, 0.2);
     --modal-bg: rgba(28, 28, 30, 0.8);
     --toggle-active-bg: #333333;
@@ -37,30 +37,64 @@ body {
         background-color 0.3s ease,
         color 0.3s ease;
 }
+.main-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
 
-/* --- Encabezado de Biografía --- */
-.bio-header {
-    padding: 6rem 2rem 4rem;
+/* --- Panel Izquierdo con Fondo --- */
+.left-panel {
+    width: 45%;
+    max-width: 500px;
+    padding: 3rem 4rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    z-index: 10;
+    justify-content: center;
+    box-sizing: border-box;
+    border-right: 1px solid var(--border-color);
+    text-align: right;
+    isolation: isolate;
 }
-.global-controls {
+.left-panel::before {
+    content: "";
     position: absolute;
-    top: 2rem;
-    right: 2rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("images/curvas.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.05;
+    z-index: -1;
+    transition:
+        opacity 0.3s ease,
+        filter 0.3s ease;
+}
+body.dark-mode .left-panel::before {
+    opacity: 0.1;
+    filter: invert(1);
+}
+
+/* --- Controles Superiores --- */
+.top-controls {
+    position: absolute;
+    top: 2.5rem;
+    left: 4rem;
+    right: 4rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
 }
 .language-toggle {
     font-family: var(--font-serif);
+    font-weight: 400;
     font-size: 0.9rem;
     color: var(--text-secondary);
-    background-color: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 2px;
@@ -76,15 +110,11 @@ body {
     color: var(--text-primary);
 }
 .theme-toggle {
-    background: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    background: transparent;
+    border: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0.5rem;
+    color: var(--text-primary);
 }
 .theme-toggle svg {
     width: 20px;
@@ -101,162 +131,117 @@ body.dark-mode .moon-icon {
     display: inline-block;
 }
 
-.photo-pill-container {
+/* --- Contenido Bio --- */
+.bio-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.photo-container {
     width: 100px;
     height: 140px;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
     border-radius: 50px;
+    margin-bottom: 2rem;
     overflow: hidden;
-    margin-bottom: 1.5rem;
-    border: 2px solid var(--border-color);
 }
-.photo-pill-container img {
+.photo-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.bio-header h1 {
-    font-size: 3rem;
-    font-weight: 700;
+.bio-content h1 {
+    font-size: 2.5rem;
+    font-weight: 400;
     color: var(--text-primary);
     margin: 0;
 }
-.bio-header h2 {
-    font-size: 1.2rem;
-    color: var(--text-primary);
-    margin: 0.5rem 0 1.5rem;
-    font-weight: 400;
-}
-.bio-header .summary {
+.bio-content h2 {
     font-size: 1rem;
+    color: var(--text-primary);
+    margin: 1rem 0;
+    font-weight: 700;
+}
+.bio-content .summary {
+    font-size: 0.9rem;
     line-height: 1.6;
-    max-width: 550px;
-    margin-bottom: 2rem;
+    max-width: 400px;
+    border-top: 1px solid var(--border-color);
+    padding: 1rem 0;
 }
-
 .contact-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+    margin-top: 2rem;
 }
-.action-buttons {
+.social-links {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
+    justify-content: flex-end;
 }
-.action-btn {
-    font-family: var(--font-sans);
+.social-links a {
     color: var(--text-primary);
     background-color: var(--card-background);
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.9rem;
     border: 1px solid var(--border-color);
-    padding: 0.8rem 1.5rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 8px;
     transition: all 0.3s ease;
-    cursor: pointer;
-    font-size: 1rem;
 }
-.action-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px var(--shadow-color);
+.social-links a:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
 }
-.icon-links {
+.contact-info .details {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+/* --- Panel Derecho y Píldoras --- */
+.right-panel {
+    width: 55%;
+    padding: 3rem 4rem;
+    box-sizing: border-box;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     gap: 1.5rem;
 }
-.icon-links a {
-    color: var(--text-secondary);
-    transition: color 0.3s ease;
-}
-.icon-links a:hover {
-    color: var(--text-primary);
-}
-.icon-links svg {
-    width: 24px;
-    height: 24px;
-}
-
-/* --- NUEVA Rejilla de Proyectos Asimétrica --- */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(200px, auto);
-    gap: 2rem;
-    padding: 0 2rem 4rem;
-    max-width: 1600px;
-    margin: -12rem auto 0; /* Sube la rejilla para envolver el header */
-}
-.project-cell {
+.project-item {
+    display: flex;
+    align-items: center;
     background-color: var(--card-background);
-    border-radius: 24px;
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-radius: 16px;
     cursor: pointer;
-    overflow: hidden;
-    position: relative;
     transition: all 0.3s ease;
+    min-height: 150px;
 }
-.project-cell:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 30px var(--shadow-color);
-    z-index: 5;
+.project-item:hover {
+    transform: scale(1.03);
+    border-color: var(--accent-color);
 }
-.project-cell img {
-    width: 100%;
-    height: 100%;
+
+.project-thumbnail {
+    width: 180px;
+    height: 150px;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    border-radius: 10px;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
 }
-.project-cell:hover img {
-    transform: scale(1.1);
-}
-.project-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 2rem 1.5rem 1.5rem;
-    color: white;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-}
-.project-cell:hover .project-overlay {
-    opacity: 1;
-    transform: translateY(0);
-}
-.project-overlay h3 {
+.project-title h3 {
     margin: 0;
+    color: var(--text-primary);
     font-size: 1.2rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
 }
 
-/* Posicionamiento específico de las celdas */
-.pos-1 {
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
-}
-.pos-2 {
-    grid-column: 2 / 4;
-    grid-row: 2 / 4;
-}
-.pos-3 {
-    grid-column: 4 / 5;
-    grid-row: 1 / 2;
-}
-.pos-4 {
-    grid-column: 4 / 5;
-    grid-row: 2 / 3;
-}
-.pos-5 {
-    grid-column: 1 / 2;
-    grid-row: 3 / 5;
-}
-.pos-6 {
-    grid-column: 2 / 4;
-    grid-row: 4 / 5;
-}
-
-/* --- Modal (Proyectos y Servicios) --- */
+/* --- Modal y Responsivo --- */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -283,16 +268,6 @@ body.dark-mode .moon-icon {
     border: 1px solid var(--border-color);
     color: var(--text-primary);
 }
-.modal-content h2 {
-    margin-top: 0;
-    font-size: 2rem;
-}
-.modal-content ul {
-    list-style-type: "— ";
-    padding-left: 1.5rem;
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
 .close-button {
     position: absolute;
     top: 15px;
@@ -307,6 +282,77 @@ body.dark-mode .moon-icon {
     margin-bottom: 1.5rem;
     border: 1px solid var(--border-color);
 }
+#modal-title {
+    margin-top: 0;
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+#modal-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
 .language-suggestion {
-    display: none;
+    position: fixed;
+    bottom: -100px;
+    right: 2rem;
+    background-color: var(--card-background);
+    color: var(--text-primary);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: bottom 0.5s ease-in-out;
+    z-index: 2000;
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+.language-suggestion.show {
+    bottom: 2rem;
+}
+.language-suggestion button {
+    background-color: var(--accent-color);
+    color: var(--background);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+@media (max-width: 900px) {
+    .main-container {
+        flex-direction: column;
+    }
+    .left-panel,
+    .right-panel {
+        width: 100%;
+        max-width: 100%;
+        position: static;
+        height: auto;
+        padding: 2rem;
+        text-align: center;
+    }
+    .left-panel {
+        border-right: none;
+        align-items: center;
+    }
+    .bio-content {
+        align-items: center;
+    }
+    .contact-info,
+    .social-links {
+        justify-content: center;
+    }
+    .top-controls {
+        position: static;
+        margin-bottom: 2rem;
+    }
+    .project-item {
+        flex-direction: column;
+        text-align: center;
+        min-height: auto;
+    }
+    .project-thumbnail {
+        margin: 0 0 1rem 0;
+        width: 100%;
+        height: 200px;
+    }
 }
