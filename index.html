@@ -13,57 +13,103 @@
         />
     </head>
     <body class="dark-mode">
-        <header class="bio-header">
-            <div class="global-controls">
-                <div id="language-toggle" class="language-toggle">
-                    <span id="lang-en" class="active">EN</span>
-                    <span id="lang-es">ES</span>
+        <main class="main-grid">
+            <div class="bio-cell">
+                <div class="global-controls">
+                    <div id="language-toggle" class="language-toggle">
+                        <span id="lang-en" class="active">EN</span>
+                        <span id="lang-es">ES</span>
+                    </div>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <span class="sun-icon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line
+                                    x1="4.22"
+                                    y1="4.22"
+                                    x2="5.64"
+                                    y2="5.64"
+                                ></line>
+                                <line
+                                    x1="18.36"
+                                    y1="18.36"
+                                    x2="19.78"
+                                    y2="19.78"
+                                ></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line
+                                    x1="4.22"
+                                    y1="19.78"
+                                    x2="5.64"
+                                    y2="18.36"
+                                ></line>
+                                <line
+                                    x1="18.36"
+                                    y1="5.64"
+                                    x2="19.78"
+                                    y2="4.22"
+                                ></line>
+                            </svg>
+                        </span>
+                        <span class="moon-icon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                                ></path>
+                            </svg>
+                        </span>
+                    </button>
                 </div>
-                <button id="theme-toggle" class="theme-toggle">
-                    <span class="sun-icon">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line
-                                x1="4.22"
-                                y1="4.22"
-                                x2="5.64"
-                                y2="5.64"
-                            ></line>
-                            <line
-                                x1="18.36"
-                                y1="18.36"
-                                x2="19.78"
-                                y2="19.78"
-                            ></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line
-                                x1="4.22"
-                                y1="19.78"
-                                x2="5.64"
-                                y2="18.36"
-                            ></line>
-                            <line
-                                x1="18.36"
-                                y1="5.64"
-                                x2="19.78"
-                                y2="4.22"
-                            ></line>
-                        </svg>
-                    </span>
-                    <span class="moon-icon">
+
+                <div class="photo-container">
+                    <img src="images/perfil.jpg" alt="Victor Luna" />
+                </div>
+                <h1 data-es="Víctor Luna L.">Victor Luna L.</h1>
+                <h2 data-es="Analista GIS / Urbanista / Diseñador">
+                    GIS Analyst / Urbanist / Designer
+                </h2>
+                <div class="contact-info">
+                    <button
+                        class="services-button modal-trigger"
+                        data-modal-id="services-modal"
+                    >
+                        Servicios
+                    </button>
+                    <a
+                        href="mailto:victorlunaspatialanalysis@outlook.com"
+                        class="hire-button"
+                        >Hire Me</a
+                    >
+                </div>
+                <div class="social-icons">
+                    <a
+                        href="https://www.linkedin.com/in/victorgis/"
+                        target="_blank"
+                        aria-label="LinkedIn"
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -76,115 +122,127 @@
                             stroke-linejoin="round"
                         >
                             <path
-                                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                            ></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a
+                        href="https://github.com/Victor-GIS"
+                        target="_blank"
+                        aria-label="GitHub"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
                             ></path>
                         </svg>
-                    </span>
-                </button>
-            </div>
-
-            <div class="logo-icon">
-                <img src="images/perfil.jpg" alt="Logo" />
-            </div>
-            <h1 data-es="Víctor Luna L.">Victor Luna L.</h1>
-            <h2 data-es="Analista GIS / Urbanista / Diseñador">
-                GIS Analyst / Urbanist / Designer
-            </h2>
-            <p
-                class="summary"
-                data-es="Analista GIS con experiencia en análisis de datos espaciales y visualización para proyectos de desarrollo urbano y socioambientales."
-            >
-                GIS Analyst with proven experience in spatial data analysis and
-                visualization for urban development and socio-environmental
-                projects.
-            </p>
-            <div class="contact-info">
-                <div class="social-links">
-                    <a
-                        href="https://www.linkedin.com/in/victorgis/"
-                        target="_blank"
-                        >LinkedIn</a
-                    >
-                    <a href="mailto:victorlunaspatialanalysis@outlook.com"
-                        >Hire Me</a
-                    >
+                    </a>
                 </div>
             </div>
-        </header>
 
-        <main class="project-grid">
             <div
-                class="project-cell size-large-horizontal"
+                class="project-cell modal-trigger"
+                data-modal-id="project-modal"
                 data-title="Risk Analysis in the Mexican Megalopolis"
                 data-image="images/risk.jpg"
                 data-description="A geostatistical model identifying areas of hydric stress and environmental inequity within the Mexican Megalopolis."
             >
                 <img src="images/risk.jpg" alt="Risk Megalopolis" />
                 <div class="project-overlay">
-                    <h3>Risk in the Megalopolis</h3>
+                    <h3 data-es="Riesgo en la Megalópolis">
+                        Risk in the Megalopolis
+                    </h3>
                 </div>
             </div>
             <div
-                class="project-cell size-vertical"
+                class="project-cell modal-trigger"
+                data-modal-id="project-modal"
                 data-title="Trans-Isthmus Corridor Strategies"
                 data-image="images/corredor.jpg"
                 data-description="Strategic planning for the Trans-Isthmus Corridor, defining development and conservation zones."
             >
                 <img src="images/corredor.jpg" alt="Corredor Transístmico" />
                 <div class="project-overlay">
-                    <h3>Trans-Isthmus Corridor</h3>
+                    <h3 data-es="Corredor Transístmico">
+                        Trans-Isthmus Corridor
+                    </h3>
                 </div>
             </div>
             <div
-                class="project-cell size-small"
-                data-title="SWOT Analysis of the Xochimilco-Chalco Wetland"
-                data-image="images/humedal.jpg"
-                data-description="SWOT analysis of the Xochimilco-Chalco wetland, identifying threats like informal growth and opportunities in tourism."
+                class="project-cell modal-trigger"
+                data-modal-id="project-modal"
+                data-title="Road Infrastructure and Mobility Analysis"
+                data-image="images/vial.jpg"
+                data-description="Analysis and proposal for road infrastructure, studying mobility flows at a key intersection."
             >
-                <img src="images/humedal.jpg" alt="Humedal Xochimilco" />
+                <img src="images/vial.jpg" alt="Infraestructura Vial" />
                 <div class="project-overlay">
-                    <h3>Xochimilco-Chalco Wetland</h3>
+                    <h3 data-es="Infraestructura Vial y Movilidad">
+                        Road Infrastructure & Mobility
+                    </h3>
                 </div>
             </div>
             <div
-                class="project-cell size-small"
-                data-title="Voronoi Watersheds of Mexico"
-                data-image="images/voronoi.jpg"
-                data-description="A creative cartographic representation of Mexico's watersheds using Voronoi diagrams."
-            >
-                <img src="images/voronoi.jpg" alt="Voronoi Watersheds" />
-                <div class="project-overlay"><h3>Voronoi Watersheds</h3></div>
-            </div>
-            <div
-                class="project-cell size-vertical"
-                data-title="Office Building Architectural Design"
-                data-image="images/edificio.jpg"
-                data-description="Architectural design and rendering for an office building, focusing on natural light and circulation."
-            >
-                <img src="images/edificio.jpg" alt="Edificio de Oficinas" />
-                <div class="project-overlay"><h3>Office Building</h3></div>
-            </div>
-            <div
-                class="project-cell size-large-horizontal"
+                class="project-cell modal-trigger"
+                data-modal-id="project-modal"
                 data-title="Economic Activities in the SAC Alameda-Reforma"
                 data-image="images/sac_alameda.jpg"
                 data-description="Mapping of economic activities by sector in the historic center of Mexico City."
             >
                 <img src="images/sac_alameda.jpg" alt="SAC Alameda" />
                 <div class="project-overlay">
-                    <h3>Economic Activities: SAC Alameda</h3>
+                    <h3 data-es="Actividades Económicas: SAC Alameda">
+                        Economic Activities: SAC Alameda
+                    </h3>
                 </div>
             </div>
         </main>
 
-        <div id="modal-overlay" class="modal-overlay">
-            <div id="modal-content" class="modal-content">
-                <span id="close-button" class="close-button">&times;</span>
+        <div id="project-modal" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
                 <img id="modal-image" src="" alt="Expanded project image" />
                 <h2 id="modal-title"></h2>
                 <p id="modal-description"></p>
             </div>
         </div>
+
+        <div id="services-modal" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2 data-es="Lista de Servicios">List of Services</h2>
+                <ul class="services-list">
+                    <li data-es="Análisis Geoestadístico">
+                        Geostatistical Analysis
+                    </li>
+                    <li data-es="Generación de Cartografía">
+                        Cartography Generation
+                    </li>
+                    <li data-es="Planeación Urbana y Regional">
+                        Urban & Regional Planning
+                    </li>
+                    <li data-es="Diseño Urbano-Arquitectónico">
+                        Urban & Architectural Design
+                    </li>
+                    <li data-es="Visualización de Proyectos">
+                        Project Visualization
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         <div id="language-suggestion" class="language-suggestion">
             <p>
                 ¿Prefieres ver este sitio en español?

@@ -33,28 +33,43 @@ body {
     background-color: var(--background);
     color: var(--text-secondary);
     margin: 0;
+    padding: 2rem;
     transition:
         background-color 0.3s ease,
         color 0.3s ease;
 }
 
-/* --- Encabezado de Biografía --- */
-.bio-header {
-    padding: 6rem 2rem 4rem;
+/* --- Rejilla Principal --- */
+.main-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    align-items: center;
+}
+
+/* --- Celda de Biografía (Central) --- */
+.bio-cell {
+    grid-column: 1 / -1; /* Ocupa todo el ancho en móvil */
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     position: relative;
 }
+@media (min-width: 1024px) {
+    .bio-cell {
+        grid-column: 2 / span 1;
+    }
+}
+
 .global-controls {
     position: absolute;
-    top: 2rem;
-    right: 2rem;
+    top: 0;
+    right: 0;
     display: flex;
     align-items: center;
     gap: 1rem;
-    z-index: 100;
 }
 .language-toggle {
     font-family: var(--font-serif);
@@ -101,43 +116,39 @@ body.dark-mode .moon-icon {
     display: inline-block;
 }
 
-.logo-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 24px;
+.photo-container {
+    width: 100px;
+    height: 140px; /* Píldora alta */
+    border-radius: 50px;
     overflow: hidden;
     margin-bottom: 1.5rem;
     border: 2px solid var(--border-color);
 }
-.logo-icon img {
+.photo-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.bio-header h1 {
-    font-size: 3rem;
+.bio-cell h1 {
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-primary);
     margin: 0;
 }
-.bio-header h2 {
-    font-size: 1.2rem;
+.bio-cell h2 {
+    font-size: 1.1rem;
     color: var(--text-primary);
     margin: 0.5rem 0 1.5rem;
     font-weight: 400;
 }
-.bio-header .summary {
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 550px;
-    margin-bottom: 2rem;
-}
-.social-links {
+
+.contact-info {
     display: flex;
     gap: 1rem;
-    justify-content: center;
+    margin-bottom: 1.5rem;
 }
-.social-links a {
+.services-button,
+.hire-button {
     color: var(--text-primary);
     background-color: var(--card-background);
     text-decoration: none;
@@ -146,22 +157,29 @@ body.dark-mode .moon-icon {
     padding: 0.8rem 1.5rem;
     border-radius: 8px;
     transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
 }
-.social-links a:hover {
+.services-button:hover,
+.hire-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 10px var(--shadow-color);
 }
 
-/* --- NUEVA Rejilla de Proyectos (Masonry) --- */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 300px;
-    gap: 2rem;
-    padding: 0 2rem 4rem;
-    max-width: 1600px;
-    margin: auto;
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
 }
+.social-icons a {
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+.social-icons a:hover {
+    color: var(--text-primary);
+}
+
+/* --- Celda de Proyecto --- */
 .project-cell {
     background-color: var(--card-background);
     border-radius: 24px;
@@ -169,9 +187,10 @@ body.dark-mode .moon-icon {
     overflow: hidden;
     position: relative;
     transition: all 0.3s ease;
+    min-height: 350px;
 }
 .project-cell:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
     box-shadow: 0 10px 30px var(--shadow-color);
 }
 .project-cell img {
@@ -205,60 +224,7 @@ body.dark-mode .moon-icon {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Tamaños de Celda para el efecto Masonry */
-.size-large-horizontal {
-    grid-column: span 2;
-    grid-row: span 1;
-}
-.size-vertical {
-    grid-column: span 1;
-    grid-row: span 2;
-}
-.size-small {
-    grid-column: span 1;
-    grid-row: span 1;
-}
-
-/* --- Diseño Responsivo --- */
-@media (max-width: 1200px) {
-    .project-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .size-large-horizontal {
-        grid-column: span 2;
-    }
-    .size-vertical {
-        grid-column: span 1;
-        grid-row: span 1;
-    } /* Se convierte en cuadrado en tablet */
-}
-@media (max-width: 768px) {
-    body {
-        padding: 1rem;
-    }
-    .project-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-    .size-large-horizontal,
-    .size-vertical,
-    .size-small {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-}
-@media (max-width: 500px) {
-    .project-grid {
-        grid-template-columns: 1fr;
-    }
-    .size-large-horizontal,
-    .size-vertical,
-    .size-small {
-        grid-column: span 1;
-    }
-}
-
-/* --- Modal y Pop-up de Idioma --- */
+/* --- Modals --- */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -270,6 +236,7 @@ body.dark-mode .moon-icon {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 .modal-content {
     position: relative;
@@ -279,9 +246,7 @@ body.dark-mode .moon-icon {
     max-width: 800px;
     max-height: 90vh;
     overflow-y: auto;
-    background-color: var(--modal-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background-color: var(--card-background);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
 }
@@ -292,6 +257,10 @@ body.dark-mode .moon-icon {
     font-size: 2.5rem;
     color: var(--text-secondary);
     cursor: pointer;
+    transition: color 0.3s ease;
+}
+.close-button:hover {
+    color: var(--text-primary);
 }
 #modal-image {
     width: 100%;
@@ -307,8 +276,41 @@ body.dark-mode .moon-icon {
 #modal-description {
     font-size: 1rem;
     line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+/* Lista de Servicios */
+.services-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+}
+.services-list li {
+    font-size: 1.1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
     color: var(--text-primary);
+}
+.services-list li:last-child {
+    border-bottom: none;
 }
 .language-suggestion {
     display: none;
+}
+
+/* --- Diseño Responsivo --- */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    .main-grid {
+        display: flex;
+        flex-direction: column;
+    }
+    .global-controls {
+        position: static;
+        width: 100%;
+        margin-bottom: 2rem;
+        justify-content: space-between;
+    }
 }
