@@ -265,6 +265,7 @@ body.dark-mode .icon-links a:hover {
 .project-info {
     display: flex;
     flex-direction: column;
+    cursor: pointer; /* AÑADIDO: Indica que toda la tarjeta de info es clickeable */
 }
 .project-info h3 {
     margin: 0 0 0.5rem 0;
@@ -389,6 +390,11 @@ body.dark-mode .services-list li:hover {
     height: 90px;
     object-fit: cover;
     border-radius: 8px;
+    cursor: pointer; /* AÑADIDO: Indica que las miniaturas son clickeables */
+    transition: transform 0.2s ease;
+}
+#service-gallery-thumbnails img:hover {
+    transform: scale(1.05);
 }
 #back-to-services {
     margin-top: 1.5rem;

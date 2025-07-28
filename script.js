@@ -1,64 +1,64 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Base de datos de Textos Bilingües ---
+  // --- Base de datos de Textos Bilingües con Enfoque de Negocio ---
   const servicesData = {
     "geo-analysis": {
       en: {
-        title: "Geostatistical Analysis",
+        title: "Market & Risk Analysis",
         description:
-          "I use advanced statistical techniques to analyze spatial data, identify patterns, predict trends, and generate valuable insights for informed decision-making in complex projects.",
+          "I use advanced geostatistical techniques to analyze market data, identify consumer patterns, predict trends, and generate valuable insights for strategic decision-making.",
       },
       es: {
-        title: "Análisis Geoestadístico",
+        title: "Análisis de Mercado y Riesgo",
         description:
-          "Utilizo técnicas estadísticas avanzadas para analizar datos espaciales, identificar patrones, predecir tendencias y generar insights valiosos para la toma de decisiones informadas en proyectos complejos.",
+          "Utilizo técnicas geoestadísticas avanzadas para analizar datos de mercado, identificar patrones de consumo, predecir tendencias y generar insights para la toma de decisiones estratégicas.",
       },
     },
     cartography: {
       en: {
-        title: "Cartography Production",
+        title: "Strategic & Thematic Mapping",
         description:
-          "I design and produce clear, precise, and aesthetically pleasing thematic maps. I transform raw data into effective cartographic representations that intuitively communicate information.",
+          "I design and produce clear, precise, and aesthetically pleasing thematic maps. I transform raw data into effective cartographic reports and dashboards that intuitively communicate business insights.",
       },
       es: {
-        title: "Generación de Cartografía",
+        title: "Mapeo Estratégico y Temático",
         description:
-          "Diseño y produzco mapas temáticos claros, precisos y estéticamente atractivos. Transformo datos crudos en representaciones cartográficas efectivas que comunican información de manera intuitiva.",
+          "Diseño y produzco mapas temáticos claros y precisos. Transformo datos crudos en reportes cartográficos y dashboards efectivos que comunican insights de negocio de manera intuitiva.",
       },
     },
     "urban-planning": {
       en: {
-        title: "Urban & Regional Planning",
+        title: "Site Selection & Regional Strategy",
         description:
-          "I develop strategies and master plans at urban and regional scales. My approach integrates socio-economic, environmental, and infrastructure analyses to promote sustainable and equitable development.",
+          "I develop data-driven strategies for site selection and market expansion. My approach integrates socio-economic, environmental, and infrastructure analyses to ensure optimal placement and sustainable growth.",
       },
       es: {
-        title: "Planeación Urbana y Regional",
+        title: "Selección de Sitios y Estrategia Regional",
         description:
-          "Desarrollo estrategias y planes maestros a escala urbana y regional. Mi enfoque integra análisis socioeconómicos, ambientales y de infraestructura para promover un desarrollo sostenible y equitativo.",
+          "Desarrollo estrategias basadas en datos para la selección de sitios y expansión de mercado. Mi enfoque integra análisis socioeconómicos, ambientales y de infraestructura para asegurar la ubicación óptima.",
       },
     },
     "urban-design": {
       en: {
-        title: "Urban-Architectural Design",
+        title: "Spatial Layout Optimization",
         description:
-          "I propose design solutions that improve public space and quality of life. My work ranges from designing architectural complexes to revitalizing urban areas.",
+          "I propose data-informed design solutions that improve the efficiency of a physical space, from optimizing retail layouts to designing efficient logistics hubs.",
       },
       es: {
-        title: "Diseño Urbano-Arquitectónico",
+        title: "Optimización de Disposición Espacial",
         description:
-          "Propongo soluciones de diseño que mejoran el espacio público y la calidad de vida. Mi trabajo abarca desde el diseño de complejos arquitectónicos hasta la revitalización de áreas urbanas.",
+          "Propongo soluciones de diseño basadas en datos que mejoran la eficiencia de un espacio físico, desde la optimización de layouts para retail hasta el diseño de centros logísticos.",
       },
     },
     visualization: {
       en: {
-        title: "Project Visualization",
+        title: "Data Visualization & Reporting",
         description:
-          "I transform complex data and design proposals into impactful 2D and 3D visualizations. I create renders, diagrams, and interactive maps that facilitate the understanding and communication of projects.",
+          "I transform complex data into impactful 2D/3D visualizations, interactive dashboards, and compelling reports that facilitate stakeholder understanding and support investment proposals.",
       },
       es: {
-        title: "Visualización de Proyectos",
+        title: "Visualización de Datos y Reportería",
         description:
-          "Transformo datos complejos y propuestas de diseño en visualizaciones 2D y 3D impactantes. Creo renders, diagramas y mapas interactivos que facilitan la comprensión y comunicación de los proyectos.",
+          "Transformo datos complejos en visualizaciones 2D/3D impactantes, dashboards interactivos y reportes que facilitan la comunicación a stakeholders y apoyan propuestas de inversión.",
       },
     },
   };
@@ -73,22 +73,30 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   const projectCloseButton = document.getElementById("project-close-button");
 
+  // Función reutilizable para abrir el modal de proyecto
+  const openProjectModal = (item) => {
+    const currentLang = document
+      .querySelector(".language-toggle .active")
+      .id.split("-")[1];
+    modalTitle.textContent = item
+      .querySelector("h3")
+      .getAttribute(`data-${currentLang}`);
+    modalDescriptionProject.textContent = item
+      .querySelector("p")
+      .getAttribute(`data-${currentLang}`);
+    modalImage.src = item.getAttribute("data-image");
+    projectModalOverlay.style.display = "flex";
+  };
+
   projectItems.forEach((item) => {
-    // Event listener on the thumbnail
-    const thumb = item.querySelector(".project-thumbnail");
-    thumb.addEventListener("click", () => {
-      const currentLang = document
-        .querySelector(".language-toggle .active")
-        .id.split("-")[1];
-      modalTitle.textContent = item
-        .querySelector("h3")
-        .getAttribute(`data-${currentLang}`);
-      modalDescriptionProject.textContent = item
-        .querySelector("p")
-        .getAttribute(`data-${currentLang}`);
-      modalImage.src = item.getAttribute("data-image");
-      projectModalOverlay.style.display = "flex";
-    });
+    // Event listener en el contenedor de información (título y descripción)
+    item
+      .querySelector(".project-info")
+      .addEventListener("click", () => openProjectModal(item));
+    // Event listener en la miniatura
+    item
+      .querySelector(".project-thumbnail")
+      .addEventListener("click", () => openProjectModal(item));
   });
 
   const closeProjectModal = () => (projectModalOverlay.style.display = "none");
@@ -124,6 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
     servicesModalOverlay.style.display = "flex";
   });
 
+  const closeServicesModal = () =>
+    (servicesModalOverlay.style.display = "none");
+
   const openServiceDetail = (serviceKey) => {
     const currentLang = document
       .querySelector(".language-toggle .active")
@@ -132,18 +143,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     serviceDetailTitle.textContent = service.title;
     serviceDetailDescription.textContent = service.description;
-    serviceGalleryThumbnails.innerHTML = ""; // Clear gallery
+    serviceGalleryThumbnails.innerHTML = ""; // Limpiar galería
 
     const matchingProjects = document.querySelectorAll(
       `.project-item .project-hashtags span[data-service='${serviceKey}']`,
     );
+
     matchingProjects.forEach((tag) => {
-      const project = tag.closest(".project-item");
+      const projectItem = tag.closest(".project-item");
       const thumb = document.createElement("img");
-      thumb.src = project.dataset.image;
-      thumb.alt = project
+      thumb.src = projectItem.dataset.image;
+      thumb.alt = projectItem
         .querySelector("h3")
         .getAttribute(`data-${currentLang}`);
+
+      // AÑADIDO: Event listener en la miniatura del servicio
+      thumb.addEventListener("click", () => {
+        closeServicesModal();
+        // Esperar un instante para que la transición entre modales no sea brusca
+        setTimeout(() => {
+          openProjectModal(projectItem);
+        }, 150);
+      });
+
       serviceGalleryThumbnails.appendChild(thumb);
     });
 
@@ -167,14 +189,12 @@ document.addEventListener("DOMContentLoaded", () => {
     serviceDetailContainer.style.display = "none";
   });
 
-  const closeServicesModal = () =>
-    (servicesModalOverlay.style.display = "none");
   servicesCloseButton.addEventListener("click", closeServicesModal);
   servicesModalOverlay.addEventListener("click", (e) => {
     if (e.target === servicesModalOverlay) closeServicesModal();
   });
 
-  // --- Lógica de Idioma y Tema ---
+  // --- Lógica de Idioma y Tema (SIN CAMBIOS) ---
   const langENToggle = document.getElementById("lang-en");
   const langESToggle = document.getElementById("lang-es");
   const translatableElements = document.querySelectorAll("[data-es]");
@@ -216,7 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
     applyTheme(currentTheme);
   });
 
-  // Apply saved or preferred theme and language on load
   const savedTheme = localStorage.getItem("theme");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   if (savedTheme) {
