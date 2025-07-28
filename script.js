@@ -39,56 +39,87 @@ document.addEventListener("DOMContentLoaded", () => {
   const projectCloseButton = document.getElementById("project-close-button");
 
   projectThumbnails.forEach((thumb) => {
-    thumb.addEventListener("click", (e) => {
-      e.stopPropagation(); // Evita que el clic se propague al contenedor
+    thumb.addEventListener("click", () => {
       const item = thumb.closest(".project-item");
-      const title = item.getAttribute("data-title");
-      const image = item.getAttribute("data-image");
-      const description = item.querySelector("p").textContent;
-
-      modalTitle.textContent = title;
-      modalImage.src = image;
-      modalDescriptionProject.textContent = description;
+      modalTitle.textContent = item.getAttribute("data-title");
+      modalImage.src = item.getAttribute("data-image");
+      modalDescriptionProject.textContent =
+        item.getAttribute("data-description");
       projectModalOverlay.style.display = "flex";
     });
   });
 
-  const closeProjectModal = () => {
-    projectModalOverlay.style.display = "none";
-  };
+  const closeProjectModal = () => (projectModalOverlay.style.display = "none");
   projectCloseButton.addEventListener("click", closeProjectModal);
-  projectModalOverlay.addEventListener("click", (event) => {
-    if (event.target === projectModalOverlay) closeProjectModal();
+  projectModalOverlay.addEventListener("click", (e) => {
+    if (e.target === projectModalOverlay) closeProjectModal();
   });
 
-  // --- Lógica del Modal de Servicios (activado por hashtags) ---
-  const serviceHashtags = document.querySelectorAll(".project-hashtags span");
-  const serviceModalOverlay = document.getElementById("service-modal-overlay");
-  const serviceModalTitle = document.getElementById("service-modal-title");
-  const serviceModalDescription = document.getElementById(
-    "service-modal-description",
+  // --- Lógica del Modal de Servicios (con miniaturas) ---
+  const servicesButton = document.getElementById("services-button");
+  const servicesModalOverlay = document.getElementById(
+    "services-modal-overlay",
   );
-  const serviceCloseButton = document.getElementById("service-close-button");
+  const servicesCloseButton = document.getElementById("services-close-button");
+  const servicesListContainer = document.getElementById(
+    "services-list-container",
+  );
+  const serviceDetailContainer = document.getElementById(
+    "service-detail-container",
+  );
+  const backToServicesButton = document.getElementById("back-to-services");
+  const serviceDetailTitle = document.getElementById("service-detail-title");
+  const serviceDetailDescription = document.getElementById(
+    "service-detail-description",
+  );
+  const serviceGalleryThumbnails = document.getElementById(
+    "service-gallery-thumbnails",
+  );
 
-  serviceHashtags.forEach((tag) => {
-    tag.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const serviceKey = tag.dataset.service;
-      const serviceInfo = servicesData[serviceKey];
-      if (serviceInfo) {
-        serviceModalTitle.textContent = serviceInfo.title;
-        serviceModalDescription.textContent = serviceInfo.description;
-        serviceModalOverlay.style.display = "flex";
-      }
-    });
+  servicesButton.addEventListener("click", () => {
+    servicesListContainer.style.display = "block";
+    serviceDetailContainer.style.display = "none";
+    servicesModalOverlay.style.display = "flex";
   });
 
-  const closeServiceModal = () => {
-    serviceModalOverlay.style.display = "none";
-  };
-  serviceCloseButton.addEventListener("click", closeServiceModal);
-  serviceModalOverlay.addEventListener("click", (event) => {
-    if (event.target === serviceModalOverlay) closeServiceModal();
+  document
+    .querySelectorAll(".services-list li, .project-hashtags span")
+    .forEach((item) => {
+      item.addEventListener("click", (e) => {
+        e.stopPropagation(); // Evita abrir el modal del proyecto si se clickea el hashtag
+        const serviceKey = item.dataset.service;
+        const service = servicesData[serviceKey];
+        const matchingProjects = document.querySelectorAll(
+          `.project-item[data-tags*="${serviceKey}"]`,
+        );
+
+        serviceDetailTitle.textContent = service.title;
+        serviceDetailDescription.textContent = service.description;
+        serviceGalleryThumbnails.innerHTML = ""; // Limpiar galería
+
+        matchingProjects.forEach((project) => {
+          const thumb = document.createElement("img");
+          thumb.src = project.dataset.image;
+          thumb.alt = project.dataset.title;
+          serviceGalleryThumbnails.appendChild(thumb);
+        });
+
+        servicesListContainer.style.display = "none";
+        serviceDetailContainer.style.display = "block";
+        servicesModalOverlay.style.display = "flex";
+      });
+    });
+
+  backToServicesButton.addEventListener("click", () => {
+    servicesListContainer.style.display = "block";
+    serviceDetailContainer.style.display = "none";
+  });
+
+  const closeServicesModal = () =>
+    (servicesModalOverlay.style.display = "none");
+  servicesCloseButton.addEventListener("click", closeServicesModal);
+  servicesModalOverlay.addEventListener("click", (e) => {
+    if (e.target === servicesModalOverlay) closeServicesModal();
   });
 
   // --- Lógica de Idiomas y Tema (sin cambios) ---
