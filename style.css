@@ -1,378 +1,192 @@
-/* --- Variables de Color --- */
-:root {
-    --font-sans: "Inter", sans-serif;
-    --font-serif: "Lora", serif;
-    --accent-color-vibrant: #00e0c6; /* Nuevo color de acento */
-    /* Tema Claro */
-    --background: #f5f5f7;
-    --text-primary: #1d1d1f;
-    --text-secondary: #515154;
-    --border-color: #d2d2d7;
-    --card-background: #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --modal-bg: rgba(255, 255, 255, 0.8);
-    --toggle-active-bg: #e0e0e0;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  // --- Base de datos de Textos Bilingües ---
+  const servicesData = {
+    "geo-analysis": {
+      en: {
+        title: "Geostatistical Analysis",
+        description: "I use advanced statistical techniques to analyze spatial data, identify patterns, predict trends, and generate valuable insights for informed decision-making in complex projects.",
+      },
+      es: {
+        title: "Análisis Geoestadístico",
+        description: "Utilizo técnicas estadísticas avanzadas para analizar datos espaciales, identificar patrones, predecir tendencias y generar insights valiosos para la toma de decisiones informadas en proyectos complejos.",
+      }
+    },
+    cartography: {
+      en: {
+        title: "Cartography Production",
+        description: "I design and produce clear, precise, and aesthetically pleasing thematic maps. I transform raw data into effective cartographic representations that intuitively communicate information.",
+      },
+      es: {
+        title: "Generación de Cartografía",
+        description: "Diseño y produzco mapas temáticos claros, precisos y estéticamente atractivos. Transformo datos crudos en representaciones cartográficas efectivas que comunican información de manera intuitiva.",
+      }
+    },
+    "urban-planning": {
+        en: {
+            title: "Urban & Regional Planning",
+            description: "I develop strategies and master plans at urban and regional scales. My approach integrates socio-economic, environmental, and infrastructure analyses to promote sustainable and equitable development.",
+        },
+        es: {
+            title: "Planeación Urbana y Regional",
+            description: "Desarrollo estrategias y planes maestros a escala urbana y regional. Mi enfoque integra análisis socioeconómicos, ambientales y de infraestructura para promover un desarrollo sostenible y equitativo.",
+        }
+    },
+    "urban-design": {
+        en: {
+            title: "Urban-Architectural Design",
+            description: "I propose design solutions that improve public space and quality of life. My work ranges from designing architectural complexes to revitalizing urban areas.",
+        },
+        es: {
+            title: "Diseño Urbano-Arquitectónico",
+            description: "Propongo soluciones de diseño que mejoran el espacio público y la calidad de vida. Mi trabajo abarca desde el diseño de complejos arquitectónicos hasta la revitalización de áreas urbanas.",
+        }
+    },
+    visualization: {
+        en: {
+            title: "Project Visualization",
+            description: "I transform complex data and design proposals into impactful 2D and 3D visualizations. I create renders, diagrams, and interactive maps that facilitate the understanding and communication of projects.",
+        },
+        es: {
+            title: "Visualización de Proyectos",
+            description: "Transformo datos complejos y propuestas de diseño en visualizaciones 2D y 3D impactantes. Creo renders, diagramas y mapas interactivos que facilitan la comprensión y comunicación de los proyectos.",
+        }
+    },
+  };
 
-body.dark-mode {
-    /* Tema Oscuro */
-    --background: #111111;
-    --text-primary: #f5f5f7;
-    --text-secondary: #86868b;
-    --border-color: #333333;
-    --card-background: #1c1c1e;
-    --shadow-color: rgba(0, 0, 0, 0.2);
-    --modal-bg: rgba(28, 28, 30, 0.8);
-    --toggle-active-bg: #333333;
-}
+  // --- Lógica del Modal de Proyectos ---
+  const projectItems = document.querySelectorAll(".project-item");
+  const projectModalOverlay = document.getElementById("project-modal-overlay");
+  const modalImage = document.getElementById("modal-image");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDescriptionProject = document.getElementById("modal-description-project");
+  const projectCloseButton = document.getElementById("project-close-button");
 
-/* --- Estilos Generales --- */
-body {
-    font-family: var(--font-sans);
-    background-color: var(--background);
-    color: var(--text-secondary);
-    margin: 0;
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
-}
-.main-container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-}
+  projectItems.forEach((item) => {
+    // Event listener on the thumbnail
+    const thumb = item.querySelector('.project-thumbnail');
+    thumb.addEventListener("click", () => {
+        const currentLang = document.querySelector('.language-toggle .active').id.split('-')[1];
+        modalTitle.textContent = item.querySelector('h3').getAttribute(`data-${currentLang}`);
+        modalDescriptionProject.textContent = item.querySelector('p').getAttribute(`data-${currentLang}`);
+        modalImage.src = item.getAttribute("data-image");
+        projectModalOverlay.style.display = "flex";
+    });
+  });
 
-/* --- Panel Izquierdo con Fondo --- */
-.left-panel {
-    width: 45%;
-    max-width: 550px;
-    padding: 3rem 4rem;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-    border-right: 1px solid var(--border-color);
-    text-align: right;
-    isolation: isolate;
-}
-.left-panel::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("images/curvas.jpg");
-    background-attachment: fixed; /* --- CAMBIO AÑADIDO --- */
-    background-size: cover;
-    background-position: center;
-    opacity: 0.05;
-    z-index: -1;
-    mask-image: none;
-    transition:
-        opacity 0.3s ease,
-        filter 0.3s ease;
-}
-body.dark-mode .left-panel::before {
-    opacity: 0.1;
-    filter: invert(1);
-}
+  const closeProjectModal = () => (projectModalOverlay.style.display = "none");
+  projectCloseButton.addEventListener("click", closeProjectModal);
+  projectModalOverlay.addEventListener("click", (e) => {
+    if (e.target === projectModalOverlay) closeProjectModal();
+  });
 
-/* --- Controles Superiores --- */
-.top-controls {
-    position: absolute;
-    top: 2.5rem;
-    left: 4rem;
-    right: 4rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 1rem;
-}
-.language-toggle {
-    font-family: var(--font-serif);
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    background-color: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 2px;
-}
-.language-toggle span {
-    cursor: pointer;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
-.language-toggle span.active {
-    background-color: var(--toggle-active-bg);
-    color: var(--text-primary);
-}
-.theme-toggle {
-    background: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.theme-toggle svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--text-primary);
-}
-.moon-icon {
-    display: none;
-}
-body.dark-mode .sun-icon {
-    display: none;
-}
-body.dark-mode .moon-icon {
-    display: inline-block;
-}
+  // --- Lógica del Modal de Servicios ---
+  const servicesButton = document.getElementById("services-button");
+  const servicesModalOverlay = document.getElementById("services-modal-overlay");
+  const servicesCloseButton = document.getElementById("services-close-button");
+  const servicesListContainer = document.getElementById("services-list-container");
+  const serviceDetailContainer = document.getElementById("service-detail-container");
+  const backToServicesButton = document.getElementById("back-to-services");
+  const serviceDetailTitle = document.getElementById("service-detail-title");
+  const serviceDetailDescription = document.getElementById("service-detail-description");
+  const serviceGalleryThumbnails = document.getElementById("service-gallery-thumbnails");
 
-/* --- Contenido Bio --- */
-.bio-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-.photo-pill-container {
-    width: 100px;
-    height: 140px;
-    border-radius: 50px;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-    border: 2px solid var(--border-color);
-}
-.photo-pill-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.bio-content h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-}
-.bio-content h2 {
-    font-size: 1.2rem;
-    color: var(--text-primary);
-    margin: 0.5rem 0 1.5rem;
-    font-weight: 400;
-}
-.bio-content .summary {
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 550px;
-    margin-bottom: 1.5rem;
-    border-top: none;
-    padding-top: 0;
-}
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 1.5rem;
-}
-.action-buttons {
-    display: flex;
-    gap: 1rem;
-}
-.action-btn {
-    font-family: var(--font-sans);
-    color: var(--text-primary);
-    background-color: var(--card-background);
-    text-decoration: none;
-    font-weight: 600;
-    border: 1px solid var(--border-color);
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    font-size: 1rem;
-}
-.action-btn:hover {
-    border-color: var(--accent-color-vibrant);
-    box-shadow: 0 4px 10px var(--shadow-color);
-}
-.icon-links {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
-.icon-links a {
-    color: var(--text-secondary);
-    transition: color 0.3s ease;
-}
-.icon-links a:hover {
-    color: var(--accent-color-vibrant);
-}
-.icon-links svg {
-    width: 24px;
-    height: 24px;
-}
+  servicesButton.addEventListener("click", () => {
+    servicesListContainer.style.display = "block";
+    serviceDetailContainer.style.display = "none";
+    servicesModalOverlay.style.display = "flex";
+  });
 
-/* --- Panel Derecho y Píldoras --- */
-.right-panel {
-    width: 55%;
-    padding: 3rem 4rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
-}
-.project-item {
-    display: flex;
-    align-items: stretch;
-    background-color: var(--card-background);
-    padding: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    height: 180px; /* Tamaño uniforme */
-    transition: all 0.3s ease;
-}
-.project-item:hover {
-    border-color: var(--accent-color-vibrant);
-    transform: scale(1.01);
-}
-.project-thumbnail {
-    width: 180px;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-right: 1.5rem;
-    flex-shrink: 0;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-}
-.project-item:hover .project-thumbnail {
-    transform: scale(1.05);
-}
-.project-info {
-    display: flex;
-    flex-direction: column;
-}
-.project-info h3 {
-    margin: 0 0 0.5rem 0;
-    color: var(--text-primary);
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-.project-info p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin: 0 0 1rem 0;
-    color: var(--text-secondary);
-}
-.project-hashtags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: auto;
-}
-/* --- ESTILO DE BOTONES MODIFICADO --- */
-.project-hashtags span {
-    background-color: var(--background);
-    color: var(--text-secondary);
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
+  const openServiceDetail = (serviceKey) => {
+    const currentLang = document.querySelector('.language-toggle .active').id.split('-')[1];
+    const service = servicesData[serviceKey][currentLang];
 
-.project-hashtags span:hover {
-    border-color: var(--text-secondary);
-    color: var(--text-primary);
-}
+    serviceDetailTitle.textContent = service.title;
+    serviceDetailDescription.textContent = service.description;
+    serviceGalleryThumbnails.innerHTML = ""; // Clear gallery
 
-/* --- Modal --- */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 2rem;
-    box-sizing: border-box;
-    backdrop-filter: blur(5px);
-}
-.modal-content {
-    position: relative;
-    padding: 2.5rem;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 800px;
-    max-height: 90vh;
-    overflow-y: auto;
-    background-color: var(--modal-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-}
-.modal-content h2 {
-    margin-top: 0;
-    font-size: 2rem;
-}
-.modal-content p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-}
-.close-button {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 2.5rem;
-    color: var(--text-secondary);
-    cursor: pointer;
-}
-#modal-image {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    max-height: 70vh;
-    object-fit: contain;
-    border-radius: 8px;
-    margin-top: 1.5rem;
-    border: 1px solid var(--border-color);
-}
+    const matchingProjects = document.querySelectorAll(`.project-item .project-hashtags span[data-service='${serviceKey}']`);
+    matchingProjects.forEach(tag => {
+        const project = tag.closest('.project-item');
+        const thumb = document.createElement("img");
+        thumb.src = project.dataset.image;
+        thumb.alt = project.querySelector('h3').getAttribute(`data-${currentLang}`);
+        serviceGalleryThumbnails.appendChild(thumb);
+    });
 
-/* Modal de Servicios Específico */
-.services-list {
-    list-style-type: none;
-    padding: 0;
-}
-.services-list li {
-    font-size: 1.2rem;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-.services-list li:hover {
-    color: var(--accent-color-vibrant);
-}
-#service-detail-description {
-    margin-bottom: 1.5rem;
-}
-#service-gallery-thumbnails {
-    display: grid;
-    grid-template-columns: repeat
+    servicesListContainer.style.display = "none";
+    serviceDetailContainer.style.display = "block";
+    servicesModalOverlay.style.display = "flex";
+  }
+
+  document.querySelectorAll(".services-list li, .project-hashtags span").forEach((item) => {
+      item.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const serviceKey = item.dataset.service;
+        openServiceDetail(serviceKey);
+      });
+    });
+
+  backToServicesButton.addEventListener("click", () => {
+    servicesListContainer.style.display = "block";
+    serviceDetailContainer.style.display = "none";
+  });
+
+  const closeServicesModal = () => (servicesModalOverlay.style.display = "none");
+  servicesCloseButton.addEventListener("click", closeServicesModal);
+  servicesModalOverlay.addEventListener("click", (e) => {
+    if (e.target === servicesModalOverlay) closeServicesModal();
+  });
+
+  // --- Lógica de Idioma y Tema ---
+  const langENToggle = document.getElementById("lang-en");
+  const langESToggle = document.getElementById("lang-es");
+  const translatableElements = document.querySelectorAll("[data-en]");
+
+  const setLanguage = (lang) => {
+    translatableElements.forEach((el) => {
+      const text = el.getAttribute(`data-${lang}`);
+      if (text) el.innerHTML = text;
+    });
+
+    if (lang === "es") {
+      langESToggle.classList.add("active");
+      langENToggle.classList.remove("active");
+    } else {
+      langENToggle.classList.add("active");
+      langESToggle.classList.remove("active");
+    }
+    localStorage.setItem('language', lang);
+  };
+
+  langENToggle.addEventListener("click", () => setLanguage("en"));
+  langESToggle.addEventListener("click", () => setLanguage("es"));
+
+  const themeToggleButton = document.getElementById("theme-toggle");
+  const body = document.body;
+  const applyTheme = (theme) => {
+    if (theme === "dark") {
+      body.classList.add("dark-mode");
+    } else {
+      body.classList.remove("dark-mode");
+    }
+  };
+
+  themeToggleButton.addEventListener("click", () => {
+    const currentTheme = body.classList.contains("dark-mode") ? "light" : "dark";
+    localStorage.setItem("theme", currentTheme);
+    applyTheme(currentTheme);
+  });
+
+  // Apply saved or preferred theme and language on load
+  const savedTheme = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else if (prefersDark) {
+    applyTheme("dark");
+  }
+
+  // --- LÍNEA MODIFICADA ---
+  const savedLang = localStorage.getItem('language') || 'en';
+  setLanguage(savedLang);
+});
