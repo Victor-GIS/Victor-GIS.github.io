@@ -3,410 +3,104 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Víctor Luna | GIS & Urbanism Portfolio</title>
+        <title>Victor R. | GIS Analyst & Urbanist</title>
         <link rel="stylesheet" href="style.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap"
             rel="stylesheet"
         />
+        <script
+            src="https://kit.fontawesome.com/b9d6ea6b87.js"
+            crossorigin="anonymous"
+        ></script>
     </head>
-    <body class="dark-mode">
-        <div class="main-container">
-            <aside class="left-panel">
-                <div class="top-controls">
-                    <div class="language-toggle">
-                        <span id="lang-en" class="active">EN</span>
-                        <span id="lang-es">ES</span>
-                    </div>
-                    <button id="theme-toggle" class="theme-toggle">
-                        <span class="sun-icon"
-                            ><svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <circle cx="12" cy="12" r="5"></circle>
-                                <line x1="12" y1="1" x2="12" y2="3"></line>
-                                <line x1="12" y1="21" x2="12" y2="23"></line>
-                                <line
-                                    x1="4.22"
-                                    y1="4.22"
-                                    x2="5.64"
-                                    y2="5.64"
-                                ></line>
-                                <line
-                                    x1="18.36"
-                                    y1="18.36"
-                                    x2="19.78"
-                                    y2="19.78"
-                                ></line>
-                                <line x1="1" y1="12" x2="3" y2="12"></line>
-                                <line x1="21" y1="12" x2="23" y2="12"></line>
-                                <line
-                                    x1="4.22"
-                                    y1="19.78"
-                                    x2="5.64"
-                                    y2="18.36"
-                                ></line>
-                                <line
-                                    x1="18.36"
-                                    y1="5.64"
-                                    x2="19.78"
-                                    y2="4.22"
-                                ></line></svg
-                        ></span>
-                        <span class="moon-icon"
-                            ><svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <path
-                                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-                                ></path></svg
-                        ></span>
-                    </button>
+    <body>
+        <div class="container">
+            <div class="left-panel">
+                <div class="language-switcher">
+                    <a href="#" class="lang-btn" data-lang="en">EN</a>
+                    <span>/</span>
+                    <a href="#" class="lang-btn" data-lang="es">ES</a>
+                </div>
+                <h1 data-key="main_title">Victor R.</h1>
+                <h2 data-key="main_subtitle">GIS Analyst & Urbanist</h2>
+                <p class="summary" data-key="summary_text">
+                    I transform complex spatial data into clear narratives and
+                    actionable insights. My work lies at the intersection of
+                    data analysis, urban planning, and design to solve
+                    real-world challenges.
+                </p>
+
+                <div class="in-development">
+                    <h3 data-key="development_title">In Development:</h3>
+                    <p>Python (Pandas, GeoPandas), SQL (PostGIS), R.</p>
                 </div>
 
-                <div class="bio-content">
-                    <div class="photo-pill-container">
-                        <img src="images/Perfil.jpg" alt="Victor Luna" />
-                    </div>
-                    <h1 data-en="Víctor Luna" data-es="Víctor Luna">
-                        Víctor Luna
-                    </h1>
-                    <h2
-                        data-en="GIS Analyst / Urban Planner / Designer"
-                        data-es="Analista GIS / Urbanista / Diseñador"
+                <div class="contact-links">
+                    <a
+                        href="https://www.linkedin.com/in/victor-a-romero/"
+                        target="_blank"
+                        ><i class="fab fa-linkedin"></i> LinkedIn</a
                     >
-                        GIS Analyst / Urban Planner / Designer
-                    </h2>
-                    <p
-                        class="summary"
-                        data-en="GIS analyst and urban planner specializing in spatial data analysis and visualization for urban and socio-environmental development projects."
-                        data-es="Analista GIS y urbanista especializado en el análisis y visualización de datos espaciales para proyectos de desarrollo urbano y socio-ambiental."
+                    <a href="https://github.com/victor-gis" target="_blank"
+                        ><i class="fab fa-github"></i> GitHub</a
                     >
-                        GIS analyst and urban planner specializing in spatial
-                        data analysis and visualization for urban and
-                        socio-environmental development projects.
-                    </p>
-                    <div class="contact-info">
-                        <div class="action-buttons">
-                            <button
-                                id="services-button"
-                                class="action-btn"
-                                data-en="Services"
-                                data-es="Servicios"
-                            >
-                                Services
-                            </button>
-                            <a
-                                href="mailto:victor.gis@workmail.com"
-                                class="action-btn"
-                                data-en="Hire Me"
-                                data-es="Contrátame"
-                                >Hire Me</a
-                            >
-                        </div>
-                        <div class="icon-links">
-                            <a
-                                href="https://www.linkedin.com/in/victorgis/"
-                                target="_blank"
-                                aria-label="LinkedIn"
-                                ><svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                                    /></svg
-                            ></a>
-                            <a
-                                href="https://github.com/Victor-GIS"
-                                target="_blank"
-                                aria-label="GitHub"
-                                ><svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                                    /></svg
-                            ></a>
-                        </div>
-                    </div>
+                    <a href="mailto:v.romero.aguilar@outlook.com"
+                        ><i class="fas fa-envelope"></i> Email</a
+                    >
                 </div>
-            </aside>
-
-            <main class="right-panel">
-                <div class="project-item" data-image="images/risk.jpeg">
-                    <img
-                        src="images/risk.jpeg"
-                        alt="Risk in the Megalopolis"
-                        class="project-thumbnail"
-                    />
-                    <div class="project-info">
-                        <h3
-                            data-en="Risk in the Megalopolis"
-                            data-es="Riesgo en la Megalópolis"
-                        >
-                            Risk in the Megalopolis
-                        </h3>
-                        <p
-                            data-en="A geostatistical model identifying areas of hydric stress and environmental inequity."
-                            data-es="Modelo geoestadístico que identifica zonas de estrés hídrico e inequidad ambiental."
-                        >
-                            A geostatistical model identifying areas of hydric
-                            stress and environmental inequity.
-                        </p>
-                        <div class="project-hashtags">
-                            <span
-                                data-service="geo-analysis"
-                                data-en="#GeostatisticalAnalysis"
-                                data-es="#AnálisisGeoestadístico"
-                                >#GeostatisticalAnalysis</span
-                            >
-                            <span
-                                data-service="visualization"
-                                data-en="#ProjectVisualization"
-                                data-es="#VisualizaciónDeProyectos"
-                                >#ProjectVisualization</span
-                            >
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item" data-image="images/corredor.jpeg">
-                    <img
-                        src="images/corredor.jpeg"
-                        alt="Trans-Isthmus Corridor"
-                        class="project-thumbnail"
-                    />
-                    <div class="project-info">
-                        <h3
-                            data-en="Trans-Isthmus Corridor"
-                            data-es="Corredor Transístmico"
-                        >
-                            Trans-Isthmus Corridor
-                        </h3>
-                        <p
-                            data-en="Territorial development master plan for the Trans-Isthmus Corridor, defining development and conservation zones."
-                            data-es="Plan maestro de ordenamiento territorial para el Corredor Transístmico, definiendo zonas de desarrollo y conservación."
-                        >
-                            Territorial development master plan for the
-                            Trans-Isthmus Corridor, defining development and
-                            conservation zones.
-                        </p>
-                        <div class="project-hashtags">
-                            <span
-                                data-service="urban-planning"
-                                data-en="#UrbanPlanning"
-                                data-es="#PlaneaciónUrbana"
-                                >#UrbanPlanning</span
-                            >
-                            <span
-                                data-service="cartography"
-                                data-en="#Cartography"
-                                data-es="#Cartografía"
-                                >#Cartography</span
-                            >
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item" data-image="images/humedal.jpeg">
-                    <img
-                        src="images/humedal.jpeg"
-                        alt="Xochimilco Wetland"
-                        class="project-thumbnail"
-                    />
-                    <div class="project-info">
-                        <h3
-                            data-en="Xochimilco-Chalco Wetland"
-                            data-es="Humedal Xochimilco-Chalco"
-                        >
-                            Xochimilco-Chalco Wetland
-                        </h3>
-                        <p
-                            data-en="SWOT analysis of the wetland, identifying threats like informal growth and opportunities in tourism."
-                            data-es="Análisis FODA del humedal, identificando amenazas como el crecimiento informal y oportunidades turísticas."
-                        >
-                            SWOT analysis of the wetland, identifying threats
-                            like informal growth and opportunities in tourism.
-                        </p>
-                        <div class="project-hashtags">
-                            <span
-                                data-service="urban-planning"
-                                data-en="#UrbanPlanning"
-                                data-es="#PlaneaciónUrbana"
-                                >#UrbanPlanning</span
-                            >
-                            <span
-                                data-service="geo-analysis"
-                                data-en="#GeostatisticalAnalysis"
-                                data-es="#AnálisisGeoestadístico"
-                                >#GeostatisticalAnalysis</span
-                            >
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item" data-image="images/chemax.jpeg">
-                    <img
-                        src="images/chemax.jpeg"
-                        alt="Chemax, Yucatán"
-                        class="project-thumbnail"
-                    />
-                    <div class="project-info">
-                        <h3
-                            data-en="Territorial Analysis of Chemax"
-                            data-es="Análisis Territorial de Chemax"
-                        >
-                            Territorial Analysis of Chemax
-                        </h3>
-                        <p
-                            data-en="Detailed territorial analysis of Chemax, Yucatán, mapping land use and infrastructure."
-                            data-es="Análisis territorial detallado de Chemax, Yucatán, mapeando el uso del suelo y la infraestructura."
-                        >
-                            Detailed territorial analysis of Chemax, Yucatán,
-                            mapping land use and infrastructure.
-                        </p>
-                        <div class="project-hashtags">
-                            <span
-                                data-service="cartography"
-                                data-en="#Cartography"
-                                data-es="#Cartografía"
-                                >#Cartography</span
-                            >
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item" data-image="images/vial.jpg">
-                    <img
-                        src="images/vial.jpg"
-                        alt="Road Infrastructure"
-                        class="project-thumbnail"
-                    />
-                    <div class="project-info">
-                        <h3
-                            data-en="Road Infrastructure & Mobility"
-                            data-es="Infraestructura Vial y Movilidad"
-                        >
-                            Road Infrastructure & Mobility
-                        </h3>
-                        <p
-                            data-en="Analysis and proposal for road infrastructure, studying mobility flows at a key intersection."
-                            data-es="Análisis y propuesta de infraestructura vial, estudiando los flujos de movilidad en una intersección clave."
-                        >
-                            Analysis and proposal for road infrastructure,
-                            studying mobility flows at a key intersection.
-                        </p>
-                        <div class="project-hashtags">
-                            <span
-                                data-service="urban-design"
-                                data-en="#UrbanDesign"
-                                data-es="#DiseñoUrbano"
-                                >#UrbanDesign</span
-                            >
-                            <span
-                                data-service="visualization"
-                                data-en="#ProjectVisualization"
-                                data-es="#VisualizaciónDeProyectos"
-                                >#ProjectVisualization</span
-                            >
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-
-        <div id="project-modal-overlay" class="modal-overlay">
-            <div class="modal-content">
-                <span id="project-close-button" class="close-button"
-                    >&times;</span
-                >
-                <h2 id="modal-title"></h2>
-                <p id="modal-description-project"></p>
-                <img id="modal-image" src="" alt="Expanded project image" />
             </div>
-        </div>
 
-        <div id="services-modal-overlay" class="modal-overlay">
-            <div class="modal-content">
-                <span id="services-close-button" class="close-button"
-                    >&times;</span
-                >
-                <div id="services-list-container">
-                    <h2 data-en="Services" data-es="Servicios">Services</h2>
-                    <ul class="services-list">
-                        <li
-                            data-service="geo-analysis"
-                            data-en="Geostatistical Analysis"
-                            data-es="Análisis Geoestadístico"
-                        >
-                            Geostatistical Analysis
-                        </li>
-                        <li
-                            data-service="cartography"
-                            data-en="Cartography Production"
-                            data-es="Generación de Cartografía"
-                        >
-                            Cartography Production
-                        </li>
-                        <li
-                            data-service="urban-planning"
-                            data-en="Urban & Regional Planning"
-                            data-es="Planeación Urbana y Regional"
-                        >
-                            Urban & Regional Planning
-                        </li>
-                        <li
-                            data-service="urban-design"
-                            data-en="Urban-Architectural Design"
-                            data-es="Diseño Urbano-Arquitectónico"
-                        >
-                            Urban-Architectural Design
-                        </li>
-                        <li
-                            data-service="visualization"
-                            data-en="Project Visualization"
-                            data-es="Visualización de Proyectos"
-                        >
-                            Project Visualization
-                        </li>
-                    </ul>
-                </div>
-                <div id="service-detail-container" style="display: none">
-                    <h2 id="service-detail-title"></h2>
-                    <p id="service-detail-description"></p>
-                    <h3
-                        data-en="Related Projects"
-                        data-es="Proyectos Relacionados"
-                    >
-                        Related Projects
+            <div class="right-panel">
+                <div class="project-card">
+                    <h3 data-key="project1_title">
+                        Urban Tree Canopy Analysis
                     </h3>
-                    <div id="service-gallery-thumbnails"></div>
-                    <button
-                        id="back-to-services"
-                        class="action-btn"
-                        data-en="&larr; Back to Services"
-                        data-es="&larr; Volver a Servicios"
-                    >
-                        &larr; Back to Services
-                    </button>
+                    <p data-key="project1_desc">
+                        Analysis of the urban tree canopy in Zapopan, Mexico, to
+                        identify priority areas for reforestation and improve
+                        environmental quality.
+                    </p>
+                    <div class="tags">
+                        <span>GIS</span>
+                        <span>Urban Planning</span>
+                        <span>Data Analysis</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3 data-key="project2_title">
+                        Mobility and Public Space Project
+                    </h3>
+                    <p data-key="project2_desc">
+                        Design of a comprehensive mobility and public space
+                        project for the historic center of an intermediate city,
+                        focusing on pedestrian-friendly infrastructure.
+                    </p>
+                    <div class="tags">
+                        <span>Urban Design</span>
+                        <span>Mobility</span>
+                        <span>AutoCAD</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3 data-key="project3_title">
+                        Socio-Environmental Impact Assessment
+                    </h3>
+                    <p data-key="project3_desc">
+                        Participation in the socio-environmental impact
+                        assessment for a major infrastructure project, analyzing
+                        spatial variables and community impact.
+                    </p>
+                    <div class="tags">
+                        <span>Environmental Impact</span>
+                        <span>GIS</span>
+                        <span>Community Analysis</span>
+                    </div>
                 </div>
             </div>
         </div>
-
         <script src="script.js"></script>
     </body>
 </html>
