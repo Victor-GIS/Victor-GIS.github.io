@@ -36,14 +36,38 @@ body {
     transition:
         background-color 0.3s ease,
         color 0.3s ease;
+    position: relative; /* Necesario para el overlay */
 }
+
+/* --- Fondo Global de Curvas --- */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("images/curvas.jpg");
+    background-size: 300%; /* Muy grande */
+    background-position: center;
+    opacity: 0.05;
+    z-index: -1; /* Detrás de todo */
+    transition:
+        opacity 0.3s ease,
+        filter 0.3s ease;
+}
+body.dark-mode .background-overlay {
+    opacity: 0.1;
+    filter: invert(1);
+}
+
 .main-container {
     display: flex;
     width: 100%;
     min-height: 100vh;
+    background-color: transparent; /* El contenedor principal es transparente */
 }
 
-/* --- Panel Izquierdo con Fondo --- */
+/* --- Panel Izquierdo --- */
 .left-panel {
     width: 45%;
     max-width: 550px;
@@ -55,40 +79,17 @@ body {
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
-    border-right: 1px solid var(--border-color);
     text-align: right;
-    isolation: isolate;
-}
-.left-panel::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("images/curvas.jpg");
-    background-size: 400%; /* Mucho más grande */
-    background-position: center;
-    opacity: 0.05;
-    z-index: -1;
-    mask-image: none; /* Sin degradado */
-    transition:
-        opacity 0.3s ease,
-        filter 0.3s ease;
-}
-body.dark-mode .left-panel::before {
-    opacity: 0.1;
-    filter: invert(1);
+    /* Sombra interior para destacar sobre el fondo */
+    box-shadow: inset -10px 0px 15px -15px rgba(0, 0, 0, 0.4);
 }
 
 /* --- Controles Superiores --- */
 .top-controls {
     position: absolute;
     top: 2.5rem;
-    left: 4rem;
     right: 4rem;
     display: flex;
-    justify-content: flex-end; /* Alineado a la derecha por defecto */
     align-items: center;
     gap: 1rem;
 }
@@ -172,16 +173,33 @@ body.dark-mode .moon-icon {
     font-size: 1rem;
     line-height: 1.6;
     max-width: 550px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     border-top: 1px solid var(--border-color);
-    padding-top: 2rem;
+    padding-top: 1.5rem;
+}
+
+.hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    max-width: 400px;
+    margin-bottom: 2rem;
+}
+.hashtags span {
+    background-color: var(--card-background);
+    color: var(--text-secondary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
 }
 .contact-info {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 1.5rem;
-    margin-top: 1rem; /* Botones más abajo */
 }
 .action-buttons {
     display: flex;
@@ -231,67 +249,21 @@ body.dark-mode .moon-icon {
     gap: 1.5rem;
 }
 .project-item {
-    display: flex;
-    align-items: stretch;
     background-color: var(--card-background);
-    padding: 1rem;
-    border: 1px solid var(--border-color);
     border-radius: 16px;
-    transition: background-color 0.3s ease;
-    min-height: 180px;
+    cursor: pointer;
+    overflow: hidden; /* Importante para el tamaño uniforme */
+    height: 250px; /* Tamaño uniforme para todas las píldoras */
+    box-shadow: inset 0 0 15px -5px rgba(0, 0, 0, 0.4); /* Sombra interior */
 }
 .project-thumbnail {
-    width: 180px;
-    height: auto;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 10px;
-    margin-right: 1.5rem;
-    flex-shrink: 0;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
 }
-.project-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.project-info h3 {
-    margin: 0 0 0.5rem 0;
-    color: var(--text-primary);
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-.project-info p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin: 0 0 1rem 0;
-    color: var(--text-secondary);
-}
-.project-hashtags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: auto;
-}
-.project-hashtags span {
-    background-color: var(--background);
-    color: var(--text-secondary);
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
-}
-/* Nuevo efecto hover */
 .project-item:hover .project-thumbnail {
-    border-color: var(--accent-color);
-    transform: scale(1.03);
-}
-.project-item:hover .project-hashtags span {
-    background-color: var(--accent-color);
-    color: var(--background);
+    transform: scale(1.05);
 }
 
 /* --- Modal --- */
@@ -355,29 +327,14 @@ body.dark-mode .moon-icon {
     padding: 0;
 }
 .services-list li {
-    font-size: 1.2rem;
     padding: 0.8rem 0;
     border-bottom: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: color 0.2s ease;
 }
-.services-list li:hover {
-    color: var(--accent-color);
-}
-#service-gallery-thumbnails {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
-    margin: 1.5rem 0;
-}
-#service-gallery-thumbnails img {
-    width: 100%;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-#back-to-services {
-    margin-top: 1rem;
+.services-list li strong {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 0.25rem;
 }
 
 /* --- Diseño Responsivo --- */
@@ -393,6 +350,7 @@ body.dark-mode .moon-icon {
         height: auto;
         padding: 4rem 2rem 2rem;
         text-align: center;
+        box-shadow: none;
     }
     .left-panel {
         border-right: none;
@@ -401,6 +359,9 @@ body.dark-mode .moon-icon {
     }
     .bio-content {
         align-items: center;
+    }
+    .hashtags {
+        justify-content: center;
     }
     .contact-info {
         align-items: center;
@@ -417,21 +378,9 @@ body.dark-mode .moon-icon {
         padding: 1rem;
         background-color: var(--background);
         z-index: 100;
-        justify-content: space-between; /* Alineación a los lados */
+        justify-content: space-between;
     }
     .project-item {
-        flex-direction: column;
-        text-align: center;
-    }
-    .project-thumbnail {
-        margin: 0 0 1rem 0;
-        width: 100%;
         height: 200px;
-    }
-    .project-info {
-        align-items: center;
-    }
-    .project-hashtags {
-        justify-content: center;
     }
 }
