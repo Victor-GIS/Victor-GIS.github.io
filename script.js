@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Lógica del Modal de Proyectos (sin cambios) ---
+  // --- Lógica del Modal de Proyectos ---
   const projectItems = document.querySelectorAll(".project-item");
-  const modalOverlay = document.getElementById("modal-overlay");
+  const projectModalOverlay = document.getElementById("project-modal-overlay");
   const modalImage = document.getElementById("modal-image");
   const modalTitle = document.getElementById("modal-title");
   const modalDescription = document.getElementById("modal-description");
-  const closeModalButton = document.getElementById("close-button");
+  const projectCloseButton = document.getElementById("project-close-button");
 
   projectItems.forEach((item) => {
     item.addEventListener("click", () => {
@@ -16,29 +16,53 @@ document.addEventListener("DOMContentLoaded", () => {
       modalTitle.textContent = title;
       modalImage.src = image;
       modalDescription.textContent = description;
-      modalOverlay.style.display = "flex";
+      projectModalOverlay.style.display = "flex";
     });
   });
 
-  const closeModal = () => {
-    modalOverlay.style.display = "none";
+  const closeProjectModal = () => {
+    projectModalOverlay.style.display = "none";
   };
-  closeModalButton.addEventListener("click", closeModal);
-  modalOverlay.addEventListener("click", (event) => {
-    if (event.target === modalOverlay) closeModal();
+  projectCloseButton.addEventListener("click", closeProjectModal);
+  projectModalOverlay.addEventListener("click", (event) => {
+    if (event.target === projectModalOverlay) closeProjectModal();
   });
 
-  // --- Lógica de Idiomas (sin cambios) ---
+  // --- NUEVA Lógica del Modal de Servicios ---
+  const servicesButton = document.getElementById("services-button");
+  const servicesModalOverlay = document.getElementById(
+    "services-modal-overlay",
+  );
+  const servicesCloseButton = document.getElementById("services-close-button");
+
+  const openServicesModal = () => {
+    servicesModalOverlay.style.display = "flex";
+  };
+  const closeServicesModal = () => {
+    servicesModalOverlay.style.display = "none";
+  };
+
+  servicesButton.addEventListener("click", openServicesModal);
+  servicesCloseButton.addEventListener("click", closeServicesModal);
+  servicesModalOverlay.addEventListener("click", (event) => {
+    if (event.target === servicesModalOverlay) closeServicesModal();
+  });
+
+  // --- Lógica de Idiomas ---
   const langENToggle = document.getElementById("lang-en");
   const langESToggle = document.getElementById("lang-es");
   const translatableElements = document.querySelectorAll("[data-es]");
+
   translatableElements.forEach((el) => {
     el.setAttribute("data-en", el.textContent.trim());
   });
+
   const setLanguage = (lang) => {
     translatableElements.forEach((el) => {
-      el.textContent = el.getAttribute(`data-${lang}`);
+      const text = el.getAttribute(`data-${lang}`);
+      if (text) el.textContent = text;
     });
+
     if (lang === "es") {
       langESToggle.classList.add("active");
       langENToggle.classList.remove("active");
@@ -47,14 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
       langESToggle.classList.remove("active");
     }
   };
+
   langENToggle.addEventListener("click", () => setLanguage("en"));
   langESToggle.addEventListener("click", () => setLanguage("es"));
 
-  // --- NUEVA LÓGICA: Interruptor de Tema (Light/Dark Mode) ---
+  // --- Lógica del Interruptor de Tema ---
   const themeToggleButton = document.getElementById("theme-toggle");
   const body = document.body;
-
-  // Función para aplicar el tema
   const applyTheme = (theme) => {
     if (theme === "dark") {
       body.classList.add("dark-mode");
@@ -62,8 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
       body.classList.remove("dark-mode");
     }
   };
-
-  // Event listener para el botón
   themeToggleButton.addEventListener("click", () => {
     const currentTheme = body.classList.contains("dark-mode")
       ? "light"
@@ -72,7 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
     applyTheme(currentTheme);
   });
 
-  // Cargar el tema al iniciar la página
   const savedTheme = localStorage.getItem("theme");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
@@ -80,7 +100,5 @@ document.addEventListener("DOMContentLoaded", () => {
     applyTheme(savedTheme);
   } else if (prefersDark) {
     applyTheme("dark");
-  } else {
-    applyTheme("light"); // Default
   }
 });

@@ -59,7 +59,6 @@ body {
     text-align: right;
     isolation: isolate;
 }
-/* 2. Fondo de curvas mejorado */
 .left-panel::before {
     content: "";
     position: absolute;
@@ -68,14 +67,10 @@ body {
     width: 100%;
     height: 100%;
     background-image: url("images/curvas.jpg");
-    background-size: 250%; /* Mucho más grande */
+    background-size: 250%;
     background-position: center;
     opacity: 0.05;
     z-index: -1;
-    transition:
-        opacity 0.3s ease,
-        filter 0.3s ease;
-    /* Efecto de difuminado en los bordes */
     -webkit-mask-image: radial-gradient(
         ellipse 80% 80% at 50% 50%,
         black 40%,
@@ -86,6 +81,9 @@ body {
         black 40%,
         transparent 100%
     );
+    transition:
+        opacity 0.3s ease,
+        filter 0.3s ease;
 }
 body.dark-mode .left-panel::before {
     opacity: 0.1;
@@ -182,10 +180,30 @@ body.dark-mode .moon-icon {
     font-size: 1rem;
     line-height: 1.6;
     max-width: 550px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     border-top: 1px solid var(--border-color);
-    padding-top: 2rem;
+    padding-top: 1.5rem;
 }
+
+/* --- Nuevos Estilos para Hashtags --- */
+.hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    max-width: 400px;
+    margin-bottom: 2rem;
+}
+.hashtags span {
+    background-color: var(--card-background);
+    color: var(--text-secondary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+}
+
 .contact-info {
     display: flex;
     flex-direction: column;
@@ -298,6 +316,16 @@ body.dark-mode .moon-icon {
     border: 1px solid var(--border-color);
     color: var(--text-primary);
 }
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 2rem;
+}
+.modal-content ul {
+    list-style-type: "— ";
+    padding-left: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
 .close-button {
     position: absolute;
     top: 15px;
@@ -306,16 +334,14 @@ body.dark-mode .moon-icon {
     color: var(--text-secondary);
     cursor: pointer;
 }
-
-/* 4. Estilos para imagen del modal */
 #modal-image {
     width: 100%;
-    max-width: 100%; /* Asegura que no se desborde */
+    max-width: 100%;
     height: auto;
-    max-height: 70vh; /* Límite de altura para no ocupar toda la pantalla */
-    object-fit: contain; /* Muestra la imagen completa sin estirar */
+    max-height: 70vh;
+    object-fit: contain;
     border-radius: 8px;
-    margin-top: 1.5rem; /* Espacio entre el texto y la imagen */
+    margin-top: 1.5rem;
     border: 1px solid var(--border-color);
 }
 #modal-title {
@@ -352,6 +378,9 @@ body.dark-mode .moon-icon {
     }
     .bio-content {
         align-items: center;
+    }
+    .hashtags {
+        justify-content: center;
     }
     .contact-info {
         align-items: center;

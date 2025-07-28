@@ -98,8 +98,20 @@
                         analysis and visualization for urban development and
                         socio-environmental projects.
                     </p>
+                    <!-- Nueva sección de Hashtags -->
+                    <div class="hashtags">
+                        <span>#GIS</span>
+                        <span>#UrbanPlanning</span>
+                        <span>#DataVisualization</span>
+                        <span>#Geospatial</span>
+                        <span>#QGIS</span>
+                    </div>
                     <div class="contact-info">
+                        <!-- Dos botones de acción -->
                         <div class="action-buttons">
+                            <button id="services-button" class="action-btn">
+                                Servicios
+                            </button>
                             <a
                                 href="mailto:victorlunaspatialanalysis@outlook.com"
                                 class="action-btn"
@@ -268,14 +280,35 @@
             </main>
         </div>
 
-        <div id="modal-overlay" class="modal-overlay">
+        <!-- Modal de Proyectos -->
+        <div id="project-modal-overlay" class="modal-overlay">
             <div class="modal-content">
-                <span id="close-button" class="close-button">&times;</span>
+                <span id="project-close-button" class="close-button"
+                    >&times;</span
+                >
                 <h2 id="modal-title"></h2>
                 <p id="modal-description"></p>
                 <img id="modal-image" src="" alt="Expanded project image" />
             </div>
         </div>
+
+        <!-- Nuevo Modal de Servicios -->
+        <div id="services-modal-overlay" class="modal-overlay">
+            <div class="modal-content">
+                <span id="services-close-button" class="close-button"
+                    >&times;</span
+                >
+                <h2 id="services-modal-title" data-es="Servicios">Services</h2>
+                <ul>
+                    <li>Análisis Geoestadístico</li>
+                    <li>Generación de Cartografía</li>
+                    <li>Planeación Urbana o Regional</li>
+                    <li>Diseño Urbano-Arquitectónico</li>
+                    <li>Visualización de Proyectos</li>
+                </ul>
+            </div>
+        </div>
+
         <div id="language-suggestion" class="language-suggestion">
             <p>
                 ¿Prefieres ver este sitio en español?
