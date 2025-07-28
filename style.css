@@ -172,8 +172,8 @@ body.dark-mode .moon-icon {
     line-height: 1.6;
     max-width: 550px;
     margin-bottom: 1.5rem;
-    border-top: 1px solid var(--border-color);
-    padding-top: 1.5rem;
+    border-top: none;
+    padding-top: 0;
 }
 .hashtags {
     display: flex;
@@ -273,13 +273,18 @@ body.dark-mode .moon-icon {
 .project-info {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
 }
 .project-info h3 {
     margin: 0 0 0.5rem 0;
     color: var(--text-primary);
     font-size: 1.2rem;
     font-weight: 600;
+}
+.project-info p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary);
 }
 .project-hashtags {
     display: flex;
