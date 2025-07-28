@@ -66,7 +66,8 @@ body {
     width: 100%;
     height: 100%;
     background-image: url("images/curvas.jpg");
-    background-size: 200%; /* Más pequeño */
+    background-attachment: fixed; /* --- CAMBIO AÑADIDO --- */
+    background-size: cover;
     background-position: center;
     opacity: 0.05;
     z-index: -1;
@@ -175,23 +176,6 @@ body.dark-mode .moon-icon {
     border-top: none;
     padding-top: 0;
 }
-.hashtags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    max-width: 400px;
-    margin-bottom: 2rem;
-}
-.hashtags span {
-    background-color: var(--card-background);
-    color: var(--text-secondary);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    border: 1px solid var(--border-color);
-}
 .contact-info {
     display: flex;
     flex-direction: column;
@@ -222,6 +206,7 @@ body.dark-mode .moon-icon {
 .icon-links {
     display: flex;
     gap: 1.5rem;
+    margin-top: 1rem;
 }
 .icon-links a {
     color: var(--text-secondary);
@@ -253,7 +238,11 @@ body.dark-mode .moon-icon {
     border: 1px solid var(--border-color);
     border-radius: 16px;
     height: 180px; /* Tamaño uniforme */
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+}
+.project-item:hover {
+    border-color: var(--accent-color-vibrant);
+    transform: scale(1.01);
 }
 .project-thumbnail {
     width: 180px;
@@ -267,8 +256,7 @@ body.dark-mode .moon-icon {
     transition: all 0.3s ease;
 }
 .project-item:hover .project-thumbnail {
-    border-color: var(--accent-color-vibrant);
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 .project-info {
     display: flex;
@@ -292,6 +280,7 @@ body.dark-mode .moon-icon {
     gap: 0.5rem;
     margin-top: auto;
 }
+/* --- ESTILO DE BOTONES MODIFICADO --- */
 .project-hashtags span {
     background-color: var(--background);
     color: var(--text-secondary);
@@ -303,10 +292,10 @@ body.dark-mode .moon-icon {
     cursor: pointer;
     transition: all 0.2s ease;
 }
-.project-item:hover .project-hashtags span {
-    background-color: var(--accent-color-vibrant);
-    color: #000;
-    border-color: var(--accent-color-vibrant);
+
+.project-hashtags span:hover {
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
 }
 
 /* --- Modal --- */
@@ -323,6 +312,7 @@ body.dark-mode .moon-icon {
     z-index: 1000;
     padding: 2rem;
     box-sizing: border-box;
+    backdrop-filter: blur(5px);
 }
 .modal-content {
     position: relative;
@@ -385,75 +375,4 @@ body.dark-mode .moon-icon {
 }
 #service-gallery-thumbnails {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
-}
-#service-gallery-thumbnails img {
-    width: 100%;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-#back-to-services {
-    margin-top: 1.5rem;
-}
-
-/* --- Diseño Responsivo --- */
-@media (max-width: 900px) {
-    .main-container {
-        flex-direction: column;
-    }
-    .left-panel,
-    .right-panel {
-        width: 100%;
-        max-width: 100%;
-        position: static;
-        height: auto;
-        padding: 4rem 2rem 2rem;
-        text-align: center;
-    }
-    .left-panel {
-        border-right: none;
-        align-items: center;
-    }
-    .left-panel::before {
-        background-attachment: fixed;
-    } /* Fondo fijo en móvil */
-    .bio-content {
-        align-items: center;
-    }
-    .hashtags {
-        justify-content: center;
-    }
-    .contact-info {
-        align-items: center;
-    }
-    .icon-links,
-    .action-buttons {
-        justify-content: center;
-    }
-    .top-controls {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: 1rem;
-        background-color: var(--background);
-        z-index: 100;
-        justify-content: space-between; /* Alineación a los lados */
-    }
-    .project-item {
-        flex-direction: column;
-        text-align: center;
-        height: auto;
-    }
-    .project-thumbnail {
-        margin: 0 0 1rem 0;
-        width: 100%;
-        height: 200px;
-    }
-    .project-info {
-        align-items: center;
-    }
-}
+    grid-template-columns: repeat
