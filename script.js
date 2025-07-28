@@ -1,74 +1,161 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Botón Hire Me
-  document.getElementById("hire-btn").addEventListener("click", function () {
-    window.location.href = "mailto:victor@example.com";
+document.addEventListener("DOMContentLoaded", () => {
+  // --- Base de datos de Servicios ---
+  const servicesData = {
+    "geo-analysis": {
+      title: "Análisis Geoestadístico",
+      description:
+        "Utilizo técnicas estadísticas avanzadas para analizar datos espaciales, identificar patrones, predecir tendencias y generar insights valiosos para la toma de decisiones informadas en proyectos complejos.",
+    },
+    cartography: {
+      title: "Generación de Cartografía",
+      description:
+        "Diseño y produzco mapas temáticos claros, precisos y estéticamente atractivos. Transformo datos crudos en representaciones cartográficas efectivas que comunican información de manera intuitiva.",
+    },
+    "urban-planning": {
+      title: "Planeación Urbana y Regional",
+      description:
+        "Desarrollo estrategias y planes maestros a escala urbana y regional. Mi enfoque integra análisis socioeconómicos, ambientales y de infraestructura para promover un desarrollo sostenible y equitativo.",
+    },
+    "urban-design": {
+      title: "Diseño Urbano-Arquitectónico",
+      description:
+        "Propongo soluciones de diseño que mejoran el espacio público y la calidad de vida. Mi trabajo abarca desde el diseño de complejos arquitectónicos hasta la revitalización de áreas urbanas.",
+    },
+    visualization: {
+      title: "Visualización de Proyectos",
+      description:
+        "Transformo datos complejos y propuestas de diseño en visualizaciones 2D y 3D impactantes. Creo renders, diagramas y mapas interactivos que facilitan la comprensión y comunicación de los proyectos.",
+    },
+  };
+
+  // --- Lógica del Modal de Proyectos ---
+  const projectThumbnails = document.querySelectorAll(".project-thumbnail");
+  const projectModalOverlay = document.getElementById("project-modal-overlay");
+  const modalImage = document.getElementById("modal-image");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDescriptionProject = document.getElementById(
+    "modal-description-project",
+  );
+  const projectCloseButton = document.getElementById("project-close-button");
+
+  projectThumbnails.forEach((thumb) => {
+    thumb.addEventListener("click", () => {
+      const item = thumb.closest(".project-item");
+      modalTitle.textContent = item.getAttribute("data-title");
+      modalImage.src = item.getAttribute("data-image");
+      modalDescriptionProject.textContent = item.querySelector("p").textContent;
+      projectModalOverlay.style.display = "flex";
+    });
   });
 
-  // Botón Servicios
-  document
-    .getElementById("services-btn")
-    .addEventListener("click", function () {
-      const servicesContainer = document.createElement("div");
-      servicesContainer.className = "services-modal";
+  const closeProjectModal = () => (projectModalOverlay.style.display = "none");
+  projectCloseButton.addEventListener("click", closeProjectModal);
+  projectModalOverlay.addEventListener("click", (e) => {
+    if (e.target === projectModalOverlay) closeProjectModal();
+  });
 
-      const services = {
-        "#webdev": {
-          name: "Desarrollo Web",
-          description:
-            "Creación de sitios web responsivos y aplicaciones web modernas utilizando tecnologías como HTML5, CSS3, JavaScript y frameworks como React. Especializado en soluciones personalizadas para necesidades específicas.",
-          projects: ["proyecto1", "proyecto3"],
-        },
-        "#gis": {
-          name: "Sistemas de Información Geográfica",
-          description:
-            "Soluciones espaciales y mapeo interactivo para análisis geográficos avanzados. Desarrollo de aplicaciones con Leaflet, Mapbox y ArcGIS. Procesamiento y visualización de datos geoespaciales.",
-          projects: ["proyecto2", "proyecto4"],
-        },
-        "#dataviz": {
-          name: "Visualización de Datos",
-          description:
-            "Transformación de datos complejos en visualizaciones claras e impactantes. Uso de D3.js, Chart.js y otras bibliotecas para crear dashboards interactivos y reportes dinámicos.",
-          projects: ["proyecto2"],
-        },
-        "#python": {
-          name: "Automatización con Python",
-          description:
-            "Scripts y aplicaciones en Python para automatizar procesos, análisis de datos y desarrollo backend. Experiencia con Pandas, NumPy y Django.",
-          projects: ["proyecto4"],
-        },
-      };
+  // --- Lógica del Modal de Servicios (con miniaturas) ---
+  const servicesButton = document.getElementById("services-button");
+  const servicesModalOverlay = document.getElementById(
+    "services-modal-overlay",
+  );
+  const servicesCloseButton = document.getElementById("services-close-button");
+  const servicesListContainer = document.getElementById(
+    "services-list-container",
+  );
+  const servicesGalleryContainer = document.getElementById(
+    "services-gallery-container",
+  );
+  const backToServicesButton = document.getElementById("back-to-services");
+  const serviceGalleryTitle = document.getElementById("service-gallery-title");
+  const serviceGalleryThumbnails = document.getElementById(
+    "service-gallery-thumbnails",
+  );
 
-      let html = '<div class="services-content"><h2>Mis Servicios</h2>';
+  servicesButton.addEventListener("click", () => {
+    servicesListContainer.style.display = "block";
+    servicesGalleryContainer.style.display = "none";
+    servicesModalOverlay.style.display = "flex";
+  });
 
-      for (const [hashtag, service] of Object.entries(services)) {
-        html += `
-                <div class="service-item">
-                    <h3>${service.name}</h3>
-                    <p>${service.description}</p>
-                    <div class="service-projects">
-                        <h4>Proyectos relacionados:</h4>
-                        ${service.projects
-                          .map(
-                            (proj) => `
-                            <img src="img/${proj}.jpg" alt="${proj.replace("proyecto", "Proyecto ")}"
-                                 title="${proj.replace("proyecto", "Proyecto ")}">
-                        `,
-                          )
-                          .join("")}
-                    </div>
-                </div>
-            `;
-      }
+  document.querySelectorAll(".services-list li").forEach((serviceItem) => {
+    serviceItem.addEventListener("click", () => {
+      const serviceKey = serviceItem.dataset.service;
+      const service = servicesData[serviceKey];
+      const matchingProjects = document.querySelectorAll(
+        `.project-item[data-tags*="${serviceKey}"]`,
+      );
 
-      html += "</div>";
-      servicesContainer.innerHTML = html;
-      document.body.appendChild(servicesContainer);
+      serviceGalleryTitle.textContent = service.title;
+      serviceGalleryThumbnails.innerHTML = ""; // Limpiar galería
 
-      // Cerrar modal al hacer click fuera
-      servicesContainer.addEventListener("click", (e) => {
-        if (e.target === servicesContainer) {
-          document.body.removeChild(servicesContainer);
-        }
+      matchingProjects.forEach((project) => {
+        const thumb = document.createElement("img");
+        thumb.src = project.dataset.image;
+        thumb.alt = project.dataset.title;
+        serviceGalleryThumbnails.appendChild(thumb);
       });
+
+      servicesListContainer.style.display = "none";
+      servicesGalleryContainer.style.display = "block";
     });
+  });
+
+  backToServicesButton.addEventListener("click", () => {
+    servicesListContainer.style.display = "block";
+    servicesGalleryContainer.style.display = "none";
+  });
+
+  const closeServicesModal = () =>
+    (servicesModalOverlay.style.display = "none");
+  servicesCloseButton.addEventListener("click", closeServicesModal);
+  servicesModalOverlay.addEventListener("click", (e) => {
+    if (e.target === servicesModalOverlay) closeServicesModal();
+  });
+
+  // --- Lógica de Idiomas y Tema (sin cambios) ---
+  const langENToggle = document.getElementById("lang-en");
+  const langESToggle = document.getElementById("lang-es");
+  const translatableElements = document.querySelectorAll("[data-es]");
+  translatableElements.forEach((el) => {
+    el.setAttribute("data-en", el.textContent.trim());
+  });
+  const setLanguage = (lang) => {
+    translatableElements.forEach((el) => {
+      const text = el.getAttribute(`data-${lang}`);
+      if (text) el.textContent = text;
+    });
+    if (lang === "es") {
+      langESToggle.classList.add("active");
+      langENToggle.classList.remove("active");
+    } else {
+      langENToggle.classList.add("active");
+      langESToggle.classList.remove("active");
+    }
+  };
+  langENToggle.addEventListener("click", () => setLanguage("en"));
+  langESToggle.addEventListener("click", () => setLanguage("es"));
+  const themeToggleButton = document.getElementById("theme-toggle");
+  const body = document.body;
+  const applyTheme = (theme) => {
+    if (theme === "dark") {
+      body.classList.add("dark-mode");
+    } else {
+      body.classList.remove("dark-mode");
+    }
+  };
+  themeToggleButton.addEventListener("click", () => {
+    const currentTheme = body.classList.contains("dark-mode")
+      ? "light"
+      : "dark";
+    localStorage.setItem("theme", currentTheme);
+    applyTheme(currentTheme);
+  });
+  const savedTheme = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else if (prefersDark) {
+    applyTheme("dark");
+  }
 });

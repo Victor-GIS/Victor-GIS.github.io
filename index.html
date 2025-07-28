@@ -1,96 +1,379 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Victor GIS - Portafolio</title>
+        <title>Victor Luna | GIS Portfolio</title>
         <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600&display=swap"
             rel="stylesheet"
         />
     </head>
-    <body>
-        <div class="background">
-            <svg viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">
-                <path
-                    d="M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z"
-                    style="stroke: none; fill: #f0f0f0"
-                ></path>
-            </svg>
-        </div>
-
-        <div class="container">
-            <header>
-                <h1>Victor <span>GIS</span></h1>
-                <p>Desarrollador Web & Especialista SIG</p>
-            </header>
-
-            <main>
-                <div class="buttons">
-                    <button id="hire-btn" class="btn">Hire Me</button>
-                    <button id="services-btn" class="btn">Servicios</button>
+    <body class="dark-mode">
+        <div class="main-container">
+            <aside class="left-panel">
+                <div class="top-controls">
+                    <div id="language-toggle" class="language-toggle">
+                        <span id="lang-en" class="active">EN</span>
+                        <span id="lang-es">ES</span>
+                    </div>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <span class="sun-icon"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line
+                                    x1="4.22"
+                                    y1="4.22"
+                                    x2="5.64"
+                                    y2="5.64"
+                                ></line>
+                                <line
+                                    x1="18.36"
+                                    y1="18.36"
+                                    x2="19.78"
+                                    y2="19.78"
+                                ></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line
+                                    x1="4.22"
+                                    y1="19.78"
+                                    x2="5.64"
+                                    y2="18.36"
+                                ></line>
+                                <line
+                                    x1="18.36"
+                                    y1="5.64"
+                                    x2="19.78"
+                                    y2="4.22"
+                                ></line></svg
+                        ></span>
+                        <span class="moon-icon"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                                ></path></svg
+                        ></span>
+                    </button>
                 </div>
 
-                <div class="projects">
-                    <div class="project">
-                        <div class="project-image">
-                            <img src="img/proyecto1.jpg" alt="Proyecto 1" />
+                <div class="bio-content">
+                    <div class="photo-pill-container">
+                        <img src="images/perfil.jpg" alt="Victor Luna" />
+                    </div>
+                    <h1 data-es="Víctor Luna">Victor Luna</h1>
+                    <h2 data-es="Analista GIS / Urbanista / Diseñador">
+                        GIS Analyst / Urbanist / Designer
+                    </h2>
+                    <p
+                        class="summary"
+                        data-es="Analista GIS con experiencia en análisis de datos espaciales y visualización para proyectos de desarrollo urbano y socioambientales."
+                    >
+                        GIS Analyst with proven experience in spatial data
+                        analysis and visualization for urban development and
+                        socio-environmental projects.
+                    </p>
+                    <div class="contact-info">
+                        <div class="action-buttons">
+                            <button id="services-button" class="action-btn">
+                                Servicios
+                            </button>
+                            <a
+                                href="mailto:victorlunaspatialanalysis@outlook.com"
+                                class="action-btn"
+                                >Hire Me</a
+                            >
                         </div>
-                        <div class="project-info">
-                            <h3>Sistema de Tracking GPS</h3>
-                            <div class="hashtags">
-                                <span>#webdev</span>
-                                <span>#gis</span>
-                            </div>
+                        <div class="icon-links">
+                            <a
+                                href="https://www.linkedin.com/in/victorgis/"
+                                target="_blank"
+                                aria-label="LinkedIn"
+                                ><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                    /></svg
+                            ></a>
+                            <a
+                                href="https://github.com/Victor-GIS"
+                                target="_blank"
+                                aria-label="GitHub"
+                                ><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                                    /></svg
+                            ></a>
                         </div>
                     </div>
+                </div>
+            </aside>
 
-                    <div class="project">
-                        <div class="project-image">
-                            <img src="img/proyecto2.jpg" alt="Proyecto 2" />
-                        </div>
-                        <div class="project-info">
-                            <h3>Mapas Interactivos</h3>
-                            <div class="hashtags">
-                                <span>#gis</span>
-                                <span>#dataviz</span>
-                            </div>
+            <main class="right-panel">
+                <div
+                    class="project-item"
+                    data-title="Risk Analysis in the Mexican Megalopolis"
+                    data-image="images/risk.jpg"
+                    data-tags="geo-analysis visualization"
+                >
+                    <img
+                        src="images/risk.jpg"
+                        alt="Risk Megalopolis"
+                        class="project-thumbnail"
+                    />
+                    <div class="project-info">
+                        <h3>Risk in the Megalopolis</h3>
+                        <p>
+                            A geostatistical model identifying areas of hydric
+                            stress and environmental inequity within the Mexican
+                            Megalopolis.
+                        </p>
+                        <div class="project-hashtags">
+                            <span>#AnálisisGeoestadístico</span>
+                            <span>#VisualizaciónDeProyectos</span>
                         </div>
                     </div>
-
-                    <div class="project">
-                        <div class="project-image">
-                            <img src="img/proyecto3.jpg" alt="Proyecto 3" />
-                        </div>
-                        <div class="project-info">
-                            <h3>Plataforma E-commerce</h3>
-                            <div class="hashtags">
-                                <span>#webdev</span>
-                            </div>
+                </div>
+                <div
+                    class="project-item"
+                    data-title="Trans-Isthmus Corridor Strategies"
+                    data-image="images/corredor.jpg"
+                    data-tags="urban-planning cartography"
+                >
+                    <img
+                        src="images/corredor.jpg"
+                        alt="Corredor Transístmico"
+                        class="project-thumbnail"
+                    />
+                    <div class="project-info">
+                        <h3>Trans-Isthmus Corridor</h3>
+                        <p>
+                            Strategic planning for the Trans-Isthmus Corridor,
+                            defining development and conservation zones.
+                        </p>
+                        <div class="project-hashtags">
+                            <span>#PlaneaciónUrbana</span>
+                            <span>#Cartografía</span>
                         </div>
                     </div>
-
-                    <div class="project">
-                        <div class="project-image">
-                            <img src="img/proyecto4.jpg" alt="Proyecto 4" />
+                </div>
+                <div
+                    class="project-item"
+                    data-title="SWOT Analysis of the Xochimilco-Chalco Wetland"
+                    data-image="images/humedal.jpeg"
+                    data-tags="urban-planning geo-analysis"
+                >
+                    <img
+                        src="images/humedal.jpeg"
+                        alt="Humedal Xochimilco"
+                        class="project-thumbnail"
+                    />
+                    <div class="project-info">
+                        <h3>Xochimilco-Chalco Wetland</h3>
+                        <p>
+                            SWOT analysis of the Xochimilco-Chalco wetland,
+                            identifying threats like informal growth and
+                            opportunities in tourism.
+                        </p>
+                        <div class="project-hashtags">
+                            <span>#PlaneaciónUrbana</span>
+                            <span>#AnálisisGeoestadístico</span>
                         </div>
-                        <div class="project-info">
-                            <h3>Análisis Espacial</h3>
-                            <div class="hashtags">
-                                <span>#gis</span>
-                                <span>#python</span>
-                            </div>
+                    </div>
+                </div>
+                <div
+                    class="project-item"
+                    data-title="Territorial Analysis of Chemax, Yucatán"
+                    data-image="images/chemax.jpeg"
+                    data-tags="cartography"
+                >
+                    <img
+                        src="images/chemax.jpeg"
+                        alt="Chemax, Yucatán"
+                        class="project-thumbnail"
+                    />
+                    <div class="project-info">
+                        <h3>Territorial Analysis of Chemax</h3>
+                        <p>
+                            Detailed territorial analysis of Chemax, Yucatán,
+                            mapping land use and infrastructure.
+                        </p>
+                        <div class="project-hashtags">
+                            <span>#Cartografía</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="project-item"
+                    data-title="Road Infrastructure and Mobility Analysis"
+                    data-image="images/vial.jpeg"
+                    data-tags="urban-design visualization"
+                >
+                    <img
+                        src="images/vial.jpeg"
+                        alt="Infraestructura Vial"
+                        class="project-thumbnail"
+                    />
+                    <div class="project-info">
+                        <h3>Road Infrastructure & Mobility</h3>
+                        <p>
+                            Analysis and proposal for road infrastructure,
+                            studying mobility flows at a key intersection.
+                        </p>
+                        <div class="project-hashtags">
+                            <span>#DiseñoUrbano</span>
+                            <span>#VisualizaciónDeProyectos</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="project-item"
+                    data-title="Economic Activities in the SAC Alameda-Reforma"
+                    data-image="images/sac.jpg"
+                    data-tags="geo-analysis cartography"
+                >
+                    <img
+                        src="images/sac.jpg"
+                        alt="SAC Alameda"
+                        class="project-thumbnail"
+                    />
+                    <div class="project-info">
+                        <h3>Economic Activities: SAC Alameda</h3>
+                        <p>
+                            Mapping of economic activities by sector in the
+                            historic center of Mexico City.
+                        </p>
+                        <div class="project-hashtags">
+                            <span>#AnálisisGeoestadístico</span>
+                            <span>#Cartografía</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="project-item"
+                    data-title="Office Building Architectural Design"
+                    data-image="images/edificio.jpeg"
+                    data-tags="urban-design visualization"
+                >
+                    <img
+                        src="images/edificio.jpeg"
+                        alt="Edificio de Oficinas"
+                        class="project-thumbnail"
+                    />
+                    <div class="project-info">
+                        <h3>Office Building</h3>
+                        <p>
+                            Architectural design and rendering for an office
+                            building, focusing on natural light and circulation.
+                        </p>
+                        <div class="project-hashtags">
+                            <span>#DiseñoUrbano</span>
+                            <span>#VisualizaciónDeProyectos</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="project-item"
+                    data-title="Voronoi Watersheds of Mexico"
+                    data-image="images/voronoi.jpg"
+                    data-tags="cartography visualization"
+                >
+                    <img
+                        src="images/voronoi.jpg"
+                        alt="Voronoi Watersheds"
+                        class="project-thumbnail"
+                    />
+                    <div class="project-info">
+                        <h3>Voronoi Watersheds</h3>
+                        <p>
+                            A creative cartographic representation of Mexico's
+                            watersheds using Voronoi diagrams.
+                        </p>
+                        <div class="project-hashtags">
+                            <span>#Cartografía</span>
+                            <span>#VisualizaciónDeProyectos</span>
                         </div>
                     </div>
                 </div>
             </main>
-
-            <footer>
-                <p>Contacto: victor@example.com</p>
-            </footer>
         </div>
 
+        <div id="project-modal-overlay" class="modal-overlay">
+            <div class="modal-content">
+                <span id="project-close-button" class="close-button"
+                    >&times;</span
+                >
+                <h2 id="modal-title"></h2>
+                <p id="modal-description-project"></p>
+                <img id="modal-image" src="" alt="Expanded project image" />
+            </div>
+        </div>
+
+        <div id="services-modal-overlay" class="modal-overlay">
+            <div class="modal-content">
+                <span id="services-close-button" class="close-button"
+                    >&times;</span
+                >
+                <div id="services-list-container">
+                    <h2 data-es="Servicios">Services</h2>
+                    <ul class="services-list">
+                        <li data-service="geo-analysis">
+                            Análisis Geoestadístico
+                        </li>
+                        <li data-service="cartography">
+                            Generación de Cartografía
+                        </li>
+                        <li data-service="urban-planning">
+                            Planeación Urbana o Regional
+                        </li>
+                        <li data-service="urban-design">
+                            Diseño Urbano-Arquitectónico
+                        </li>
+                        <li data-service="visualization">
+                            Visualización de Proyectos
+                        </li>
+                    </ul>
+                </div>
+                <div id="services-gallery-container" style="display: none">
+                    <h2 id="service-gallery-title"></h2>
+                    <div id="service-gallery-thumbnails"></div>
+                    <button id="back-to-services" class="action-btn">
+                        &larr; Volver a Servicios
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="language-suggestion" class="language-suggestion">
+            <p>
+                ¿Prefieres ver este sitio en español?
+                <button id="switch-to-es">Cambiar a Español</button>
+            </p>
+        </div>
         <script src="script.js"></script>
     </body>
 </html>
