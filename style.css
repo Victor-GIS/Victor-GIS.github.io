@@ -46,7 +46,7 @@ body {
 /* --- Panel Izquierdo con Fondo --- */
 .left-panel {
     width: 45%;
-    max-width: 500px;
+    max-width: 550px; /* Un poco más de espacio */
     padding: 3rem 4rem;
     position: sticky;
     top: 0;
@@ -67,20 +67,11 @@ body {
     width: 100%;
     height: 100%;
     background-image: url("images/curvas.jpg");
-    background-size: 250%;
+    background-size: 400%; /* Mucho más grande */
     background-position: center;
     opacity: 0.05;
     z-index: -1;
-    -webkit-mask-image: radial-gradient(
-        ellipse 80% 80% at 50% 50%,
-        black 40%,
-        transparent 100%
-    );
-    mask-image: radial-gradient(
-        ellipse 80% 80% at 50% 50%,
-        black 40%,
-        transparent 100%
-    );
+    mask-image: none; /* Sin degradado */
     transition:
         opacity 0.3s ease,
         filter 0.3s ease;
@@ -180,35 +171,16 @@ body.dark-mode .moon-icon {
     font-size: 1rem;
     line-height: 1.6;
     max-width: 550px;
-    margin-bottom: 1.5rem;
-    border-top: 1px solid var(--border-color);
-    padding-top: 1.5rem;
-}
-
-/* --- Nuevos Estilos para Hashtags --- */
-.hashtags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    max-width: 400px;
     margin-bottom: 2rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
 }
-.hashtags span {
-    background-color: var(--card-background);
-    color: var(--text-secondary);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    border: 1px solid var(--border-color);
-}
-
 .contact-info {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 1.5rem;
+    margin-top: 1rem; /* Botones más abajo */
 }
 .action-buttons {
     display: flex;
@@ -259,32 +231,65 @@ body.dark-mode .moon-icon {
 }
 .project-item {
     display: flex;
-    align-items: center;
+    align-items: stretch; /* Estira los hijos a la misma altura */
     background-color: var(--card-background);
     padding: 1rem;
-    border: 1px solid transparent;
+    border: 1px solid var(--border-color);
     border-radius: 16px;
-    cursor: pointer;
     transition: all 0.3s ease;
-    min-height: 150px;
+    min-height: 180px; /* Un poco más altas */
 }
 .project-item:hover {
-    transform: scale(1.03);
-    border-color: var(--accent-color);
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px var(--shadow-color);
 }
 .project-thumbnail {
     width: 180px;
-    height: 150px;
+    height: auto; /* Altura automática para mantener proporción */
     object-fit: cover;
     border-radius: 10px;
     margin-right: 1.5rem;
     flex-shrink: 0;
+    cursor: pointer;
 }
-.project-title h3 {
-    margin: 0;
+.project-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.project-info h3 {
+    margin: 0 0 0.5rem 0;
     color: var(--text-primary);
     font-size: 1.2rem;
     font-weight: 600;
+}
+.project-info p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary);
+}
+.project-hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto; /* Empuja los hashtags abajo */
+}
+.project-hashtags span {
+    background-color: var(--background);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.project-hashtags span:hover {
+    background-color: var(--accent-color);
+    color: var(--background);
+    border-color: var(--accent-color);
 }
 
 /* --- Modal --- */
@@ -320,11 +325,9 @@ body.dark-mode .moon-icon {
     margin-top: 0;
     font-size: 2rem;
 }
-.modal-content ul {
-    list-style-type: "— ";
-    padding-left: 1.5rem;
+.modal-content p {
     font-size: 1.1rem;
-    line-height: 1.8;
+    line-height: 1.7;
 }
 .close-button {
     position: absolute;
@@ -343,16 +346,6 @@ body.dark-mode .moon-icon {
     border-radius: 8px;
     margin-top: 1.5rem;
     border: 1px solid var(--border-color);
-}
-#modal-title {
-    margin-top: 0;
-    font-size: 2rem;
-    color: var(--text-primary);
-}
-#modal-description {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
 }
 .language-suggestion {
     display: none;
@@ -379,9 +372,6 @@ body.dark-mode .moon-icon {
     .bio-content {
         align-items: center;
     }
-    .hashtags {
-        justify-content: center;
-    }
     .contact-info {
         align-items: center;
     }
@@ -390,19 +380,28 @@ body.dark-mode .moon-icon {
         justify-content: center;
     }
     .top-controls {
-        position: static;
-        margin-bottom: 2rem;
-        width: 100%;
-        justify-content: center;
+        position: fixed; /* Fija los controles en móvil */
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        background-color: var(--background);
+        z-index: 100;
+        justify-content: space-between; /* Alineación a los lados */
     }
     .project-item {
         flex-direction: column;
         text-align: center;
-        min-height: auto;
     }
     .project-thumbnail {
         margin: 0 0 1rem 0;
         width: 100%;
         height: 200px;
+    }
+    .project-info {
+        align-items: center;
+    }
+    .project-hashtags {
+        justify-content: center;
     }
 }
