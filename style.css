@@ -46,7 +46,7 @@ body {
 /* --- Panel Izquierdo con Fondo --- */
 .left-panel {
     width: 45%;
-    max-width: 550px;
+    max-width: 550px; /* Un poco más de espacio */
     padding: 3rem 4rem;
     position: sticky;
     top: 0;
@@ -88,9 +88,8 @@ body.dark-mode .left-panel::before {
     left: 4rem;
     right: 4rem;
     display: flex;
-    justify-content: flex-end; /* Alineado a la derecha por defecto */
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
 }
 .language-toggle {
     font-family: var(--font-serif);
@@ -232,24 +231,26 @@ body.dark-mode .moon-icon {
 }
 .project-item {
     display: flex;
-    align-items: stretch;
+    align-items: stretch; /* Estira los hijos a la misma altura */
     background-color: var(--card-background);
     padding: 1rem;
     border: 1px solid var(--border-color);
     border-radius: 16px;
-    transition: background-color 0.3s ease;
-    min-height: 180px;
+    transition: all 0.3s ease;
+    min-height: 180px; /* Un poco más altas */
+}
+.project-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px var(--shadow-color);
 }
 .project-thumbnail {
     width: 180px;
-    height: auto;
+    height: auto; /* Altura automática para mantener proporción */
     object-fit: cover;
     border-radius: 10px;
     margin-right: 1.5rem;
     flex-shrink: 0;
     cursor: pointer;
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
 }
 .project-info {
     display: flex;
@@ -272,7 +273,7 @@ body.dark-mode .moon-icon {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: auto;
+    margin-top: auto; /* Empuja los hashtags abajo */
 }
 .project-hashtags span {
     background-color: var(--background);
@@ -281,17 +282,14 @@ body.dark-mode .moon-icon {
     border-radius: 15px;
     font-size: 0.75rem;
     font-weight: 600;
-    border: 1px solid transparent;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
     transition: all 0.2s ease;
 }
-/* Nuevo efecto hover */
-.project-item:hover .project-thumbnail {
-    border-color: var(--accent-color);
-    transform: scale(1.03);
-}
-.project-item:hover .project-hashtags span {
+.project-hashtags span:hover {
     background-color: var(--accent-color);
     color: var(--background);
+    border-color: var(--accent-color);
 }
 
 /* --- Modal --- */
@@ -327,6 +325,10 @@ body.dark-mode .moon-icon {
     margin-top: 0;
     font-size: 2rem;
 }
+.modal-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
 .close-button {
     position: absolute;
     top: 15px;
@@ -349,37 +351,6 @@ body.dark-mode .moon-icon {
     display: none;
 }
 
-/* Modal de Servicios Específico */
-.services-list {
-    list-style-type: none;
-    padding: 0;
-}
-.services-list li {
-    font-size: 1.2rem;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-.services-list li:hover {
-    color: var(--accent-color);
-}
-#service-gallery-thumbnails {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
-    margin: 1.5rem 0;
-}
-#service-gallery-thumbnails img {
-    width: 100%;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-#back-to-services {
-    margin-top: 1rem;
-}
-
 /* --- Diseño Responsivo --- */
 @media (max-width: 900px) {
     .main-container {
@@ -391,13 +362,12 @@ body.dark-mode .moon-icon {
         max-width: 100%;
         position: static;
         height: auto;
-        padding: 4rem 2rem 2rem;
+        padding: 2rem;
         text-align: center;
     }
     .left-panel {
         border-right: none;
         align-items: center;
-        padding-top: 6rem;
     }
     .bio-content {
         align-items: center;
@@ -410,7 +380,7 @@ body.dark-mode .moon-icon {
         justify-content: center;
     }
     .top-controls {
-        position: fixed;
+        position: fixed; /* Fija los controles en móvil */
         top: 0;
         left: 0;
         right: 0;

@@ -39,78 +39,56 @@ document.addEventListener("DOMContentLoaded", () => {
   const projectCloseButton = document.getElementById("project-close-button");
 
   projectThumbnails.forEach((thumb) => {
-    thumb.addEventListener("click", () => {
+    thumb.addEventListener("click", (e) => {
+      e.stopPropagation(); // Evita que el clic se propague al contenedor
       const item = thumb.closest(".project-item");
-      modalTitle.textContent = item.getAttribute("data-title");
-      modalImage.src = item.getAttribute("data-image");
-      modalDescriptionProject.textContent = item.querySelector("p").textContent;
+      const title = item.getAttribute("data-title");
+      const image = item.getAttribute("data-image");
+      const description = item.querySelector("p").textContent;
+
+      modalTitle.textContent = title;
+      modalImage.src = image;
+      modalDescriptionProject.textContent = description;
       projectModalOverlay.style.display = "flex";
     });
   });
 
-  const closeProjectModal = () => (projectModalOverlay.style.display = "none");
+  const closeProjectModal = () => {
+    projectModalOverlay.style.display = "none";
+  };
   projectCloseButton.addEventListener("click", closeProjectModal);
-  projectModalOverlay.addEventListener("click", (e) => {
-    if (e.target === projectModalOverlay) closeProjectModal();
+  projectModalOverlay.addEventListener("click", (event) => {
+    if (event.target === projectModalOverlay) closeProjectModal();
   });
 
-  // --- Lógica del Modal de Servicios (con miniaturas) ---
-  const servicesButton = document.getElementById("services-button");
-  const servicesModalOverlay = document.getElementById(
-    "services-modal-overlay",
+  // --- Lógica del Modal de Servicios (activado por hashtags) ---
+  const serviceHashtags = document.querySelectorAll(".project-hashtags span");
+  const serviceModalOverlay = document.getElementById("service-modal-overlay");
+  const serviceModalTitle = document.getElementById("service-modal-title");
+  const serviceModalDescription = document.getElementById(
+    "service-modal-description",
   );
-  const servicesCloseButton = document.getElementById("services-close-button");
-  const servicesListContainer = document.getElementById(
-    "services-list-container",
-  );
-  const servicesGalleryContainer = document.getElementById(
-    "services-gallery-container",
-  );
-  const backToServicesButton = document.getElementById("back-to-services");
-  const serviceGalleryTitle = document.getElementById("service-gallery-title");
-  const serviceGalleryThumbnails = document.getElementById(
-    "service-gallery-thumbnails",
-  );
+  const serviceCloseButton = document.getElementById("service-close-button");
 
-  servicesButton.addEventListener("click", () => {
-    servicesListContainer.style.display = "block";
-    servicesGalleryContainer.style.display = "none";
-    servicesModalOverlay.style.display = "flex";
-  });
-
-  document.querySelectorAll(".services-list li").forEach((serviceItem) => {
-    serviceItem.addEventListener("click", () => {
-      const serviceKey = serviceItem.dataset.service;
-      const service = servicesData[serviceKey];
-      const matchingProjects = document.querySelectorAll(
-        `.project-item[data-tags*="${serviceKey}"]`,
-      );
-
-      serviceGalleryTitle.textContent = service.title;
-      serviceGalleryThumbnails.innerHTML = ""; // Limpiar galería
-
-      matchingProjects.forEach((project) => {
-        const thumb = document.createElement("img");
-        thumb.src = project.dataset.image;
-        thumb.alt = project.dataset.title;
-        serviceGalleryThumbnails.appendChild(thumb);
-      });
-
-      servicesListContainer.style.display = "none";
-      servicesGalleryContainer.style.display = "block";
+  serviceHashtags.forEach((tag) => {
+    tag.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const serviceKey = tag.dataset.service;
+      const serviceInfo = servicesData[serviceKey];
+      if (serviceInfo) {
+        serviceModalTitle.textContent = serviceInfo.title;
+        serviceModalDescription.textContent = serviceInfo.description;
+        serviceModalOverlay.style.display = "flex";
+      }
     });
   });
 
-  backToServicesButton.addEventListener("click", () => {
-    servicesListContainer.style.display = "block";
-    servicesGalleryContainer.style.display = "none";
-  });
-
-  const closeServicesModal = () =>
-    (servicesModalOverlay.style.display = "none");
-  servicesCloseButton.addEventListener("click", closeServicesModal);
-  servicesModalOverlay.addEventListener("click", (e) => {
-    if (e.target === servicesModalOverlay) closeServicesModal();
+  const closeServiceModal = () => {
+    serviceModalOverlay.style.display = "none";
+  };
+  serviceCloseButton.addEventListener("click", closeServiceModal);
+  serviceModalOverlay.addEventListener("click", (event) => {
+    if (event.target === serviceModalOverlay) closeServiceModal();
   });
 
   // --- Lógica de Idiomas y Tema (sin cambios) ---
