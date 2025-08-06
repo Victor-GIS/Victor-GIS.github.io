@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Base de datos de Textos Bilingües con Enfoque de Negocio ---
+  // --- Base de datos de Textos ---
   const servicesData = {
     "geo-analysis": {
       en: {
@@ -63,8 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-  // --- Lógica del Modal de Proyectos ---
+  // --- Elementos Comunes ---
   const projectItems = document.querySelectorAll(".project-item");
+
+  // --- Lógica del Modal de Proyectos ---
   const projectModalOverlay = document.getElementById("project-modal-overlay");
   const modalImage = document.getElementById("modal-image");
   const modalTitle = document.getElementById("modal-title");
@@ -84,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .querySelector("p")
       .getAttribute(`data-${currentLang}`);
     modalImage.src = item.getAttribute("data-image");
-    modalImage.classList.remove("zoomed"); // Asegurarse de que la imagen no esté con zoom al abrir
     projectModalOverlay.style.display = "flex";
   };
 
@@ -103,9 +104,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === projectModalOverlay) closeProjectModal();
   });
 
-  // --- MEJORA: Lógica de Zoom en la Imagen del Modal ---
+  // --- Lógica del Lightbox (Zoom Fullscreen) ---
+  const lightboxOverlay = document.getElementById("lightbox-overlay");
+  const lightboxImage = document.getElementById("lightbox-image");
+  const lightboxCloseButton = document.getElementById("lightbox-close-button");
+
+  const openLightbox = (imageUrl) => {
+    lightboxImage.src = imageUrl;
+    lightboxOverlay.style.display = "flex";
+  };
+
+  const closeLightbox = () => (lightboxOverlay.style.display = "none");
+
   modalImage.addEventListener("click", () => {
-    modalImage.classList.toggle("zoomed");
+    openLightbox(modalImage.src);
+  });
+
+  lightboxCloseButton.addEventListener("click", closeLightbox);
+  lightboxOverlay.addEventListener("click", (e) => {
+    if (e.target === lightboxOverlay) closeLightbox();
   });
 
   // --- Lógica del Modal de Servicios ---
@@ -248,15 +265,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedLang = localStorage.getItem("language") || "es";
   setLanguage(savedLang);
 
-  // --- MEJORA: Cierre de Modales con Tecla Escape ---
+  // --- Cierre Global de Modales con Tecla Escape ---
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      if (projectModalOverlay.style.display === "flex") {
-        closeProjectModal();
-      }
-      if (servicesModalOverlay.style.display === "flex") {
-        closeServicesModal();
-      }
+      if (projectModalOverlay.style.display === "flex") closeProjectModal();
+      if (servicesModalOverlay.style.display === "flex") closeServicesModal();
+      if (lightboxOverlay.style.display === "flex") closeLightbox();
     }
   });
 });

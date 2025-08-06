@@ -245,7 +245,6 @@ body.dark-mode .moon-icon {
     border-radius: 16px;
     height: 180px;
     transition: all 0.3s ease;
-    /* --- MEJORA: Animación de entrada --- */
     opacity: 0;
     animation: fadeInUp 0.5s ease-out forwards;
     animation-delay: calc(0.1s * var(--i));
@@ -317,7 +316,7 @@ body.dark-mode .moon-icon {
     color: var(--text-primary);
 }
 
-/* --- Modal --- */
+/* --- Modales --- */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -362,6 +361,11 @@ body.dark-mode .moon-icon {
     font-size: 2.5rem;
     color: var(--text-secondary);
     cursor: pointer;
+    transition: color 0.2s ease;
+    z-index: 10;
+}
+.close-button:hover {
+    color: var(--text-primary);
 }
 #modal-image {
     width: 100%;
@@ -372,16 +376,38 @@ body.dark-mode .moon-icon {
     border-radius: 8px;
     margin-top: 1.5rem;
     border: 1px solid var(--border-color);
-    /* --- MEJORA: Zoom de imagen --- */
     cursor: zoom-in;
-    transition: transform 0.3s ease;
-}
-#modal-image.zoomed {
-    transform: scale(1.5);
-    cursor: zoom-out;
 }
 
-/* Modal de Servicios Específico */
+/* --- NUEVO: Estilos para Lightbox Fullscreen --- */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+#lightbox-image {
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+}
+#lightbox-overlay .close-button {
+    color: #fff;
+    opacity: 0.8;
+}
+#lightbox-overlay .close-button:hover {
+    opacity: 1;
+}
+
+/* --- Modal de Servicios --- */
 .services-list {
     list-style-type: none;
     padding: 0;
@@ -393,10 +419,7 @@ body.dark-mode .moon-icon {
     cursor: pointer;
     transition: color 0.2s ease;
 }
-body.light-mode .services-list li:hover {
-    color: var(--accent-color-vibrant);
-}
-body.dark-mode .services-list li:hover {
+.services-list li:hover {
     color: var(--text-primary);
 }
 #service-detail-description {
@@ -476,9 +499,5 @@ body.dark-mode .services-list li:hover {
     }
     .project-info {
         align-items: center;
-    }
-    /* --- MEJORA: Zoom de imagen en móvil --- */
-    #modal-image.zoomed {
-        transform: scale(1.2); /* Un zoom más sutil para pantallas pequeñas */
     }
 }
