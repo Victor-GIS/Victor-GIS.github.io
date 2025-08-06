@@ -73,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   const projectCloseButton = document.getElementById("project-close-button");
 
-  // Función reutilizable para abrir el modal de proyecto
   const openProjectModal = (item) => {
     const currentLang = document
       .querySelector(".language-toggle .active")
@@ -85,15 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
       .querySelector("p")
       .getAttribute(`data-${currentLang}`);
     modalImage.src = item.getAttribute("data-image");
+    modalImage.classList.remove("zoomed"); // Asegurarse de que la imagen no esté con zoom al abrir
     projectModalOverlay.style.display = "flex";
   };
 
   projectItems.forEach((item) => {
-    // Event listener en el contenedor de información (título y descripción)
     item
       .querySelector(".project-info")
       .addEventListener("click", () => openProjectModal(item));
-    // Event listener en la miniatura
     item
       .querySelector(".project-thumbnail")
       .addEventListener("click", () => openProjectModal(item));
@@ -103,6 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
   projectCloseButton.addEventListener("click", closeProjectModal);
   projectModalOverlay.addEventListener("click", (e) => {
     if (e.target === projectModalOverlay) closeProjectModal();
+  });
+
+  // --- MEJORA: Lógica de Zoom en la Imagen del Modal ---
+  modalImage.addEventListener("click", () => {
+    modalImage.classList.toggle("zoomed");
   });
 
   // --- Lógica del Modal de Servicios ---
@@ -143,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     serviceDetailTitle.textContent = service.title;
     serviceDetailDescription.textContent = service.description;
-    serviceGalleryThumbnails.innerHTML = ""; // Limpiar galería
+    serviceGalleryThumbnails.innerHTML = "";
 
     const matchingProjects = document.querySelectorAll(
       `.project-item .project-hashtags span[data-service='${serviceKey}']`,
@@ -157,10 +160,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .querySelector("h3")
         .getAttribute(`data-${currentLang}`);
 
-      // AÑADIDO: Event listener en la miniatura del servicio
       thumb.addEventListener("click", () => {
         closeServicesModal();
-        // Esperar un instante para que la transición entre modales no sea brusca
         setTimeout(() => {
           openProjectModal(projectItem);
         }, 150);
@@ -194,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === servicesModalOverlay) closeServicesModal();
   });
 
-  // --- Lógica de Idioma y Tema (SIN CAMBIOS) ---
+  // --- Lógica de Idioma y Tema ---
   const langENToggle = document.getElementById("lang-en");
   const langESToggle = document.getElementById("lang-es");
   const translatableElements = document.querySelectorAll("[data-es]");
@@ -246,4 +247,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const savedLang = localStorage.getItem("language") || "es";
   setLanguage(savedLang);
+
+  // --- MEJORA: Cierre de Modales con Tecla Escape ---
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if (projectModalOverlay.style.display === "flex") {
+        closeProjectModal();
+      }
+      if (servicesModalOverlay.style.display === "flex") {
+        closeServicesModal();
+      }
+    }
+  });
 });
